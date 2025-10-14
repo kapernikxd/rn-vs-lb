@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import appTheme from './theme';
 import { COLORS, FONTS, ThemeType } from './theme';
 
 export const getGlobalStyleSheet = (theme: ThemeType) => StyleSheet.create({
@@ -92,6 +93,11 @@ export const getGlobalStyleSheet = (theme: ThemeType) => StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'flex-end',
     },
+    flexalingjust: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
     // Комбинированные производные для row/column с выравниванием и распределением
     flexRowCenterBetween: {
         flexDirection: 'row',
@@ -134,6 +140,8 @@ export const getGlobalStyleSheet = (theme: ThemeType) => StyleSheet.create({
         justifyContent: 'space-around',
     },
 });
+
+export const GlobalStyleSheet = getGlobalStyleSheet(appTheme.lightTheme);
 
 export type GlobalStyleSheetType = ReturnType<typeof getGlobalStyleSheet>;
 

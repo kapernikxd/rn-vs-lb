@@ -1,0 +1,1 @@
+export { IconConverter, IconTypes } from "./Icon";

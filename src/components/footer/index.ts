@@ -1,0 +1,1 @@
+export { BottomTab, LbTypes } from "./Footer"

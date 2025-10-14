@@ -1,8 +1,8 @@
-import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import Button, { MyButtonProps } from '../../../src/components/buttons/Button'; // Убедитесь, что путь правильный
+import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react';
+import Button, { MyButtonProps } from '../../../src/components/buttons/Button';
 
-export default {
+const meta: Meta<MyButtonProps> = {
   title: 'Buttons/Button',
   component: Button,
   argTypes: {
@@ -11,31 +11,70 @@ export default {
       description: 'Text displayed on the button',
     },
     type: {
-      control: { type: 'radio' },
-      options: ['primary', 'gray'],
-      description: 'Type of button (primary or gray)',
+      control: { type: 'select' },
+      options: ['primary', 'gray', 'primary-outline', 'gray-outline', 'report-outline'],
+      description: 'Visual style of the button',
+    },
+    loading: {
+      control: 'boolean',
+      description: 'Show loading state with spinner',
+    },
+    disabled: {
+      control: 'boolean',
     },
     onPress: { action: 'pressed' },
   },
-} as Meta;
-
-const Template: Story<MyButtonProps> = (args) => <Button {...args} />;
-
-export const Primary = Template.bind({});
-Primary.args = {
-  title: 'Update Profile',
-  type: 'primary',
+  args: {
+    title: 'Update Profile',
+    type: 'primary',
+    onPress: action('pressed'),
+  },
 };
 
-export const Gray = Template.bind({});
-Gray.args = {
-  title: 'Cancel',
-  type: 'gray',
+export default meta;
+
+type Story = StoryObj<MyButtonProps>;
+
+export const Primary: Story = {};
+
+export const Gray: Story = {
+  args: {
+    title: 'Cancel',
+    type: 'gray',
+  },
 };
 
+export const PrimaryOutline: Story = {
+  args: {
+    title: 'Contact us',
+    type: 'primary-outline',
+  },
+};
 
-export const PrimaryOutline = Template.bind({});
-PrimaryOutline.args = {
-  title: 'Ok',
-  type: 'primary-outline',
+export const GrayOutline: Story = {
+  args: {
+    title: 'Secondary action',
+    type: 'gray-outline',
+  },
+};
+
+export const ReportOutline: Story = {
+  args: {
+    title: 'Report user',
+    type: 'report-outline',
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    loading: true,
+    title: 'Saving...',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    title: 'Disabled button',
+    disabled: true,
+  },
 };

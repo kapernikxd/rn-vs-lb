@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
-import { COLORS, FONTS } from '../../constants/theme';
-import { GlobalStyleSheet } from '../../constants/styleSheet';
+import { COLORS, FONTS } from '../../constants/theme/theme';
+import { GlobalStyleSheet } from '../../constants/theme/styleSheet';
 
 interface MeetProfileCardProps {
   name: string;

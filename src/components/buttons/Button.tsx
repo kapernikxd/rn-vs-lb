@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle, TouchableOpacityProps, StyleProp } from 'react-native';
-import { COLORS } from '../../constants/theme';
+import { COLORS } from '../../constants/theme/theme';
 
 export interface MyButtonProps extends TouchableOpacityProps {
   title: string;

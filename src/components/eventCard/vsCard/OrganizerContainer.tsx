@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Linking } from 'react-native';
-import { COLORS, FONTS, SIZES } from '../../../constants/theme';
+import { COLORS, FONTS, SIZES } from '../../../constants/theme/theme';
 
 interface OrganizerContainerProps {
   avatarUri: string;

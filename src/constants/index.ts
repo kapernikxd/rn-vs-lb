@@ -1,3 +1,3 @@
-export * from "./styleSheet";
-export { default as appTheme } from "./theme";
-export { default as themeContext} from "./themeContext";
+export * from "./theme/styleSheet";
+export { default as appTheme } from "./theme/theme";
+export * from "./theme/themeContext";

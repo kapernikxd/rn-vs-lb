@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import Tag from '../Tag';
 import OrganizerContainer from './OrganizerContainer';
 import Footer from './Footer';
-import { COLORS, FONTS, SIZES } from '../../../constants/theme';
+import { COLORS, FONTS, SIZES } from '../../../constants/theme/theme';
 
 interface EventCardProps {
     imageUri: string;

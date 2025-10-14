@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { COLORS, FONTS, SIZES } from '../../../constants/theme';
+import { COLORS, FONTS, SIZES } from '../../../constants/theme/theme';
 
 type IconsPosition = 'space-between' | 'flex-start';
 

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { StyleSheet, ViewStyle } from 'react-native';
 import BottomSheet, { BottomSheetBackdrop, BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { BottomSheetMethods } from '@gorhom/bottom-sheet/lib/typescript/types';
-import { COLORS } from "../../constants/theme";
+import { COLORS } from "../../constants/theme/theme";
 
 interface SheetProps {
   sheetRef: React.RefObject<BottomSheetMethods>;

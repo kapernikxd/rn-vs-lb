@@ -1,6 +1,6 @@
 import { View, TouchableOpacity, Text } from 'react-native';
 import React, { FC, ReactNode } from 'react';
-import { GlobalStyleSheet } from '../../constants/styleSheet';
+import { GlobalStyleSheet } from '../../constants/theme/styleSheet';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 interface HeaderHomeProps {

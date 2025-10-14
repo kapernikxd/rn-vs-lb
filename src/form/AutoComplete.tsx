@@ -6,7 +6,7 @@ import { debounce } from 'lodash';
 import { Controller } from 'react-hook-form';
 
 import { commonStyles } from './commonFormStyles';
-import { COLORS } from '../constants/theme';
+import { COLORS } from '../constants/theme/theme';
 
 export type AddressFieldProps = {
     name: string;

@@ -5,7 +5,7 @@ import { Picker } from '@react-native-picker/picker';
 import { Ionicons } from '@expo/vector-icons';
 
 import { commonStyles } from './commonFormStyles';
-import { COLORS, SIZES } from '../constants/theme';
+import { COLORS, SIZES } from '../constants/theme/theme';
 
 export interface MultiSelectProps {
     name: string;

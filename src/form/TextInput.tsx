@@ -4,7 +4,7 @@ import { useForm, Controller } from 'react-hook-form';
 import PasswordInput from './PasswordInput';
 
 import { commonStyles } from './commonFormStyles';
-import { COLORS } from '../constants/theme';
+import { COLORS } from '../constants/theme/theme';
 
 export interface InputWithValidationProps {
   name: string;

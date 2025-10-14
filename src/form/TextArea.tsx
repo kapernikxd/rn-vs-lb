@@ -3,7 +3,7 @@ import { TextInput, StyleSheet, View, Text, TextInputProps } from 'react-native'
 import { Controller } from 'react-hook-form';
 
 import { commonStyles } from './commonFormStyles';
-import { COLORS } from '../constants/theme';
+import { COLORS } from '../constants/theme/theme';
 
 export interface TextAreaProps extends TextInputProps {
     name: string;

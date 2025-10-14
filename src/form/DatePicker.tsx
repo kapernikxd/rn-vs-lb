@@ -4,7 +4,7 @@ import { Controller } from 'react-hook-form';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 import { commonStyles } from './commonFormStyles';
-import { COLORS, SIZES } from '../constants/theme';
+import { COLORS, SIZES } from '../constants/theme/theme';
 
 export interface DatePickerProps {
   name: string;

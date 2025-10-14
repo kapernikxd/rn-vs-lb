@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
-import { COLORS } from "../../constants/theme";
+import { COLORS } from "../../constants/theme/theme";
 
 interface ListItemProps {
   icon: any;

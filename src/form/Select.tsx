@@ -4,7 +4,7 @@ import { Controller } from 'react-hook-form';
 import { Picker } from '@react-native-picker/picker';
 
 import { commonStyles } from './commonFormStyles';
-import { COLORS, SIZES } from '../constants/theme';
+import { COLORS, SIZES } from '../constants/theme/theme';
 
 export interface SelectProps {
     name: string;

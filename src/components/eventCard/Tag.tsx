@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { FONTS, SIZES } from '../../constants/theme';
+import { FONTS, SIZES } from '../../constants/theme/theme';
 
 //@ts-ignore
 const Tag = ({ label, backgroundColor, textColor, borderColor }) => (

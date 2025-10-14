@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { GlobalStyleSheet } from '../../constants';
-import { COLORS, FONTS } from '../../constants/theme';
+import { COLORS, FONTS } from '../../constants/theme/theme';
 import { IconConverter, IconTypes } from '../icon';
 import { Button } from '../buttons';
 

@@ -228,6 +228,6 @@ const appTheme = { COLORS, SIZES, FONTS, darkTheme, lightTheme }
 export default appTheme;
 
 
-export const IMAGES = {
-    google: require('../assets/images/icons/google.png'),
-}
+// export const IMAGES = {
+//     google: require('../assets/images/icons/google.png'),
+// }

@@ -1,0 +1,25 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "declarationDir": "dist/types",
+    "emitDeclarationOnly": false,
+    "outDir": "dist",
+    "module": "commonjs",
+    "target": "es2019",
+    "jsx": "react",
+    "removeComments": false,
+    "downlevelIteration": true
+  },
+  "include": [
+    "src/**/*",
+    "typings/*.d.ts"
+  ],
+  "exclude": [
+    "**/*.stories.*",
+    "**/__tests__/**",
+    ".storybook",
+    "App.tsx"
+  ]
+}

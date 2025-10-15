@@ -1,154 +1,213 @@
-import React, { ReactNode } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import Spacer from '../UI/Spacer';
-import { ThemeType, useTheme, CommonStylesType } from '../../theme';
+import React, { memo } from 'react';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  ImageSourcePropType,
+  ViewStyle,
+  TextStyle,
+  ImageStyle,
+} from 'react-native';
+import { useTheme } from '../../theme';
 
-interface EventCardProps {
-    imageUri: string;
-    date?: string;
-    title: string;
-    description: string;
-    onPress?: () => void; // для иконки приглашения
-    createdByMe: boolean;
-    isModerated: boolean;
-    isInvitation: boolean;
-    isFirstElement?: boolean;
-    moderationStatus?: 'PENDING' | 'APPROVED' | 'REJECTED';
-    moderationImageStatus?: 'PENDING' | 'APPROVED' | 'REJECTED';
-    participantsCount?: number;
-    maxParticipants?: number;
-    tooltipContent: ReactNode;
-}
+export type EventCardProps = {
+  imageSource: ImageSourcePropType; // вместо imageUri
+  title: string;
+  description?: string;
+  date?: string;
 
-const EventCardList: React.FC<EventCardProps> = ({
-    imageUri,
-    date,
-    title,
-    description,
-    onPress,
-    createdByMe,
-    isInvitation,
-    isFirstElement,
-    moderationStatus,
-    moderationImageStatus,
-    participantsCount,
-    maxParticipants,
-    tooltipContent,
-    isModerated
-}) => {
-    const { globalStyleSheet, theme, commonStyles, typography, isDark, } = useTheme();
-    const styles = getStyles({ theme, commonStyles });
+  /** Внешние действия */
+  onPressCard?: () => void;
 
+  /** Отступы/радиусы «первого элемента» — без бизнес-смысла, только визуальный вариант */
+  isFirstElement?: boolean;
 
-    const renderModerationTooltip = () => {
-        if (!moderationStatus || moderationStatus === 'APPROVED' || !createdByMe) return null;
-        const backgroundColor = isDark ? theme.backgroundThird : theme.backgroundSemiTransparent
+  /** Показывать затемнение (например, при модерации) — решает контейнер */
+  dimmed?: boolean;
 
-        return (
-            <TouchableOpacity
-                onPress={(e) => e.stopPropagation()}
-                style={[styles.statusMarker, { backgroundColor }]}
-                activeOpacity={0.8}
-            >
-                {/* <TooltipComponent
-                    content={tooltipContent}
-                /> */}
-            </TouchableOpacity>
-        );
-    };
+  /** Слоты/вставки */
+  rightOverlay?: React.ReactNode; // например, бейдж с модерацией/tooltip
+  menuButton?: React.ReactNode;   // кнопка «⋯» или любая иконка
 
-    return (
-        <View style={[styles.container, isFirstElement && styles.containerForFirstElement]}>
-            <View style={[styles.overlayWrapper, isModerated && styles.dimmed]}>
-                <Image source={{ uri: imageUri }} style={commonStyles.imageCard} />
-                <View style={styles.content}>
-                    <View style={globalStyleSheet.flexRowCenterBetween}>
-                        <Text style={[typography.titleH6, { width: "85%" }]} numberOfLines={1} ellipsizeMode="tail">
-                            {title}
-                        </Text>
-                        {isInvitation && onPress && (
-                            <TouchableOpacity style={styles.action} onPress={(e) => {
-                                e.stopPropagation();
-                                onPress();
-                            }}>
-                                <Ionicons name='ellipsis-horizontal-sharp' size={20} color={theme.primary} />
-                            </TouchableOpacity>
-                        )}
-                    </View>
-                    <Spacer size='xxs' />
-                    <Text style={typography.bodyXs} numberOfLines={3} ellipsizeMode="tail">
-                        {description}
-                    </Text>
-                    <Spacer size='xs' />
-                    <Text style={[typography.bodyXs, styles.date]}>{date}</Text>
-                    {maxParticipants !== undefined && (
-                        <Text style={[typography.bodyXs, styles.participants]}>
-                            {participantsCount}/{maxParticipants}
-                        </Text>
-                    )}
-                </View>
-            </View>
+  /** Участники */
+  participantsCount?: number;
+  maxParticipants?: number;
 
-            {/* Модерация поверх */}
-            {renderModerationTooltip()}
-        </View>
-    );
+  /** Переопределение стилей извне */
+  style?: ViewStyle;
+  imageStyle?: ImageStyle;
+  titleStyle?: TextStyle;
+  descriptionStyle?: TextStyle;
+  dateStyle?: TextStyle;
+  participantsStyle?: TextStyle;
 };
 
-const getStyles = ({ theme, commonStyles }: { commonStyles: CommonStylesType, theme: ThemeType }) => StyleSheet.create({
-    container: {
-        ...commonStyles.card,
-        ...commonStyles.shadow,
-        flexDirection: 'column',
-        marginVertical: 4,
-        position: 'relative',
-    },
-    containerForFirstElement: {
-        marginVertical: 0,
-        borderTopLeftRadius: 0,
-        borderTopRightRadius: 0,
-        marginBottom: 4,
-    },
-    overlayWrapper: {
-        flexDirection: 'row',
-    },
-    dimmed: {
-        opacity: 0.5,
-    },
-    content: {
-        flex: 1,
-        justifyContent: "space-around",
-        marginRight: 8,
-    },
-    action: {
-        padding: 4,
-    },
-    date: {
-        color: theme.placeholder,
-        textAlign: "right",
-    },
-    participants: {
-        textAlign: 'right',
-    },
-    moderationOverlay: {
-        position: 'absolute',
-        top: 8,
-        right: 8,
-        zIndex: 10,
-    },
-    statusMarker: {
-        width: 32,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderTopRightRadius: 8,
-        borderBottomRightRadius: 8,
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        right: 0,
-        zIndex: 10,
-    },
+const EventCard: React.FC<EventCardProps> = memo((props) => {
+  const {
+    imageSource,
+    title,
+    description,
+    date,
+    onPressCard,
+    isFirstElement,
+    dimmed,
+    rightOverlay,
+    menuButton,
+    participantsCount,
+    maxParticipants,
+    style,
+    imageStyle,
+    titleStyle,
+    descriptionStyle,
+    dateStyle,
+    participantsStyle,
+  } = props;
+
+  const { theme, typography } = useTheme(); // можно удалить и заменить дефолтными цветами
+
+  return (
+    <TouchableOpacity
+      activeOpacity={0.9}
+      onPress={onPressCard}
+      disabled={!onPressCard}
+      style={[
+        styles.container,
+        isFirstElement && styles.containerFirst,
+        style,
+      ]}
+    >
+      <View style={[styles.row, dimmed && styles.dimmed]}>
+        <Image source={imageSource} style={[styles.image, imageStyle]} />
+        <View style={styles.content}>
+          <View style={styles.headerRow}>
+            <Text
+              style={[
+                typography?.titleH6 ?? styles.titleDefault,
+                styles.titleEllipsis,
+                titleStyle,
+              ]}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
+              {title}
+            </Text>
+
+            {/* Внешняя кнопка меню */}
+            {menuButton ? <View style={styles.menuWrap}>{menuButton}</View> : null}
+          </View>
+
+          {description ? (
+            <Text
+              style={[typography?.bodyXs ?? styles.descDefault, descriptionStyle]}
+              numberOfLines={3}
+              ellipsizeMode="tail"
+            >
+              {description}
+            </Text>
+          ) : null}
+
+          {date ? (
+            <Text
+              style={[
+                typography?.bodyXs ?? styles.descDefault,
+                { textAlign: 'right', color: theme?.placeholder ?? '#888' },
+                dateStyle,
+              ]}
+            >
+              {date}
+            </Text>
+          ) : null}
+
+          {maxParticipants !== undefined ? (
+            <Text
+              style={[
+                typography?.bodyXs ?? styles.descDefault,
+                { textAlign: 'right' },
+                participantsStyle,
+              ]}
+            >
+              {participantsCount ?? 0}/{maxParticipants}
+            </Text>
+          ) : null}
+        </View>
+      </View>
+
+      {/* Правый вертикальный оверлей (бейдж/tooltip/любой ReactNode) */}
+      {rightOverlay ? <View style={styles.rightOverlay}>{rightOverlay}</View> : null}
+    </TouchableOpacity>
+  );
 });
 
-export default EventCardList;
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    marginVertical: 4,
+    position: 'relative',
+    borderRadius: 12,
+    backgroundColor: '#fff',
+    overflow: 'hidden',
+    // тень по вкусу — лучше отдавать на тему
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 2,
+  },
+  containerFirst: {
+    marginVertical: 0,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+    marginBottom: 4,
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  dimmed: {
+    opacity: 0.5,
+  },
+  image: {
+    width: 90,
+    height: 90,
+    borderTopLeftRadius: 12,
+    borderBottomLeftRadius: 12,
+    backgroundColor: '#eee',
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'space-around',
+    paddingHorizontal: 8,
+    paddingVertical: 6,
+  },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  titleDefault: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#111',
+  },
+  titleEllipsis: {
+    width: '85%',
+  },
+  descDefault: {
+    fontSize: 12,
+    color: '#333',
+  },
+  menuWrap: {
+    marginLeft: 'auto',
+    padding: 4,
+  },
+  rightOverlay: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    width: 32,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+export default EventCard;

@@ -2,13 +2,13 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
 import { action } from '@storybook/addon-actions';
-import Organizer from '../../../src/components/Cards/Organazer';
+import Organizer from '../../../src/components/UserCards/Organazer';
 import { ThemeProvider } from '../../../src/theme/themeContext';
 
 type OrganizerProps = React.ComponentProps<typeof Organizer>;
 
 const meta: Meta<OrganizerProps> = {
-  title: 'Cards/Organizer',
+  title: 'UserCards/Organizer',
   component: Organizer,
   decorators: [
     (Story) => (

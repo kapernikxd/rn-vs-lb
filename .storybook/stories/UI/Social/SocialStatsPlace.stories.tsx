@@ -2,13 +2,13 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
 import { action } from '@storybook/addon-actions';
-import SocialStatsPlace from '../../../src/components/Cards/SocialStatsPlace';
-import { ThemeProvider } from '../../../src/theme/themeContext';
+import SocialStatsPlace from '../../../../src/components/UI/Social/SocialStatsPlace';
+import { ThemeProvider } from '../../../../src/theme/themeContext';
 
 type SocialStatsProps = React.ComponentProps<typeof SocialStatsPlace>;
 
 const meta: Meta<SocialStatsProps> = {
-  title: 'Cards/SocialStatsPlace',
+  title: 'UI/Social/SocialStatsPlace',
   component: SocialStatsPlace,
   decorators: [
     (Story) => (

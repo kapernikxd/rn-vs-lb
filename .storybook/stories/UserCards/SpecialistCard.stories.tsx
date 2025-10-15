@@ -2,13 +2,13 @@ import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import { View, ScrollView } from 'react-native';
 import { action } from '@storybook/addon-actions';
-import SpecialistCard from '../../../src/components/Cards/SpecialistCard';
+import SpecialistCard from '../../../src/components/UserCards/SpecialistCard';
 import { ThemeProvider } from '../../../src/theme/themeContext';
 
 type SpecialistCardProps = React.ComponentProps<typeof SpecialistCard>;
 
 const meta: Meta<SpecialistCardProps> = {
-  title: 'Cards/SpecialistCard',
+  title: 'UserCards/SpecialistCard',
   component: SpecialistCard,
   decorators: [
     (Story) => (

@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import Organizer from './Organazer';
-import SocialStats from './SocialStatsEvent';
+import Organizer from '../UserCards/Organazer';
 import Spacer from '../UI/Spacer';
-
 import { SizesType, ThemeType, useTheme, CommonStylesType } from '../../theme';
+import SocialStatsEvent from '../UI/Social/SocialStatsEvent';
 
 interface EventCardProps {
   eventId: string;
@@ -110,7 +109,7 @@ const EventCard: React.FC<EventCardProps> = ({
           organizerName={organizerName}
           onPress={onPress}
         />
-        <SocialStats onLike={onLike} hasLike={hasLike} likes={likes} views={views} />
+        <SocialStatsEvent onLike={onLike} hasLike={hasLike} likes={likes} views={views} />
       </View>
 
       {maxParticipants !== undefined && (

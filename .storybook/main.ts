@@ -1,8 +1,14 @@
-import { StorybookConfig } from '@storybook/react-native';
-
-const main: StorybookConfig = {
+const config = {
   stories: ['./stories/**/*.stories.?(ts|tsx|js|jsx)'],
-  addons: ['@storybook/addon-ondevice-controls', '@storybook/addon-ondevice-actions'],
+  addons: [
+    '@storybook/addon-docs',
+    '@storybook/addon-ondevice-controls',
+    '@storybook/addon-ondevice-actions',
+  ],
+  framework: {
+    name: '@storybook/react-native-web-vite',
+    options: {},
+  },
 };
 
-export default main;
+export default config;

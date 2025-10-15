@@ -1,8 +1,8 @@
 {
   "name": "rn-vs-lb",
-  "version": "1.0.56",
+  "version": "1.0.0",
   "main": "expo-router/entry",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -69,5 +69,5 @@
       "react-docgen-typescript": "2.2.2"
     }
   },
-  "private": false
+  "private": true
 }

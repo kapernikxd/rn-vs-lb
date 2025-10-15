@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import { action } from '@storybook/addon-actions';
+import { action } from '../../utils/actions';
 import { ThemeProvider } from '../../../src/theme';
 import PinnedMessagesBar from '../../../src/components/Chat/PinnedMessagesBar/';
 import { MessageDTO } from '../../../src/types/message';

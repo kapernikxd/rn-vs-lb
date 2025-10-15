@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import { View, ScrollView } from 'react-native';
-import { action } from '@storybook/addon-actions';
+import { action } from '../../utils/actions';
 import SpecialistCard from '../../../src/components/UserCards/SpecialistCard';
 import { ThemeProvider } from '../../../src/theme/themeContext';
 

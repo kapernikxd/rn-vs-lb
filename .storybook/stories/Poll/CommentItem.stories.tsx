@@ -2,7 +2,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, Alert } from 'react-native';
-import { action } from '@storybook/addon-actions';
+import { action } from '../../utils/actions';
 import CommentItem, { Comment, User } from '../../../src/components/Poll/CommentItem';
 import { ThemeProvider } from '../../../src/theme';
 import { ScrollView } from 'react-native';

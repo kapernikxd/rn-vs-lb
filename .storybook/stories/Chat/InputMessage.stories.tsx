@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, Alert, ScrollView } from 'react-native';
-import { action } from '@storybook/addon-actions';
+import { action } from '../../utils/actions';
 import { ThemeProvider } from '../../../src/theme';
 import InputMessage, { ImageAsset } from '../../../src/components/Chat/InputMessage';
 

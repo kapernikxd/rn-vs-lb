@@ -1,10 +1,12 @@
+// components/Cards/EventCard.stories.tsx
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import EventCard from '../../../src/components/Cards/EventCard';
-import { ThemeProvider } from '../../../src/theme/themeContext';
+import EventCard from './EventCard';
+import { ThemeProvider } from '../../theme';
 
-const meta: Meta<React.ComponentProps<typeof EventCard>> = {
+type EventCardProps = React.ComponentProps<typeof EventCard>;
+
+const meta: Meta<EventCardProps> = {
   title: 'Cards/EventCard',
   component: EventCard,
   decorators: [
@@ -14,39 +16,65 @@ const meta: Meta<React.ComponentProps<typeof EventCard>> = {
       </ThemeProvider>
     ),
   ],
-  argTypes: {
-    imageUri: { control: 'text' },
-    date: { control: 'text' },
-    title: { control: 'text' },
-    description: { control: 'text' },
-    organizerAvatarUri: { control: 'text' },
-    organizerName: { control: 'text' },
-    likes: { control: 'number' },
-    views: { control: 'number' },
-    isUserParticipantInPost: { control: 'boolean' },
-    participantsCount: { control: 'number' },
-    maxParticipants: { control: 'number' },
-    categories: { control: 'object' },
-    price: { control: 'text' },
-    hasLike: { control: 'boolean' },
-    visible: { control: 'boolean' },
-    triggerOnce: { control: 'boolean' },
+  parameters: {
+    actions: { argTypesRegex: '^on.*' },
   },
-};
-
-export default meta;
-
-type Story = StoryObj<React.ComponentProps<typeof EventCard>>;
-
-const asyncLike = async () => {
-  action('onLike')();
-};
-
-const viewAction = (eventId: string) => {
-  action('onView')(eventId);
-};
-
-export const Default: Story = {
+  argTypes: {
+    imageUri: {
+      control: 'text',
+      description: 'URI of the cover image',
+    },
+    date: {
+      control: 'text',
+      description: 'Date label shown above the title',
+    },
+    title: {
+      control: 'text',
+      description: 'Event title',
+    },
+    description: {
+      control: 'text',
+      description: 'Short description displayed under the title',
+    },
+    organizerAvatarUri: {
+      control: 'text',
+      description: 'Avatar shown in the organizer row',
+    },
+    organizerName: {
+      control: 'text',
+      description: 'Organizer name shown next to the avatar',
+    },
+    likes: {
+      control: { type: 'number' },
+    },
+    views: {
+      control: { type: 'number' },
+    },
+    isUserParticipantInPost: {
+      control: 'boolean',
+    },
+    participantsCount: {
+      control: { type: 'number' },
+    },
+    maxParticipants: {
+      control: { type: 'number' },
+    },
+    categories: {
+      control: 'object',
+    },
+    price: {
+      control: 'text',
+    },
+    hasLike: {
+      control: 'boolean',
+    },
+    visible: {
+      control: 'boolean',
+    },
+    triggerOnce: {
+      control: 'boolean',
+    },
+  },
   args: {
     eventId: 'event-1',
     imageUri:
@@ -57,21 +85,23 @@ export const Default: Story = {
       'Crash Drum Studio — пространство, где можно почувствовать силу ритма и научиться играть на ударных в любой форме.',
     organizerAvatarUri: 'https://i.pravatar.cc/150?img=11',
     organizerName: 'Admin Belgrade',
-    onPress: () => action('onPress')('event-1'),
     likes: 42,
     views: 313,
-    onView: viewAction,
-    onLike: asyncLike,
     hasLike: false,
     isUserParticipantInPost: false,
     participantsCount: 0,
     visible: true,
   },
-};
+} satisfies Meta<typeof EventCard>;
+
+export default meta;
+
+type Story = StoryObj<typeof EventCard>;
+
+export const Default: Story = {};
 
 export const WithParticipants: Story = {
   args: {
-    ...Default.args,
     eventId: 'event-2',
     title: 'Tech for Good Meetup',
     description:
@@ -88,7 +118,6 @@ export const WithParticipants: Story = {
 
 export const WithCategoriesAndPrice: Story = {
   args: {
-    ...Default.args,
     eventId: 'event-3',
     title: 'Design Sprint Intensive',
     description:
@@ -105,7 +134,6 @@ export const WithCategoriesAndPrice: Story = {
 
 export const CompactDescription: Story = {
   args: {
-    ...Default.args,
     eventId: 'event-4',
     date: null,
     title: 'Community Cleanup',
@@ -120,16 +148,16 @@ export const CompactDescription: Story = {
 
 export const AsyncLikeDemo: Story = {
   args: {
-    ...Default.args,
     eventId: 'event-5',
     title: 'Open Source Hacknight',
     description:
       'Вечер совместной работы над open source-проектами. Наставники помогут настроить окружение и выбрать задачу.',
-    hasLike: false,
     onLike: async () => {
-      action('onLike start')();
+      // eslint-disable-next-line no-console
+      console.log('onLike start');
       await new Promise((resolve) => setTimeout(resolve, 500));
-      action('onLike finish')();
+      // eslint-disable-next-line no-console
+      console.log('onLike finish');
     },
   },
 };

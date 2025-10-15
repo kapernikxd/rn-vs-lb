@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, Alert, ScrollView } from 'react-native';
-import { action } from '@storybook/addon-actions';
 import { ThemeProvider } from '../../../src/theme';
 import InputMessage, { ImageAsset } from '../../../src/components/Chat/InputMessage';
 
@@ -29,6 +28,14 @@ const useStateWrapper = (initial = '') => {
   return { value, setValue };
 };
 
+const logEvent = (label: string, ...args: unknown[]) => {
+  if (args.length > 0) {
+    console.log(`[storybook:input-message:${label}]`, ...args);
+  } else {
+    console.log(`[storybook:input-message:${label}]`);
+  }
+};
+
 const mockAttach = async (): Promise<ImageAsset[]> => {
   // имитируем выбор 2 картинок
   return [
@@ -37,11 +44,24 @@ const mockAttach = async (): Promise<ImageAsset[]> => {
   ];
 };
 
-const mockSubmit = async (images?: ImageAsset[]) => {
-  action('onSubmit')(images?.map((i) => i.uri) ?? []);
-  await new Promise((r) => setTimeout(r, 500));
-  return true;
-};
+const createSubmitHandler = (delay = 500) =>
+  async (images?: ImageAsset[]) => {
+    logEvent('submit', images?.map((i) => i.uri) ?? []);
+
+    if (delay > 0) {
+      await new Promise((resolve) => setTimeout(resolve, delay));
+    }
+
+    return true;
+  };
+
+const submitMessage = createSubmitHandler();
+const typingHandler = () => logEvent('typing');
+const stopTypingHandler = () => logEvent('stop-typing');
+const replyCancelHandler = () => logEvent('cancel-reply');
+const editCancelHandler = () => logEvent('cancel-edit');
+const attachmentLogger = (uris: string[]) => logEvent('attachments', uris);
+const slowSubmitMessage = createSubmitHandler(1200);
 
 // ---- templates ----
 const Template: StoryFn<Props> = (args) => {
@@ -51,9 +71,9 @@ const Template: StoryFn<Props> = (args) => {
       {...args}
       value={s.value}
       onChange={s.setValue}
-      onSubmit={mockSubmit}
-      onTyping={action('onTyping')}
-      onStopTyping={action('onStopTyping')}
+      onSubmit={submitMessage}
+      onTyping={typingHandler}
+      onStopTyping={stopTypingHandler}
     />
   );
 };
@@ -71,7 +91,7 @@ WithAttachments.args = {
   maxImages: 2,
   onAttachPress: async () => {
     const imgs = await mockAttach();
-    action('onAttachPress')(imgs.map((i) => i.uri));
+    attachmentLogger(imgs.map((i) => i.uri));
     return imgs;
   },
   onMaxImagesExceeded: (max) => Alert.alert('Max images exceeded', `Allowed: ${max}`),
@@ -83,15 +103,15 @@ export const ReplyMode: StoryFn = () => {
     <InputMessage
       value={s.value}
       onChange={s.setValue}
-      onSubmit={mockSubmit}
+      onSubmit={submitMessage}
       replyToMessage={{
         content: 'Original message preview goes here…',
         images: [],
         attachments: [],
       }}
-      onCancelReply={action('onCancelReply')}
-      onTyping={action('onTyping')}
-      onStopTyping={action('onStopTyping')}
+      onCancelReply={replyCancelHandler}
+      onTyping={typingHandler}
+      onStopTyping={stopTypingHandler}
     />
   );
 };
@@ -102,11 +122,11 @@ export const EditMode: StoryFn = () => {
     <InputMessage
       value={s.value}
       onChange={s.setValue}
-      onSubmit={mockSubmit}
+      onSubmit={submitMessage}
       editMessage={{ content: 'Previous message text…' }}
-      onCancelEdit={action('onCancelEdit')}
-      onTyping={action('onTyping')}
-      onStopTyping={action('onStopTyping')}
+      onCancelEdit={editCancelHandler}
+      onTyping={typingHandler}
+      onStopTyping={stopTypingHandler}
     />
   );
 };
@@ -121,8 +141,7 @@ export const SendingControlled: StoryFn = () => {
       onChange={s.setValue}
       onSubmit={async (imgs) => {
         setSending(true);
-        action('onSubmit')(imgs?.map((i) => i.uri) ?? []);
-        await new Promise((r) => setTimeout(r, 1200));
+        await slowSubmitMessage(imgs);
         setSending(false);
         return true;
       }}
@@ -130,8 +149,8 @@ export const SendingControlled: StoryFn = () => {
       isSending={sending}
       onAttachPress={mockAttach}
       maxImages={1}
-      onTyping={action('onTyping')}
-      onStopTyping={action('onStopTyping')}
+      onTyping={typingHandler}
+      onStopTyping={stopTypingHandler}
     />
   );
 };
@@ -150,12 +169,12 @@ export const ManyInputsDemo: StoryFn = () => {
           onChange={(t) =>
             setVals((prev) => prev.map((pv, i) => (i === idx ? t : pv)))
           }
-          onSubmit={mockSubmit}
+          onSubmit={submitMessage}
           onAttachPress={idx === 0 ? mockAttach : undefined}
           maxImages={idx === 0 ? 2 : 1}
           placeholder={`Message #${idx + 1}`}
-          onTyping={action(`onTyping[${idx}]`)}
-          onStopTyping={action(`onStopTyping[${idx}]`)}
+          onTyping={() => logEvent(`typing-${idx}`)}
+          onStopTyping={() => logEvent(`stop-typing-${idx}`)}
         />
       ))}
     </ScrollView>

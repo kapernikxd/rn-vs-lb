@@ -2,7 +2,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, Alert } from 'react-native';
-import { action } from '@storybook/addon-actions';
 import { ThemeProvider } from '../../../src/theme';
 import { LinkPreview } from '../../../src/components/UI/LinkPreview'; // ← при необходимости обнови путь
 
@@ -25,6 +24,14 @@ export default meta;
 
 const Template: StoryFn<Props> = (args) => <LinkPreview {...args} />;
 
+const linkHandlerLogger = (url: string) => {
+  console.log('[storybook:link-preview:link]', url);
+};
+const customLinkHandler = (url: string) => {
+  linkHandlerLogger(url);
+  Alert.alert('Custom handler', url);
+};
+
 export const Default = Template.bind({});
 Default.args = {
   url: 'https://pllace.su/event/123',
@@ -40,10 +47,7 @@ WithCustomLinkHandler.args = {
   url: 'www.google.com',
   title: 'Google',
   description: 'Search the world’s information.',
-  linkHandler: (url: string) => {
-    action('linkHandler')(url);
-    Alert.alert('Custom handler', url);
-  },
+  linkHandler: customLinkHandler,
 };
 
 export const NoImage = Template.bind({});

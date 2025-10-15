@@ -1,7 +1,6 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import { View, ScrollView } from 'react-native';
-import { action } from '@storybook/addon-actions';
 import SpecialistCard from '../../../src/components/UserCards/SpecialistCard';
 import { ThemeProvider } from '../../../src/theme/themeContext';
 
@@ -37,6 +36,11 @@ const Template: StoryFn<SpecialistCardProps> = (args) => (
   </View>
 );
 
+const onPressLogger = (label: string) => {
+  console.log('[storybook:specialist-card:press]', label);
+};
+const createOnPress = (label: string) => () => onPressLogger(label);
+
 const services = [
   { _id: 'svc-1', name: 'Strategic facilitation', price: 80, currency: '€' },
   { _id: 'svc-2', name: 'Community workshop', price: 120, currency: '€' },
@@ -59,7 +63,7 @@ Default.args = {
   services,
   gallery,
   link: 'https://images.unsplash.com/',
-  onPress: () => action('onPress')('Default card'),
+  onPress: createOnPress('Default card'),
 };
 
 export const WithoutServices = Template.bind({});
@@ -69,7 +73,7 @@ WithoutServices.args = {
   profession: 'Civic tech consultant',
   services: [],
   gallery,
-  onPress: () => action('onPress')('Without services'),
+  onPress: createOnPress('Without services'),
 };
 
 export const WithoutGallery = Template.bind({});
@@ -78,7 +82,7 @@ WithoutGallery.args = {
   fullName: 'Maja Stanković',
   services,
   gallery: [],
-  onPress: () => action('onPress')('Without gallery'),
+  onPress: createOnPress('Without gallery'),
 };
 
 export const MinimalInfo = Template.bind({});
@@ -86,7 +90,7 @@ MinimalInfo.args = {
   fullName: 'Unknown Specialist',
   avatarUri: 'https://i.pravatar.cc/150?img=60',
   link: 'https://images.unsplash.com/',
-  onPress: () => action('onPress')('Minimal info'),
+  onPress: createOnPress('Minimal info'),
 };
 
 export const ExtendedServices = Template.bind({});
@@ -102,5 +106,5 @@ ExtendedServices.args = {
     { _id: 'svc-5', name: 'Hybrid event production', price: 240, currency: '€' },
   ],
   gallery,
-  onPress: () => action('onPress')('Extended services'),
+  onPress: createOnPress('Extended services'),
 };

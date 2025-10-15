@@ -1,6 +1,5 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import EventCard from '../../../src/components/Cards/EventCard';
 import { ThemeProvider } from '../../../src/theme/themeContext';
 
@@ -38,13 +37,14 @@ export default meta;
 
 type Story = StoryObj<React.ComponentProps<typeof EventCard>>;
 
-const asyncLike = async () => {
-  action('onLike')();
+const createAsyncHandler = (delay = 0) => async () => {
+  if (delay > 0) {
+    await new Promise((resolve) => setTimeout(resolve, delay));
+  }
 };
 
-const viewAction = (eventId: string) => {
-  action('onView')(eventId);
-};
+const asyncLike = createAsyncHandler();
+const viewAction = () => {};
 
 export const Default: Story = {
   args: {
@@ -57,7 +57,7 @@ export const Default: Story = {
       'Crash Drum Studio — пространство, где можно почувствовать силу ритма и научиться играть на ударных в любой форме.',
     organizerAvatarUri: 'https://i.pravatar.cc/150?img=11',
     organizerName: 'Admin Belgrade',
-    onPress: () => action('onPress')('event-1'),
+    onPress: () => {},
     likes: 42,
     views: 313,
     onView: viewAction,
@@ -126,10 +126,6 @@ export const AsyncLikeDemo: Story = {
     description:
       'Вечер совместной работы над open source-проектами. Наставники помогут настроить окружение и выбрать задачу.',
     hasLike: false,
-    onLike: async () => {
-      action('onLike start')();
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      action('onLike finish')();
-    },
+    onLike: createAsyncHandler(500),
   },
 };

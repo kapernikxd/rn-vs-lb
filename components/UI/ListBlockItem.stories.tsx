@@ -1,6 +1,5 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import ListBlockItem from '../../../src/components/UI/ListBlockItem';
 
 type ListBlockItemProps = React.ComponentProps<typeof ListBlockItem>;
@@ -38,11 +37,15 @@ export default meta;
 
 const Template: StoryFn<ListBlockItemProps> = (args) => <ListBlockItem {...args} />;
 
+const blockAction = () => {
+  console.log('[storybook:list-block-item:action]');
+};
+
 export const Default = Template.bind({});
 Default.args = {
   icon: 'bell',
   label: 'Notifications',
-  action: action('open-notifications'),
+  action: blockAction,
   fullWidth: true,
 };
 
@@ -52,7 +55,7 @@ Report.args = {
   label: 'Report a problem',
   report: true,
   hideArrow: false,
-  action: action('report-problem'),
+  action: blockAction,
 };
 
 export const Compact = Template.bind({});
@@ -62,5 +65,5 @@ Compact.args = {
   big: false,
   hideBottomLine: true,
   fullWidth: false,
-  action: action('open-profile'),
+  action: blockAction,
 };

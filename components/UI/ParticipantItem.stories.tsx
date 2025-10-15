@@ -1,6 +1,5 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import { ParticipantItem } from '../../../src/components/UI/ParticipantItem';
 
 type ParticipantItemProps = React.ComponentProps<typeof ParticipantItem>;
@@ -24,7 +23,9 @@ export default meta;
 
 const Template: StoryFn<ParticipantItemProps> = (args) => <ParticipantItem {...args} />;
 
-const actionWithId = (label: string) => (id: string) => action(label)(id);
+const actionWithId = (label: string) => (id: string) => {
+  console.log(`[storybook:${label}]`, id);
+};
 
 export const PendingParticipant = Template.bind({});
 PendingParticipant.args = {

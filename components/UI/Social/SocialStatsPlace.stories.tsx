@@ -1,7 +1,6 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import { action } from '@storybook/addon-actions';
 import SocialStatsPlace from '../../../../src/components/UI/Social/SocialStatsPlace';
 import { ThemeProvider } from '../../../../src/theme/themeContext';
 
@@ -33,22 +32,37 @@ export default meta;
 
 const Template: StoryFn<SocialStatsProps> = (args) => <SocialStatsPlace {...args} />;
 
+const likeLogger = () => {
+  console.log('[storybook:place-like]');
+};
+const messageLogger = (message: string) => {
+  console.log('[storybook:place-message]', message);
+};
+const createAsyncLike = (delay = 0, repeat = 1) => async () => {
+  for (let i = 0; i < repeat; i += 1) {
+    likeLogger();
+
+    if (delay > 0) {
+      await new Promise((resolve) => setTimeout(resolve, delay));
+    }
+  }
+};
+const createMessageLike = (message: string) => () => {
+  messageLogger(message);
+};
+
 export const Default = Template.bind({});
 Default.args = {
   likes: 15,
   hasLike: false,
-  onLike: async () => {
-    action('onLike start')();
-    await new Promise((resolve) => setTimeout(resolve, 200));
-    action('onLike finish')();
-  },
+  onLike: createAsyncLike(200, 2),
 };
 
 export const AlreadyPinned = Template.bind({});
 AlreadyPinned.args = {
   likes: 78,
   hasLike: true,
-  onLike: async () => action('toggle pin')('Already pinned'),
+  onLike: createMessageLike('Already pinned'),
 };
 
 export const CompactAlignment = Template.bind({});
@@ -56,12 +70,12 @@ CompactAlignment.args = {
   likes: 3,
   position: 'flex-start',
   hasLike: false,
-  onLike: async () => action('compact pin')(),
+  onLike: createAsyncLike(),
 };
 
 export const HighEngagement = Template.bind({});
 HighEngagement.args = {
   likes: 1200,
   hasLike: false,
-  onLike: async () => action('popular place pin')(),
+  onLike: createAsyncLike(),
 };

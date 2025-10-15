@@ -1,8 +1,9 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import { action } from '@storybook/addon-actions';
 import PollCardList from '../../../src/components/Poll/PollCardList';
+
+const noop = () => {};
 
 const meta: Meta<React.ComponentProps<typeof PollCardList>> = {
   title: 'Poll/PollCardList',
@@ -27,7 +28,7 @@ Default.args = {
   creatorAvatar: 'https://i.pravatar.cc/150?img=11',
   votesCount: 42,
   createdAt: '2 days ago',
-  onPress: action('open-poll'),
+  onPress: noop,
 };
 
 export const WithLongQuestion = Template.bind({});
@@ -38,7 +39,7 @@ WithLongQuestion.args = {
   creatorAvatar: 'https://i.pravatar.cc/150?img=5',
   votesCount: 128,
   createdAt: '5 hours ago',
-  onPress: action('open-long-question'),
+  onPress: noop,
 };
 
 export const WithoutDate = Template.bind({});
@@ -48,7 +49,7 @@ WithoutDate.args = {
   creatorAvatar: 'https://i.pravatar.cc/150?img=24',
   votesCount: 8,
   createdAt: null,
-  onPress: action('open-no-date'),
+  onPress: noop,
 };
 
 export const MinimalInfo = Template.bind({});

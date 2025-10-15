@@ -1,6 +1,5 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import UserProfileCard from '../../../src/components/UserCards/UserProfileCard';
 
 type UserProfileCardProps = React.ComponentProps<typeof UserProfileCard>;
@@ -29,6 +28,10 @@ export default meta;
 
 const Template: StoryFn<UserProfileCardProps> = (args) => <UserProfileCard {...args} />;
 
+const goToProfileHandler = () => {
+  console.log('[storybook:user-profile-card:open]');
+};
+
 export const GridLayout = Template.bind({});
 GridLayout.args = {
   layout: 'grid',
@@ -36,7 +39,7 @@ GridLayout.args = {
   profession: 'Volunteer coordinator',
   description: 'Helping NGOs organise large-scale charity events and campaigns.',
   avatarUrl: 'https://i.pravatar.cc/150?img=8',
-  goToPofile: action('open-profile-grid'),
+  goToPofile: goToProfileHandler,
 };
 
 export const ListLayout = Template.bind({});
@@ -46,7 +49,7 @@ ListLayout.args = {
   profession: 'Medical volunteer',
   description: 'Certified nurse supporting health-related programmes and first aid trainings.',
   avatarUrl: 'https://i.pravatar.cc/150?img=33',
-  goToPofile: action('open-profile-list'),
+  goToPofile: goToProfileHandler,
 };
 
 export const MinimalInfo = Template.bind({});
@@ -55,5 +58,5 @@ MinimalInfo.args = {
   fullName: 'Brooklyn Simmons',
   description: 'Active participant of community-driven initiatives with a focus on education.',
   avatarUrl: 'https://i.pravatar.cc/150?img=19',
-  goToPofile: action('open-profile-minimal'),
+  goToPofile: goToProfileHandler,
 };

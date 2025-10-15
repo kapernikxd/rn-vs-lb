@@ -2,9 +2,12 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, ScrollView } from 'react-native';
-import { action } from '@storybook/addon-actions';
 import { ThemeProvider } from '../../../src/theme';
 import ChatItem, { ChatItemProps } from '../../../src/components/Chat/ChatItem';
+
+const createPressHandler = (label: string) => () => {
+  console.log('[storybook:chat-item:press]', label);
+};
 
 const meta: Meta<ChatItemProps> = {
   title: 'Chat/ChatItem',
@@ -33,7 +36,7 @@ PersonOnline.args = {
   lastMessage: 'See you at 6pm near the station',
   createdAt: '10:42',
   unread: '+',
-  onPress: action('onPress'),
+  onPress: createPressHandler('PersonOnline'),
 };
 
 export const PersonOffline = Template.bind({});
@@ -45,7 +48,7 @@ PersonOffline.args = {
   isUserOnline: false,
   lastMessage: 'Got it, thanks!',
   createdAt: '09:15',
-  onPress: action('onPress'),
+  onPress: createPressHandler('PersonOffline'),
 };
 
 export const GroupWithSender = Template.bind({});
@@ -58,7 +61,7 @@ GroupWithSender.args = {
   lastMessage: 'Slides are uploaded to Drive, check the link above.',
   createdAt: 'Yesterday',
   unread: '+',
-  onPress: action('onPress'),
+  onPress: createPressHandler('GroupWithSender'),
 };
 
 export const Bot = Template.bind({});
@@ -67,7 +70,7 @@ Bot.args = {
   chatName: 'Assistant Bot',
   lastMessage: 'Daily summary is ready. Tap to view.',
   createdAt: '08:00',
-  onPress: action('onPress'),
+  onPress: createPressHandler('Bot'),
 };
 
 export const LongMessageTruncation = Template.bind({});
@@ -80,7 +83,7 @@ LongMessageTruncation.args = {
   lastMessage:
     'Here is a very long message intended to demonstrate two-line truncation in the preview area. It should cut off gracefully and not break the layout on smaller screens.',
   createdAt: 'Mon',
-  onPress: action('onPress'),
+  onPress: createPressHandler('LongMessageTruncation'),
 };
 
 export const ListOfItems: StoryFn = () => {
@@ -162,7 +165,11 @@ export const ListOfItems: StoryFn = () => {
       contentContainerStyle={{ paddingVertical: 8, gap: 8 }}
     >
       {items.map((item, idx) => (
-        <ChatItem key={idx} {...item} onPress={action('onPress')} />
+        <ChatItem
+          key={idx}
+          {...item}
+          onPress={createPressHandler(item.chatName ?? item.senderFullName ?? `chat-${idx}`)}
+        />
       ))}
     </ScrollView>
   );

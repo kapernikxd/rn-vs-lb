@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import { action } from '@storybook/addon-actions';
 import { ThreeDotsMenu } from '../../../src/components/UI/ThreeDotsMenu';
 
 type ThreeDotsMenuProps = React.ComponentProps<typeof ThreeDotsMenu>;
@@ -22,18 +21,23 @@ export default meta;
 
 const Template: StoryFn<ThreeDotsMenuProps> = (args) => <ThreeDotsMenu {...args} />;
 
+const menuPressLogger = (label: string) => {
+  console.log('[storybook:menu-press]', label);
+};
+const createMenuHandler = (label: string) => () => menuPressLogger(label);
+
 export const Default = Template.bind({});
 Default.args = {
   items: [
     {
       label: 'Edit event',
       icon: 'create-outline',
-      onPress: () => action('edit-event')(),
+      onPress: createMenuHandler('Edit event'),
     },
     {
       label: 'Share',
       icon: 'share-social-outline',
-      onPress: () => action('share-event')(),
+      onPress: createMenuHandler('Share'),
     },
   ],
 };
@@ -44,13 +48,13 @@ WithDestructiveAction.args = {
     {
       label: 'Promote',
       icon: 'trending-up-outline',
-      onPress: () => action('promote')(),
+      onPress: createMenuHandler('Promote'),
     },
     {
       label: 'Delete event',
       icon: 'trash-outline',
       colorIcon: '#E63946',
-      onPress: () => action('delete')(),
+      onPress: createMenuHandler('Delete event'),
     },
   ],
 };

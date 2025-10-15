@@ -2,7 +2,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { action } from '@storybook/addon-actions';
 import EventCardList from '../../../src/components/Posts/EventCardList';
 
 type Props = React.ComponentProps<typeof EventCardList>;
@@ -21,6 +20,10 @@ const meta: Meta<Props> = {
 export default meta;
 
 const Template: StoryFn<Props> = (args) => <EventCardList {...args} />;
+
+const menuPressHandler = () => {
+  console.log('[storybook:event-card-list:menu]');
+};
 
 /** Утилита для правого вертикального оверлея (место, где раньше был тултип) */
 const RightOverlay = ({ children }: { children: React.ReactNode }) => (
@@ -55,7 +58,7 @@ DefaultInvitation.args = {
   title: 'Community clean-up initiative',
   description: 'Join us to revitalise the local park and meet fellow volunteers.',
   isInvitation: true,
-  onMenuPress: action('open-invitation-menu'),
+  onMenuPress: menuPressHandler,
   participantsCount: 18,
   maxParticipants: 30,
 };

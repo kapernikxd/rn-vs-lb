@@ -1,6 +1,5 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import ListItem from '../../../src/components/UI/ListItem';
 
 type ListItemProps = React.ComponentProps<typeof ListItem>;
@@ -38,12 +37,16 @@ export default meta;
 
 const Template: StoryFn<ListItemProps> = (args) => <ListItem {...args} />;
 
+const itemAction = () => {
+  console.log('[storybook:list-item:action]');
+};
+
 export const Default = Template.bind({});
 Default.args = {
   icon: 'user',
   label: 'Account',
   subLabel: 'Personal information and preferences',
-  action: action('open-account'),
+  action: itemAction,
 };
 
 export const Warning = Template.bind({});
@@ -51,7 +54,7 @@ Warning.args = {
   icon: 'exclamation-triangle',
   label: 'Report abuse',
   report: true,
-  action: action('report-abuse'),
+  action: itemAction,
 };
 
 export const Minimal = Template.bind({});
@@ -60,5 +63,5 @@ Minimal.args = {
   label: 'Notifications',
   hideArrow: true,
   hideBottomLine: true,
-  action: action('open-notifications-minimal'),
+  action: itemAction,
 };

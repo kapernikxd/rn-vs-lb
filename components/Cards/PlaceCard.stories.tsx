@@ -1,6 +1,5 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import PlaceCard from '../../../src/components/Cards/PlaceCard';
 import { ThemeProvider } from '../../../src/theme/themeContext';
 
@@ -27,7 +26,9 @@ export default meta;
 
 type Story = StoryObj<React.ComponentProps<typeof PlaceCard>>;
 
-const onViewAction = (eventId: string) => action('onView')(eventId);
+const onViewAction = () => {};
+const analyticsPrimaryView = () => {};
+const analyticsSecondaryView = () => {};
 
 export const Default: Story = {
   args: {
@@ -60,8 +61,8 @@ export const AnalyticsMode: Story = {
     title: 'Creative Loft',
     description: 'Многофункциональное пространство с яркой атмосферой и арт-галереей.',
     onView: (eventId) => {
-      action('onView start')(eventId);
-      action('analytics:record-impression')(eventId);
+      analyticsPrimaryView(eventId);
+      analyticsSecondaryView(eventId);
     },
     triggerOnce: false,
     visible: true,

@@ -57,7 +57,37 @@ const meta: Meta<ReportModalProps> = {
 
 export default meta;
 
-const Template: StoryFn<ReportModalProps> = (args) => <ReportModal {...args} />;
+const Template: StoryFn<ReportModalProps> = (args) => {
+  const { visible, onClose, onSubmit, ...restArgs } = args;
+
+  const [isVisible, setIsVisible] = React.useState(visible);
+
+  React.useEffect(() => {
+    setIsVisible(visible);
+  }, [visible]);
+
+  const handleClose = React.useCallback(() => {
+    onClose();
+    setIsVisible(false);
+  }, [onClose]);
+
+  const handleSubmit = React.useCallback<ReportModalProps['onSubmit']>(
+    (reason, details) => {
+      onSubmit(reason, details);
+      setIsVisible(false);
+    },
+    [onSubmit],
+  );
+
+  return (
+    <ReportModal
+      {...restArgs}
+      visible={isVisible}
+      onClose={handleClose}
+      onSubmit={handleSubmit}
+    />
+  );
+};
 
 const baseArgs: ReportModalProps = {
   visible: true,

@@ -3,9 +3,54 @@ import { Meta, StoryFn } from '@storybook/react';
 import { View, Text } from 'react-native';
 import { InfoTooltip } from './InfoTooltip';
 
-const meta: Meta<React.ComponentProps<typeof InfoTooltip>> = {
+const contentPresets = {
+  default: (
+    <View>
+      <Text style={{ fontWeight: 'bold' }}>Need help?</Text>
+      <Text>You can edit your post details later in the settings.</Text>
+    </View>
+  ),
+  aboutRoles: (
+    <View>
+      <Text style={{ fontWeight: 'bold' }}>About roles</Text>
+      <Text>Organisers can edit schedules even after publishing.</Text>
+    </View>
+  ),
+  darkMode: (
+    <View>
+      <Text style={{ fontWeight: 'bold' }}>Dark mode</Text>
+      <Text>Tooltips automatically adapt to the active theme.</Text>
+    </View>
+  ),
+  schedulingTips: (
+    <View style={{ maxWidth: 260 }}>
+      <Text style={{ fontWeight: 'bold', marginBottom: 4 }}>Scheduling tips</Text>
+      <Text>
+        Consider setting up reminders 24 hours before your event starts so volunteers can prepare materials and confirm
+        attendance.
+      </Text>
+    </View>
+  ),
+} as const;
+
+type InfoTooltipStoryProps = Omit<React.ComponentProps<typeof InfoTooltip>, 'content'> & {
+  contentKey: keyof typeof contentPresets;
+};
+
+const renderTooltip = ({ contentKey, ...args }: InfoTooltipStoryProps) => (
+  <InfoTooltip {...args} content={contentPresets[contentKey]} />
+);
+
+const meta: Meta<InfoTooltipStoryProps> = {
   title: 'Tooltip/InfoTooltip',
   component: InfoTooltip,
+  argTypes: {
+    contentKey: {
+      name: 'Content preset',
+      options: Object.keys(contentPresets),
+      control: { type: 'radio' },
+    },
+  },
   decorators: [
     (Story) => (
       <View style={{ padding: 24 }}>
@@ -20,43 +65,24 @@ const meta: Meta<React.ComponentProps<typeof InfoTooltip>> = {
 
 export default meta;
 
-const Template: StoryFn<React.ComponentProps<typeof InfoTooltip>> = (args) => <InfoTooltip {...args} />;
+const Template: StoryFn<InfoTooltipStoryProps> = (args) => renderTooltip(args);
 
 export const Default = Template.bind({});
 Default.args = {
-  content: (
-    <View>
-      <Text style={{ fontWeight: 'bold' }}>Need help?</Text>
-      <Text>You can edit your post details later in the settings.</Text>
-    </View>
-  ),
+  contentKey: 'default',
   iconSize: 24,
 };
 
 export const SmallIcon = Template.bind({});
 SmallIcon.args = {
-  content: (
-    <View>
-      <Text style={{ fontWeight: 'bold' }}>About roles</Text>
-      <Text>Organisers can edit schedules even after publishing.</Text>
-    </View>
-  ),
+  contentKey: 'aboutRoles',
   iconSize: 18,
 };
 
-export const OnDarkBackground: StoryFn = () => (
+export const OnDarkBackground: StoryFn<InfoTooltipStoryProps> = (args) => (
   <View style={{ padding: 24, backgroundColor: '#26283d', borderRadius: 12 }}>
     <Text style={{ color: 'white', marginBottom: 8 }}>Dark mode banner</Text>
-    <InfoTooltip
-      iconSize={22}
-      style={{ alignSelf: 'flex-start' }}
-      content={
-        <View>
-          <Text style={{ fontWeight: 'bold' }}>Dark mode</Text>
-          <Text>Tooltips automatically adapt to the active theme.</Text>
-        </View>
-      }
-    />
+    {renderTooltip({ ...args, contentKey: 'darkMode', iconSize: 22, style: { alignSelf: 'flex-start' } })}
   </View>
 );
 
@@ -66,15 +92,7 @@ OnDarkBackground.parameters = {
 
 export const LongFormText = Template.bind({});
 LongFormText.args = {
-  content: (
-    <View style={{ maxWidth: 260 }}>
-      <Text style={{ fontWeight: 'bold', marginBottom: 4 }}>Scheduling tips</Text>
-      <Text>
-        Consider setting up reminders 24 hours before your event starts so volunteers can prepare materials and confirm
-        attendance.
-      </Text>
-    </View>
-  ),
+  contentKey: 'schedulingTips',
   iconSize: 28,
   style: { padding: 8 },
 };

@@ -4,7 +4,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { SizesType, useTheme, CommonStylesType } from '../../theme';
 
 interface UserRowProps {
-    avatarUri: string;
+    avatarUri?: string;
     userName?: string;
     onPress: () => void;
     size: 'xs' | 'sm' | "md" | "lg";
@@ -16,7 +16,7 @@ const UserRow: React.FC<UserRowProps> = ({ avatarUri, userName, onPress, size })
 
     return (
         <TouchableOpacity onPress={onPress} style={globalStyleSheet.flexRowCenter}>
-            <Image source={{ uri: avatarUri }} style={size === "xs" ? styles.avatarXs : styles.avatarSm} />
+            {avatarUri && <Image source={{ uri: avatarUri }} style={size === "xs" ? styles.avatarXs : styles.avatarSm} />}
             {userName && <View>
                 <Text
                     style={size === "xs" ? typography.bodySm : typography.titleH6Regular}

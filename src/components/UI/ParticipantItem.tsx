@@ -2,9 +2,10 @@ import React, { FC } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme, ThemeType, SizesType, CommonStylesType } from '../../theme';
 import { ThreeDotsMenu } from './ThreeDotsMenu';
+import { EventParticipant } from '../../types/event';
 
 type ParticipantItemProps = {
-    participant: any;
+    participant: EventParticipant;
     fullName: string;
     avatarUrl: string;
     isMe: boolean;

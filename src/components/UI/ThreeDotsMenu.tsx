@@ -29,7 +29,7 @@ export const ThreeDotsMenu: React.FC<Props> = ({ items }) => {
   const [menuVisible, setMenuVisible] = useState(false);
 
   const [position, setPosition] = useState<LayoutRectangle | null>(null);
-  const buttonRef = useRef<View>(null);
+  const buttonRef = useRef<View | null>(null);
   const styles = getStyles(theme);
 
   const openMenu = () => {
@@ -45,7 +45,7 @@ export const ThreeDotsMenu: React.FC<Props> = ({ items }) => {
 
   return (
     <View>
-      <TouchableOpacity ref={buttonRef} onPress={openMenu}>
+      <TouchableOpacity ref={buttonRef as any} onPress={openMenu}>
         <Ionicons name="ellipsis-vertical" size={22} color={theme.primary} />
       </TouchableOpacity>
 

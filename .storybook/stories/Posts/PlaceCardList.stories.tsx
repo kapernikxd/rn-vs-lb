@@ -39,6 +39,5 @@ LongDescription.args = {
   imageUri: 'https://images.unsplash.com/photo-1526481280695-3c469622e99b?auto=format&fit=crop&w=800&q=80',
   title: 'Historic theatre restoration site',
   description:
-    'Volunteers will collaborate with heritage specialists to restore original decor, document stories from locals, and
-    organise guided tours once the main hall reopens to the public.',
+    'Volunteers will collaborate with heritage specialists to restore original decor, document stories from locals, and organise guided tours once the main hall reopens to the public.',
 };

@@ -1,7 +1,7 @@
 {
-  "name": "AwesomeStorybook",
-  "slug": "AwesomeStorybook",
-  "scheme": "awesomestorybook",
+  "name": "rn-vs-lb-2",
+  "slug": "rn-vs-lb-2",
+  "scheme": "rnvslb2",
   "version": "1.0.0",
   "orientation": "portrait",
   "icon": "./assets/icon.png",

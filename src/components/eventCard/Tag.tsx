@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     },
     tagText: {
         ...FONTS.font,
-        fontWeight: 600,
+        fontWeight: '600',
     },
 });
 

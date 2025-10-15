@@ -2,7 +2,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, Alert } from 'react-native';
-import { action } from '@storybook/addon-actions';
+import { action } from '../../utils/actions';
 import TextWithLinks, { TextWithLinksProps } from '../../../src/components/UI/TextWithLinks';
 
 const meta: Meta<TextWithLinksProps> = {

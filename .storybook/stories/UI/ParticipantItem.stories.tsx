@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { action } from '../../utils/actions';
 import { ParticipantItem } from '../../../src/components/UI/ParticipantItem';
 
 type ParticipantItemProps = React.ComponentProps<typeof ParticipantItem>;

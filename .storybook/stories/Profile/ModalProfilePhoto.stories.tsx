@@ -1,7 +1,7 @@
 // import React, { useState } from 'react';
 // import { Meta, StoryFn } from '@storybook/react';
 // import { View, Button as RNButton } from 'react-native';
-// import { action } from '@storybook/addon-actions';
+// import { action } from '../../utils/actions';
 // import { ModalProfilePhoto } from '../../../src/components/Profile/ModalProfilePhoto';
 
 // const meta: Meta<React.ComponentProps<typeof ModalProfilePhoto>> = {

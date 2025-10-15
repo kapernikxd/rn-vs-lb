@@ -1,9 +1,7 @@
-import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import Button, { MyButtonProps } from '../../../src/components/Button/Button';
+import type { Meta, StoryObj } from '@storybook/react';
+import Button from '../../../src/components/Button/Button';
 
-const meta: Meta<MyButtonProps> = {
+const meta = {
   title: 'Button/Base',
   component: Button,
   argTypes: {
@@ -29,43 +27,56 @@ const meta: Meta<MyButtonProps> = {
     },
     onPress: { action: 'pressed' },
   },
-};
+} satisfies Meta<typeof Button>;
 
 export default meta;
 
-const Template: StoryFn<MyButtonProps> = (args) => <Button {...args} />;
+type Story = StoryObj<typeof meta>;
 
-export const Primary = Template.bind({});
-Primary.args = {
-  title: 'Continue',
-  type: 'primary',
-  onPress: action('primary-pressed'),
+export const Primary: Story = {
+  args: {
+    title: 'Continue',
+    type: 'primary',
+  },
+  argTypes: {
+    onPress: { action: 'primary-pressed' },
+  },
 };
 
-export const Outline = Template.bind({});
-Outline.args = {
-  title: 'Learn more',
-  type: 'primary-outline',
-  onPress: action('outline-pressed'),
+export const Outline: Story = {
+  args: {
+    title: 'Learn more',
+    type: 'primary-outline',
+  },
+  argTypes: {
+    onPress: { action: 'outline-pressed' },
+  },
 };
 
-export const Gray = Template.bind({});
-Gray.args = {
-  title: 'Cancel',
-  type: 'gray',
-  onPress: action('gray-pressed'),
+export const Gray: Story = {
+  args: {
+    title: 'Cancel',
+    type: 'gray',
+  },
+  argTypes: {
+    onPress: { action: 'gray-pressed' },
+  },
 };
 
-export const DangerOutline = Template.bind({});
-DangerOutline.args = {
-  title: 'Report content',
-  type: 'report-outline',
-  onPress: action('report-pressed'),
+export const DangerOutline: Story = {
+  args: {
+    title: 'Report content',
+    type: 'report-outline',
+  },
+  argTypes: {
+    onPress: { action: 'report-pressed' },
+  },
 };
 
-export const LoadingState = Template.bind({});
-LoadingState.args = {
-  title: 'Submitting...',
-  type: 'primary',
-  loading: true,
+export const LoadingState: Story = {
+  args: {
+    title: 'Submitting...',
+    type: 'primary',
+    loading: true,
+  },
 };

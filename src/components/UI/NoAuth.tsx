@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Spacer from './Spacer';
-import { Button } from './Button';
+import { Button } from '../Button';
 import { useTheme } from '../../theme';
 
 

@@ -1,0 +1,44 @@
+import React from 'react';
+import { View, Text, TouchableOpacity, Linking, StyleSheet } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+import { useTheme } from '../../theme';
+
+
+export type TelegramFeedbackLinkProps = {
+  link: string;
+}
+
+export const TelegramFeedbackLink: React.FC<TelegramFeedbackLinkProps> = ({ link }) => {
+  const { theme, typography } = useTheme();
+
+  const handlePress = async () => {
+    const supported = await Linking.canOpenURL(link);
+    if (supported) {
+      await Linking.openURL(link);
+    } else {
+      console.warn("Can't open Telegram URL");
+    }
+  };
+
+  return (
+    <TouchableOpacity style={styles.container} onPress={handlePress}>
+      <FontAwesome name={'telegram'} size={26} color={theme.primaryLight} />
+      <View style={styles.textContainer}>
+        <Text style={[typography.titleH6, { color: theme.text }]}>Feedback & Bugs</Text>
+        <Text style={typography.bodySm}>Tap to write us in Telegram</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    padding: 8,
+  },
+  textContainer: {
+    flex: 1,
+  },
+});

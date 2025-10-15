@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Spacer from './Spacer';
 import { ThemeType, useTheme } from '../../theme';
-import { Button } from './Button';
+import { Button } from '../Button';
 
 type Props = {
   goBack?: () => void;

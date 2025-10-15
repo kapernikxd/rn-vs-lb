@@ -2,8 +2,8 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, Alert } from 'react-native';
-import { ThemeProvider } from '../../../src/theme';
-import { LinkPreview } from '../../../src/components/UI/LinkPreview'; // ← при необходимости обнови путь
+import { ThemeProvider } from '../../theme';
+import { LinkPreview } from './LinkPreview'; // ← при необходимости обнови путь
 
 type Props = React.ComponentProps<typeof LinkPreview>;
 

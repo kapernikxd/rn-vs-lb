@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { Text } from 'react-native';
-import CardContainer from '../../../src/components/UI/CardContainer';
+import CardContainer from './CardContainer';
 
 const meta: Meta = {
   title: 'UI/CardContainer',

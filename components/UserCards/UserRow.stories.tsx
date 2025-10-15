@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import UserRow from '../../../src/components/UserCards/UserRow';
+import UserRow from './UserRow';
 
 type UserRowProps = React.ComponentProps<typeof UserRow>;
 

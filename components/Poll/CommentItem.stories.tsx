@@ -2,8 +2,8 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, Alert } from 'react-native';
-import CommentItem, { Comment, User } from '../../../src/components/Poll/CommentItem';
-import { ThemeProvider } from '../../../src/theme';
+import CommentItem, { Comment, User } from './CommentItem';
+import { ThemeProvider } from '../../theme';
 import { ScrollView } from 'react-native';
 
 // Базовые данные

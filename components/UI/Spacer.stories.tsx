@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import Spacer, { SpacerProps } from '../../../src/components/UI/Spacer';
+import Spacer, { SpacerProps } from './Spacer';
 
 const meta: Meta<SpacerProps> = {
   title: 'UI/Spacer',

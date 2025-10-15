@@ -2,13 +2,9 @@
 import React, { useState } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, ScrollView, Alert } from 'react-native';
-import { ThemeProvider } from '../../../src/theme';
-import MessageItem from '../../../src/components/Chat/MessageItem';
-import {
-  MessageDTO,
-  LinkPreviewData,
-  MessageItemProps,
-} from '../../../src/components/Chat/MessageItem';
+import { ThemeProvider } from '../../../theme';
+import MessageItem from './MessageItem';
+import { LinkPreviewData, MessageDTO, MessageItemProps } from './types';
 
 const meta: Meta<MessageItemProps> = {
   title: 'Chat/MessageItem',

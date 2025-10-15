@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import TripleSwitch, { TripleSwitchValue } from '../../../src/components/UI/TripleSwitch';
+import TripleSwitch, { TripleSwitchValue } from './TripleSwitch';
 
 type TripleSwitchProps = React.ComponentProps<typeof TripleSwitch>;
 

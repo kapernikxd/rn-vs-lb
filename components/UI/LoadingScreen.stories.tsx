@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import LoadingScreen from '../../../src/components/UI/LoadingScreen';
+import LoadingScreen from './LoadingScreen';
 
 const meta: Meta = {
   title: 'UI/States/LoadingScreen',

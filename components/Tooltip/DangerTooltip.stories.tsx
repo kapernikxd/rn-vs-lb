@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, Text } from 'react-native';
-import { DangerTooltip } from '../../../src/components/Tooltip/DangerTooltip';
+import { DangerTooltip } from './DangerTooltip';
 
 const meta: Meta<React.ComponentProps<typeof DangerTooltip>> = {
   title: 'Tooltip/DangerTooltip',

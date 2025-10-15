@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import { ThreeDotsMenu } from '../../../src/components/UI/ThreeDotsMenu';
+import { ThreeDotsMenu } from './ThreeDotsMenu';
 
 type ThreeDotsMenuProps = React.ComponentProps<typeof ThreeDotsMenu>;
 

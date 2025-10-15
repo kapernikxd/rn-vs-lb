@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { Text, View } from 'react-native';
-import { HeaderHome } from '../../../src/components/Header/HeaderHome';
+import { HeaderHome } from './HeaderHome';
 
 const meta: Meta = {
   title: 'Header/HeaderHome',

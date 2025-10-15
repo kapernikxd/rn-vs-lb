@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, Alert, ScrollView } from 'react-native';
-import { ThemeProvider } from '../../../src/theme';
-import InputMessage, { ImageAsset } from '../../../src/components/Chat/InputMessage';
+import { ThemeProvider } from '../../theme';
+import InputMessage, { ImageAsset } from './InputMessage';
 
 type Props = React.ComponentProps<typeof InputMessage>;
 

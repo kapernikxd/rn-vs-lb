@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import Hr from '../../../src/components/UI/Hr';
+import Hr from './Hr';
 
 type HrProps = React.ComponentProps<typeof Hr>;
 

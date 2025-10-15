@@ -2,8 +2,8 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, ScrollView } from 'react-native';
-import { ThemeProvider } from '../../../src/theme';
-import ChatItem, { ChatItemProps } from '../../../src/components/Chat/ChatItem';
+import { ThemeProvider } from '../../theme';
+import ChatItem, { ChatItemProps } from './ChatItem';
 
 const createPressHandler = (label: string) => () => {
   console.log('[storybook:chat-item:press]', label);

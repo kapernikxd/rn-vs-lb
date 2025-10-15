@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, Text } from 'react-native';
-import { HeaderSwitcher } from '../../../src/components/Header/HeaderSwitcher';
+import { HeaderSwitcher } from './HeaderSwitcher';
 
 const meta: Meta = {
   title: 'Header/HeaderSwitcher',

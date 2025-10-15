@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import ListItem from '../../../src/components/UI/ListItem';
+import ListItem from './ListItem';
 
 type ListItemProps = React.ComponentProps<typeof ListItem>;
 

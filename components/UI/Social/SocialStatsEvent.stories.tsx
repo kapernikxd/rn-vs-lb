@@ -1,8 +1,8 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import SocialStatsEvent from '../../../../src/components/UI/Social/SocialStatsEvent';
-import { ThemeProvider } from '../../../../src/theme/themeContext';
+import SocialStatsEvent from './SocialStatsEvent';
+import { ThemeProvider } from '../../../theme/themeContext';
 
 type SocialStatsProps = React.ComponentProps<typeof SocialStatsEvent>;
 

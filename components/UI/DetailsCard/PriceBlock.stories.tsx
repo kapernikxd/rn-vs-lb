@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import { PriceBlock } from '../../../../src/components/UI/DetailsCard/PriceBlock';
+import { PriceBlock } from './PriceBlock';
 
 type PriceBlockProps = React.ComponentProps<typeof PriceBlock>;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import ThemeSwitcher from '../../../src/components/UI/ThemeSwitcher';
-import { ThemeProvider } from '../../../src/theme';
+import ThemeSwitcher from './ThemeSwitcher';
+import { ThemeProvider } from '../../theme';
 
 const meta: Meta = {
   title: 'UI/ThemeSwitcher',

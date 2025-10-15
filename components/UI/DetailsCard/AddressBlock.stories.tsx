@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import { AddressBlock } from '../../../../src/components/UI/DetailsCard/AddressBlock';
+import { AddressBlock } from './AddressBlock';
 
 const meta: Meta<React.ComponentProps<typeof AddressBlock>> = {
   title: 'UI/DetailsCard/AddressBlock',

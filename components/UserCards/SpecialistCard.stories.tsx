@@ -1,8 +1,8 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import { View, ScrollView } from 'react-native';
-import SpecialistCard from '../../../src/components/UserCards/SpecialistCard';
-import { ThemeProvider } from '../../../src/theme/themeContext';
+import SpecialistCard from './SpecialistCard';
+import { ThemeProvider } from '../../theme/themeContext';
 
 type SpecialistCardProps = React.ComponentProps<typeof SpecialistCard>;
 

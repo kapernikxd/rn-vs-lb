@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, ScrollView } from 'react-native';
-import ProfilePhotoBanner from '../../../src/components/Profile/ProfilePhotoBanner';
+import ProfilePhotoBanner from './ProfilePhotoBanner';
 
 const meta: Meta<React.ComponentProps<typeof ProfilePhotoBanner>> = {
   title: 'Profile/ProfilePhotoBanner',

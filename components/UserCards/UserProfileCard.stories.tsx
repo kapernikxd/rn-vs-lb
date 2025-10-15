@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import UserProfileCard from '../../../src/components/UserCards/UserProfileCard';
+import UserProfileCard from './UserProfileCard';
 
 type UserProfileCardProps = React.ComponentProps<typeof UserProfileCard>;
 

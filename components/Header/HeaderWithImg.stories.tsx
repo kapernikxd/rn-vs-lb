@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import HeaderWithImg from '../../../src/components/Header/HeaderWithImg';
+import HeaderWithImg from './HeaderWithImg';
 
 const backPressHandler = () => {
   console.log('[storybook:header-with-img:back]');

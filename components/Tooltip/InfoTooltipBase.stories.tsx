@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, Text } from 'react-native';
-import { InfoTooltipBase } from '../../../src/components/Tooltip/InfoTooltipBase';
+import { InfoTooltipBase } from './InfoTooltipBase';
 
 const contentBlocks = {
   reminder: (

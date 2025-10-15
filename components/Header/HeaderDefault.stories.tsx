@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import HeaderDefault, { AccessType } from '../../../src/components/Header/HeaderDefault';
+import HeaderDefault, { AccessType } from './HeaderDefault';
 
 const backPressHandler = () => {
   console.log('[storybook:header-default:back]');

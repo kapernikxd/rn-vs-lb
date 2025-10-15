@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import { InfoNotification } from '../../../../src/components/UI/DetailsCard/InfoNotification';
+import { InfoNotification } from './InfoNotification';
 
 type InfoNotificationProps = React.ComponentProps<typeof InfoNotification>;
 

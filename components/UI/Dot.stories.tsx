@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import Dot from '../../../src/components/UI/Dot';
+import Dot from './Dot';
 
 type DotProps = React.ComponentProps<typeof Dot>;
 

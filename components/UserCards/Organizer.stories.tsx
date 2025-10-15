@@ -1,8 +1,8 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import Organizer from '../../../src/components/UserCards/Organazer';
-import { ThemeProvider } from '../../../src/theme/themeContext';
+import Organizer from './Organazer';
+import { ThemeProvider } from '../../theme/themeContext';
 
 type OrganizerProps = React.ComponentProps<typeof Organizer>;
 

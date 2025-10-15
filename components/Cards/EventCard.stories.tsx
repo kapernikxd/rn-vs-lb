@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import EventCard from '../../../src/components/Cards/EventCard';
-import { ThemeProvider } from '../../../src/theme/themeContext';
+import EventCard from './EventCard';
+import { ThemeProvider } from '../../theme/themeContext';
 
 const meta: Meta<React.ComponentProps<typeof EventCard>> = {
   title: 'Cards/EventCard',

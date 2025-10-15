@@ -1,9 +1,9 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import { ThemeProvider } from '../../../src/theme';
-import PinnedMessagesBar from '../../../src/components/Chat/PinnedMessagesBar/';
-import { MessageDTO } from '../../../src/types/message';
+import { ThemeProvider } from '../../../theme';
+import PinnedMessagesBar from './PinnedMessagesBar';
+import { MessageDTO } from '../../../types/message';
 
 type Props = React.ComponentProps<typeof PinnedMessagesBar>;
 

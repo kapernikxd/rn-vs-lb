@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import DeletedState from '../../../src/components/UI/DeletedState';
+import DeletedState from './DeletedState';
 
 type DeletedStateProps = React.ComponentProps<typeof DeletedState>;
 

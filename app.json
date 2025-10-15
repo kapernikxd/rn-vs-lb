@@ -1,7 +1,7 @@
 {
-  "name": "rn-vs-lb-2",
-  "slug": "rn-vs-lb-2",
-  "scheme": "rnvslb2",
+  "name": "rn-vs-lb",
+  "slug": "rn-vs-lb",
+  "scheme": "rnvslb",
   "version": "1.0.0",
   "orientation": "portrait",
   "icon": "./assets/icon.png",

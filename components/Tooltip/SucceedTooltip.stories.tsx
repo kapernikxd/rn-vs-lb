@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, Text } from 'react-native';
-import { SucceedTooltip } from '../../../src/components/Tooltip/SucceedTooltip';
+import { SucceedTooltip } from './SucceedTooltip';
 
 const meta: Meta<React.ComponentProps<typeof SucceedTooltip>> = {
   title: 'Tooltip/SucceedTooltip',

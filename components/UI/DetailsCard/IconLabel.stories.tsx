@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import { IconLabel } from '../../../../src/components/UI/DetailsCard/IconLabel';
+import { IconLabel } from './IconLabel';
 
 type IconLabelProps = React.ComponentProps<typeof IconLabel>;
 

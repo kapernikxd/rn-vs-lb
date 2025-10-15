@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import PlaceCardList from '../../../src/components/Posts/PlaceCardList';
+import PlaceCardList from './PlaceCardList';
 
 const meta: Meta<React.ComponentProps<typeof PlaceCardList>> = {
   title: 'Posts/PlaceCardList',

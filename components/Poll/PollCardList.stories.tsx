@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import PollCardList from '../../../src/components/Poll/PollCardList';
+import PollCardList from './PollCardList';
 
 const noop = () => {};
 

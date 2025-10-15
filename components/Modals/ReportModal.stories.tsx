@@ -1,8 +1,8 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, Button as RNButton } from 'react-native';
-import ReportModal from '../../../src/components/Modals/ReportModal';
-import { ThemeProvider } from '../../../src/theme';
+import ReportModal from './ReportModal';
+import { ThemeProvider } from '../../theme';
 
 type ReportModalProps = React.ComponentProps<typeof ReportModal>;
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import PostButton from '../../../src/components/Button/PostButton';
+import PostButton from './PostButton';
 
 const noop = () => {};
 

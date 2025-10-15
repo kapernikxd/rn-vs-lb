@@ -2,7 +2,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import EventCardList from '../../../src/components/Posts/EventCardList';
+import EventCardList from './EventCardList';
 
 type Props = React.ComponentProps<typeof EventCardList>;
 

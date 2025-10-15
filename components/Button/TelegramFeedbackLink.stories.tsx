@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { TelegramFeedbackLink, TelegramFeedbackLinkProps } from '../../../src/components/Button/TelegramFeedbackLink';
+import { TelegramFeedbackLink, TelegramFeedbackLinkProps } from './TelegramFeedbackLink';
 
 const meta: Meta<TelegramFeedbackLinkProps> = {
   title: 'Button/TelegramFeedbackLink',

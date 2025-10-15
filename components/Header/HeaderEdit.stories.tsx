@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import { HeaderEdit } from '../../../src/components/Header/HeaderEdit';
+import { HeaderEdit } from './HeaderEdit';
 
 const closePress = () => {
   console.log('[storybook:header-edit:close]');

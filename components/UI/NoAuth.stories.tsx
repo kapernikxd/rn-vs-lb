@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { NoAuth } from '../../../src/components/UI/NoAuth';
+import { NoAuth } from './NoAuth';
 
 type NoAuthProps = React.ComponentProps<typeof NoAuth>;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import PlaceCard from '../../../src/components/Cards/PlaceCard';
-import { ThemeProvider } from '../../../src/theme/themeContext';
+import PlaceCard from './PlaceCard';
+import { ThemeProvider } from '../../theme/themeContext';
 
 const meta: Meta<React.ComponentProps<typeof PlaceCard>> = {
   title: 'Cards/PlaceCard',

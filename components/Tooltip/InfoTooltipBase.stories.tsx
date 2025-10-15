@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { View, Text } from 'react-native';
 import { InfoTooltipBase } from './InfoTooltipBase';
 
-const contentBlocks = {
+const contentPresets = {
   reminder: (
     <View>
       <Text style={{ fontWeight: 'bold', marginBottom: 4 }}>Remember</Text>
@@ -17,14 +17,31 @@ const contentBlocks = {
       <Text>• Confirm logistics with the venue</Text>
     </View>
   ),
+  liveSession: (
+    <View>
+      <Text style={{ fontWeight: 'bold', marginBottom: 4 }}>Live now</Text>
+      <Text>Tap to learn about the live Q&A session for new members.</Text>
+    </View>
+  ),
+} as const;
+
+type InfoTooltipBaseStoryProps = Omit<React.ComponentProps<typeof InfoTooltipBase>, 'content'> & {
+  contentKey: keyof typeof contentPresets;
 };
 
-type InfoTooltipBaseProps = React.ComponentProps<typeof InfoTooltipBase>;
+const renderTooltip = ({ contentKey, ...args }: InfoTooltipBaseStoryProps) => (
+  <InfoTooltipBase {...args} content={contentPresets[contentKey]} />
+);
 
-const meta: Meta<InfoTooltipBaseProps> = {
+const meta: Meta<InfoTooltipBaseStoryProps> = {
   title: 'Tooltip/InfoTooltipBase',
   component: InfoTooltipBase,
   argTypes: {
+    contentKey: {
+      name: 'Content preset',
+      options: Object.keys(contentPresets),
+      control: { type: 'radio' },
+    },
     iconName: {
       control: {
         type: 'select',
@@ -46,11 +63,11 @@ const meta: Meta<InfoTooltipBaseProps> = {
 
 export default meta;
 
-const Template: StoryFn<InfoTooltipBaseProps> = (args) => <InfoTooltipBase {...args} />;
+const Template: StoryFn<InfoTooltipBaseStoryProps> = (args) => renderTooltip(args);
 
 export const WithReminderContent = Template.bind({});
 WithReminderContent.args = {
-  content: contentBlocks.reminder,
+  contentKey: 'reminder',
   iconName: 'information-circle-outline',
   iconSize: 24,
   style: { padding: 8 },
@@ -58,31 +75,22 @@ WithReminderContent.args = {
 
 export const Checklist = Template.bind({});
 Checklist.args = {
-  content: contentBlocks.checklist,
+  contentKey: 'checklist',
   iconName: 'calendar-outline',
   iconSize: 28,
   style: { padding: 8 },
 };
 
-export const CustomColoredIcon: StoryFn<InfoTooltipBaseProps> = (args) => (
-  <InfoTooltipBase
-    {...args}
-    content={
-      <View>
-        <Text style={{ fontWeight: 'bold', marginBottom: 4 }}>Live now</Text>
-        <Text>Tap to learn about the live Q&A session for new members.</Text>
-      </View>
-    }
-  />
-);
+export const CustomColoredIcon = Template.bind({});
 CustomColoredIcon.args = {
+  contentKey: 'liveSession',
   iconName: 'alert-circle-outline',
   iconColor: '#ff6b6b',
   iconSize: 30,
   style: { padding: 8 },
 };
 
-export const TriggerInsideCard: StoryFn<InfoTooltipBaseProps> = () => (
+export const TriggerInsideCard: StoryFn = () => (
   <View
     style={{
       padding: 16,
@@ -94,18 +102,8 @@ export const TriggerInsideCard: StoryFn<InfoTooltipBaseProps> = () => (
   >
     <Text style={{ marginBottom: 12 }}>Tap the icons to explore supporting hints.</Text>
     <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-      <InfoTooltipBase
-        content={contentBlocks.reminder}
-        iconName="help-circle-outline"
-        iconSize={22}
-        style={{ padding: 4 }}
-      />
-      <InfoTooltipBase
-        content={contentBlocks.checklist}
-        iconName="calendar-outline"
-        iconSize={22}
-        style={{ padding: 4 }}
-      />
+      {renderTooltip({ contentKey: 'reminder', iconName: 'help-circle-outline', iconSize: 22, style: { padding: 4 } })}
+      {renderTooltip({ contentKey: 'checklist', iconName: 'calendar-outline', iconSize: 22, style: { padding: 4 } })}
     </View>
   </View>
 );

@@ -3,9 +3,51 @@ import { Meta, StoryFn } from '@storybook/react';
 import { View, Text } from 'react-native';
 import { SucceedTooltip } from './SucceedTooltip';
 
-const meta: Meta<React.ComponentProps<typeof SucceedTooltip>> = {
+const contentPresets = {
+  eventApproved: (
+    <View>
+      <Text style={{ fontWeight: 'bold' }}>Event approved</Text>
+      <Text>Your submission passed moderation and is now visible to members.</Text>
+    </View>
+  ),
+  goalReached: (
+    <View>
+      <Text style={{ fontWeight: 'bold' }}>Goal reached</Text>
+      <Text>Congratulations! The fundraiser collected 125% of the target.</Text>
+    </View>
+  ),
+  verifiedIdentity: (
+    <View>
+      <Text style={{ fontWeight: 'bold' }}>Verified identity</Text>
+      <Text>Document review completed without any issues.</Text>
+    </View>
+  ),
+  checklistComplete: (
+    <View>
+      <Text style={{ fontWeight: 'bold' }}>Checklist complete</Text>
+      <Text>All required steps for the onboarding were done.</Text>
+    </View>
+  ),
+} as const;
+
+type SucceedTooltipStoryProps = Omit<React.ComponentProps<typeof SucceedTooltip>, 'content'> & {
+  contentKey: keyof typeof contentPresets;
+};
+
+const renderTooltip = ({ contentKey, ...args }: SucceedTooltipStoryProps) => (
+  <SucceedTooltip {...args} content={contentPresets[contentKey]} />
+);
+
+const meta: Meta<SucceedTooltipStoryProps> = {
   title: 'Tooltip/SucceedTooltip',
   component: SucceedTooltip,
+  argTypes: {
+    contentKey: {
+      name: 'Content preset',
+      options: Object.keys(contentPresets),
+      control: { type: 'radio' },
+    },
+  },
   decorators: [
     (Story) => (
       <View style={{ padding: 24 }}>
@@ -20,29 +62,17 @@ const meta: Meta<React.ComponentProps<typeof SucceedTooltip>> = {
 
 export default meta;
 
-const Template: StoryFn<React.ComponentProps<typeof SucceedTooltip>> = (args) => (
-  <SucceedTooltip {...args} />
-);
+const Template: StoryFn<SucceedTooltipStoryProps> = (args) => renderTooltip(args);
 
 export const Default = Template.bind({});
 Default.args = {
-  content: (
-    <View>
-      <Text style={{ fontWeight: 'bold' }}>Event approved</Text>
-      <Text>Your submission passed moderation and is now visible to members.</Text>
-    </View>
-  ),
+  contentKey: 'eventApproved',
   iconSize: 24,
 };
 
 export const Celebratory = Template.bind({});
 Celebratory.args = {
-  content: (
-    <View>
-      <Text style={{ fontWeight: 'bold' }}>Goal reached</Text>
-      <Text>Congratulations! The fundraiser collected 125% of the target.</Text>
-    </View>
-  ),
+  contentKey: 'goalReached',
   iconSize: 30,
   style: { padding: 8 },
 };
@@ -50,16 +80,7 @@ Celebratory.args = {
 export const InlineSuccess: StoryFn = () => (
   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
     <Text>Profile verified successfully</Text>
-    <SucceedTooltip
-      style={{ marginLeft: 6 }}
-      iconSize={20}
-      content={
-        <View>
-          <Text style={{ fontWeight: 'bold' }}>Verified identity</Text>
-          <Text>Document review completed without any issues.</Text>
-        </View>
-      }
-    />
+    {renderTooltip({ contentKey: 'verifiedIdentity', style: { marginLeft: 6 }, iconSize: 20 })}
   </View>
 );
 
@@ -69,11 +90,6 @@ InlineSuccess.parameters = {
 
 export const MinimalIcon = Template.bind({});
 MinimalIcon.args = {
-  content: (
-    <View>
-      <Text style={{ fontWeight: 'bold' }}>Checklist complete</Text>
-      <Text>All required steps for the onboarding were done.</Text>
-    </View>
-  ),
+  contentKey: 'checklistComplete',
   iconSize: 16,
 };

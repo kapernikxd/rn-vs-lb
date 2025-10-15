@@ -3,9 +3,51 @@ import { Meta, StoryFn } from '@storybook/react';
 import { View, Text } from 'react-native';
 import { DangerTooltip } from './DangerTooltip';
 
-const meta: Meta<React.ComponentProps<typeof DangerTooltip>> = {
+const contentPresets = {
+  actionRequired: (
+    <View>
+      <Text style={{ fontWeight: 'bold' }}>Action required</Text>
+      <Text>Moderators rejected the event proposal due to missing details.</Text>
+    </View>
+  ),
+  accountSuspended: (
+    <View>
+      <Text style={{ fontWeight: 'bold' }}>Account suspended</Text>
+      <Text>Contact support to restore posting privileges.</Text>
+    </View>
+  ),
+  deliveryFailed: (
+    <View>
+      <Text style={{ fontWeight: 'bold' }}>Delivery failed</Text>
+      <Text>Recipient inbox is full or email address is invalid.</Text>
+    </View>
+  ),
+  highPriority: (
+    <View>
+      <Text style={{ fontWeight: 'bold' }}>High priority</Text>
+      <Text>The fundraiser deadline has passed without reaching the goal.</Text>
+    </View>
+  ),
+} as const;
+
+type DangerTooltipStoryProps = Omit<React.ComponentProps<typeof DangerTooltip>, 'content'> & {
+  contentKey: keyof typeof contentPresets;
+};
+
+const renderTooltip = ({ contentKey, ...args }: DangerTooltipStoryProps) => (
+  <DangerTooltip {...args} content={contentPresets[contentKey]} />
+);
+
+const meta: Meta<DangerTooltipStoryProps> = {
   title: 'Tooltip/DangerTooltip',
   component: DangerTooltip,
+  argTypes: {
+    contentKey: {
+      name: 'Content preset',
+      options: Object.keys(contentPresets),
+      control: { type: 'radio' },
+    },
+  },
   decorators: [
     (Story) => (
       <View style={{ padding: 24 }}>
@@ -20,30 +62,18 @@ const meta: Meta<React.ComponentProps<typeof DangerTooltip>> = {
 
 export default meta;
 
-const Template: StoryFn<React.ComponentProps<typeof DangerTooltip>> = (args) => (
-  <DangerTooltip {...args} />
-);
+const Template: StoryFn<DangerTooltipStoryProps> = (args) => renderTooltip(args);
 
 export const Default = Template.bind({});
 Default.args = {
-  content: (
-    <View>
-      <Text style={{ fontWeight: 'bold' }}>Action required</Text>
-      <Text>Moderators rejected the event proposal due to missing details.</Text>
-    </View>
-  ),
+  contentKey: 'actionRequired',
   iconSize: 26,
   style: { padding: 8 },
 };
 
 export const CompactIcon = Template.bind({});
 CompactIcon.args = {
-  content: (
-    <View>
-      <Text style={{ fontWeight: 'bold' }}>Account suspended</Text>
-      <Text>Contact support to restore posting privileges.</Text>
-    </View>
-  ),
+  contentKey: 'accountSuspended',
   iconSize: 18,
 };
 
@@ -52,16 +82,7 @@ export const InlineWithText: StoryFn = () => (
     <Text>
       Your invitation could not be delivered. Learn more
     </Text>
-    <DangerTooltip
-      style={{ marginLeft: 6 }}
-      iconSize={20}
-      content={
-        <View>
-          <Text style={{ fontWeight: 'bold' }}>Delivery failed</Text>
-          <Text>Recipient inbox is full or email address is invalid.</Text>
-        </View>
-      }
-    />
+    {renderTooltip({ contentKey: 'deliveryFailed', style: { marginLeft: 6 }, iconSize: 20 })}
   </View>
 );
 
@@ -71,12 +92,7 @@ InlineWithText.parameters = {
 
 export const WithActionLogging = Template.bind({});
 WithActionLogging.args = {
-  content: (
-    <View>
-      <Text style={{ fontWeight: 'bold' }}>High priority</Text>
-      <Text>The fundraiser deadline has passed without reaching the goal.</Text>
-    </View>
-  ),
+  contentKey: 'highPriority',
   iconSize: 24,
   style: { padding: 8 },
 };

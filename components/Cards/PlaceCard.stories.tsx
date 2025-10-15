@@ -19,16 +19,13 @@ const meta: Meta<React.ComponentProps<typeof PlaceCard>> = {
     description: { control: 'text' },
     visible: { control: 'boolean' },
     triggerOnce: { control: 'boolean' },
+    onView: { action: 'view place' },
   },
 };
 
 export default meta;
 
 type Story = StoryObj<React.ComponentProps<typeof PlaceCard>>;
-
-const onViewAction = () => {};
-const analyticsPrimaryView = () => {};
-const analyticsSecondaryView = () => {};
 
 export const Default: Story = {
   args: {
@@ -38,7 +35,6 @@ export const Default: Story = {
     title: 'Belgrade Innovation Hub',
     description:
       'Современное пространство для командной работы, тренингов и запусков социальных проектов.',
-    onView: onViewAction,
     visible: true,
   },
 };
@@ -60,12 +56,22 @@ export const AnalyticsMode: Story = {
     eventId: 'place-3',
     title: 'Creative Loft',
     description: 'Многофункциональное пространство с яркой атмосферой и арт-галереей.',
-    onView: (eventId) => {
-      analyticsPrimaryView(eventId);
-      analyticsSecondaryView(eventId);
-    },
     triggerOnce: false,
     visible: true,
+  },
+  render: (args) => {
+    const analyticsPrimaryView = (eventId: string) => console.log('[storybook:place-card:primary-view]', eventId);
+    const analyticsSecondaryView = (eventId: string) => console.log('[storybook:place-card:secondary-view]', eventId);
+
+    return (
+      <PlaceCard
+        {...args}
+        onView={(eventId) => {
+          analyticsPrimaryView(eventId);
+          analyticsSecondaryView(eventId);
+        }}
+      />
+    );
   },
 };
 

@@ -18,6 +18,11 @@ const meta: Meta<MessageItemProps> = {
       </ThemeProvider>
     ),
   ],
+  argTypes: {
+    linkHandler: { control: false },
+    onDownloadImage: { control: false },
+    onShareImage: { control: false },
+  },
 };
 export default meta;
 
@@ -133,9 +138,10 @@ WithImages.args = {
   myId: MY_ID,
   isGroupChat: false,
   timeText: '12:03',
-  onDownloadImage: mockDownload,
-  onShareImage: mockShare,
 };
+WithImages.render = (args) => (
+  <MessageItem {...args} onDownloadImage={mockDownload} onShareImage={mockShare} />
+);
 
 // 6) Сообщение со ссылкой и превью (готовое превью)
 export const WithLinkPreview = Template.bind({});
@@ -146,7 +152,6 @@ WithLinkPreview.args = {
   myId: MY_ID,
   isGroupChat: false,
   timeText: '13:45',
-  linkHandler: mockLinkHandler,
   linkPreview: {
     url: 'https://pllace.su/event/123',
     title: 'Community meetup',
@@ -155,6 +160,7 @@ WithLinkPreview.args = {
       'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=60',
   } as LinkPreviewData,
 };
+WithLinkPreview.render = (args) => <MessageItem {...args} linkHandler={mockLinkHandler} />;
 
 // 7) Со ссылкой — превью ещё грузится
 export const LinkPreviewLoading = Template.bind({});
@@ -165,10 +171,10 @@ LinkPreviewLoading.args = {
   myId: MY_ID,
   isGroupChat: false,
   timeText: '14:02',
-  linkHandler: mockLinkHandler,
   linkPreview: null,
   linkPreviewLoading: true,
 };
+LinkPreviewLoading.render = (args) => <MessageItem {...args} linkHandler={mockLinkHandler} />;
 
 // 8) Selected (выделённое сообщение)
 export const SelectedState = Template.bind({});
@@ -192,8 +198,8 @@ LongText.args = {
   myId: MY_ID,
   isGroupChat: true,
   timeText: '15:05',
-  linkHandler: mockLinkHandler,
 };
+LongText.render = (args) => <MessageItem {...args} linkHandler={mockLinkHandler} />;
 
 // 10) Мои сообщения без отметки прочтения
 export const OutgoingNotRead = Template.bind({});

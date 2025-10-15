@@ -7,17 +7,15 @@ type NoAuthProps = React.ComponentProps<typeof NoAuth>;
 const meta: Meta<NoAuthProps> = {
   title: 'UI/States/NoAuth',
   component: NoAuth,
+  argTypes: {
+    onPress: { action: 'cta press' },
+  },
 };
 
 export default meta;
 
 const Template: StoryFn<NoAuthProps> = (args) => <NoAuth {...args} />;
 
-const onPressHandler = () => {
-  console.log('[storybook:no-auth:press]');
-};
-
 export const Default = Template.bind({});
 Default.args = {
-  onPress: onPressHandler,
 };

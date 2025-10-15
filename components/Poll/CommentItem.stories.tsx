@@ -57,6 +57,10 @@ const meta: Meta<Props> = {
             </ThemeProvider>
         ),
     ],
+    argTypes: {
+        onPressUser: { action: 'user press' },
+        linkHandler: { control: false },
+    },
 };
 export default meta;
 
@@ -65,10 +69,10 @@ const Template: StoryFn<Props> = (args) => <CommentItem {...args} />;
 const userPressLogger = (userId: string) => {
     console.log('[storybook:comment-item:user]', userId);
 };
+const handleUserPress: Props['onPressUser'] = (userId) => userPressLogger(userId);
 const linkPressLogger = (url: string) => {
     console.log('[storybook:comment-item:link]', url);
 };
-const handleUserPress: Props['onPressUser'] = (userId) => userPressLogger(userId);
 const handleLink = (url: string) => {
     linkPressLogger(url);
     Alert.alert('Custom link handler', url);
@@ -77,16 +81,20 @@ const handleLink = (url: string) => {
 export const Default = Template.bind({});
 Default.args = {
     comment: baseComment,
-    onPressUser: handleUserPress,
     // linkHandler не передаем — ссылки откроются через Linking.openURL
 };
 
 export const WithCustomLinkHandler = Template.bind({});
 WithCustomLinkHandler.args = {
     comment: baseComment,
-    onPressUser: handleUserPress,
-    linkHandler: handleLink,
 };
+WithCustomLinkHandler.render = (args) => (
+    <CommentItem
+        {...args}
+        onPressUser={handleUserPress}
+        linkHandler={handleLink}
+    />
+);
 
 export const LongTextTruncated = Template.bind({});
 LongTextTruncated.args = {
@@ -98,7 +106,6 @@ LongTextTruncated.args = {
             'Visit www.example.com for details, or read docs at https://developer.apple.com. ' +
             'Also our portal: https://pllace.su/user/42. Thanks!',
     },
-    onPressUser: handleUserPress,
     // Можно подать отформатированную дату
     timeTextOverride: '5m ago',
 };
@@ -111,7 +118,6 @@ WithoutAvatar.args = {
         createdBy: { _id: 'u2', fullName: 'No Avatar User' }, // без avatarUrl
         text: 'Plain text without links. Looks clean.',
     },
-    onPressUser: handleUserPress,
 };
 
 export const OnlyPlainText = Template.bind({});
@@ -123,7 +129,6 @@ OnlyPlainText.args = {
             'No links here. Just a short message to verify default text rendering and spacing.',
     },
     timeTextOverride: 'Yesterday 14:32',
-    onPressUser: handleUserPress,
 };
 
 

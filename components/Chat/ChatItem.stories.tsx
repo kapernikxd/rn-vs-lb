@@ -21,6 +21,9 @@ const meta: Meta<ChatItemProps> = {
       </ThemeProvider>
     ),
   ],
+  argTypes: {
+    onPress: { action: 'press' },
+  },
 };
 export default meta;
 
@@ -36,7 +39,6 @@ PersonOnline.args = {
   lastMessage: 'See you at 6pm near the station',
   createdAt: '10:42',
   unread: '+',
-  onPress: createPressHandler('PersonOnline'),
 };
 
 export const PersonOffline = Template.bind({});
@@ -48,7 +50,6 @@ PersonOffline.args = {
   isUserOnline: false,
   lastMessage: 'Got it, thanks!',
   createdAt: '09:15',
-  onPress: createPressHandler('PersonOffline'),
 };
 
 export const GroupWithSender = Template.bind({});
@@ -61,7 +62,6 @@ GroupWithSender.args = {
   lastMessage: 'Slides are uploaded to Drive, check the link above.',
   createdAt: 'Yesterday',
   unread: '+',
-  onPress: createPressHandler('GroupWithSender'),
 };
 
 export const Bot = Template.bind({});
@@ -70,7 +70,6 @@ Bot.args = {
   chatName: 'Assistant Bot',
   lastMessage: 'Daily summary is ready. Tap to view.',
   createdAt: '08:00',
-  onPress: createPressHandler('Bot'),
 };
 
 export const LongMessageTruncation = Template.bind({});
@@ -83,7 +82,6 @@ LongMessageTruncation.args = {
   lastMessage:
     'Here is a very long message intended to demonstrate two-line truncation in the preview area. It should cut off gracefully and not break the layout on smaller screens.',
   createdAt: 'Mon',
-  onPress: createPressHandler('LongMessageTruncation'),
 };
 
 export const ListOfItems: StoryFn = () => {

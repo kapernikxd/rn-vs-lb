@@ -2,8 +2,6 @@ import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import PostButton from './PostButton';
 
-const noop = () => {};
-
 const meta: Meta = {
   title: 'Button/PostButton',
   component: PostButton,
@@ -12,6 +10,7 @@ const meta: Meta = {
       control: 'text',
       defaultValue: 'Create new event',
     },
+    onPress: { action: 'press' },
   },
 };
 
@@ -22,7 +21,6 @@ const Template: StoryFn<React.ComponentProps<typeof PostButton>> = (args) => <Po
 export const Default = Template.bind({});
 Default.args = {
   title: 'Create post',
-  onPress: noop,
 };
 
 export const CustomStyling = Template.bind({});
@@ -35,5 +33,4 @@ CustomStyling.args = {
   textStyle: {
     fontWeight: '700',
   },
-  onPress: noop,
 };

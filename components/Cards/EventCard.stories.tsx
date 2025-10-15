@@ -30,6 +30,9 @@ const meta: Meta<React.ComponentProps<typeof EventCard>> = {
     hasLike: { control: 'boolean' },
     visible: { control: 'boolean' },
     triggerOnce: { control: 'boolean' },
+    onPress: { action: 'card press' },
+    onView: { action: 'view event' },
+    onLike: { control: false },
   },
 };
 
@@ -43,9 +46,6 @@ const createAsyncHandler = (delay = 0) => async () => {
   }
 };
 
-const asyncLike = createAsyncHandler();
-const viewAction = () => {};
-
 export const Default: Story = {
   args: {
     eventId: 'event-1',
@@ -57,11 +57,8 @@ export const Default: Story = {
       'Crash Drum Studio — пространство, где можно почувствовать силу ритма и научиться играть на ударных в любой форме.',
     organizerAvatarUri: 'https://i.pravatar.cc/150?img=11',
     organizerName: 'Admin Belgrade',
-    onPress: () => {},
     likes: 42,
     views: 313,
-    onView: viewAction,
-    onLike: asyncLike,
     hasLike: false,
     isUserParticipantInPost: false,
     participantsCount: 0,
@@ -126,6 +123,6 @@ export const AsyncLikeDemo: Story = {
     description:
       'Вечер совместной работы над open source-проектами. Наставники помогут настроить окружение и выбрать задачу.',
     hasLike: false,
-    onLike: createAsyncHandler(500),
   },
+  render: (args) => <EventCard {...args} onLike={createAsyncHandler(500)} />,
 };

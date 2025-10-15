@@ -3,23 +3,11 @@ import { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
 import HeaderWithImg from './HeaderWithImg';
 
-const backPressHandler = () => {
-  console.log('[storybook:header-with-img:back]');
-};
-const imgPressHandler = () => {
-  console.log('[storybook:header-with-img:avatar]');
-};
-const actionPressHandler = () => {
-  console.log('[storybook:header-with-img:action]');
-};
-
 const meta: Meta = {
   title: 'Header/HeaderWithImg',
   component: HeaderWithImg,
   args: {
     imgUrl: 'https://placekitten.com/200/200',
-    onBackPress: backPressHandler,
-    onImgPress: imgPressHandler,
     title: 'Community volunteers',
     isGroupChat: false,
     users: [
@@ -28,6 +16,11 @@ const meta: Meta = {
         userName: 'Alex Johnson',
       },
     ],
+  },
+  argTypes: {
+    onBackPress: { action: 'back' },
+    onImgPress: { action: 'avatar press' },
+    onActionPress: { action: 'action press' },
   },
 };
 
@@ -53,7 +46,6 @@ SingleUserTyping.args = {
 
 export const SingleUserWithMenu = Template.bind({});
 SingleUserWithMenu.args = {
-  onActionPress: actionPressHandler,
   title: 'Coordinator chat',
 };
 
@@ -68,7 +60,6 @@ GroupChatWithActions.args = {
   ],
   typingUserName: 'Miguel',
   isTyping: true,
-  onActionPress: actionPressHandler,
 };
 
 export const GroupChatIdle = Template.bind({});
@@ -81,7 +72,6 @@ GroupChatIdle.args = {
   ],
   isTyping: false,
   typingUserName: undefined,
-  onActionPress: actionPressHandler,
 };
 
 export const OfflineUser = Template.bind({});

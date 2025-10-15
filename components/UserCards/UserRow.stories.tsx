@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import { action } from '@storybook/addon-actions';
 import UserRow from '../../../src/components/UserCards/UserRow';
 
 type UserRowProps = React.ComponentProps<typeof UserRow>;
@@ -36,12 +35,16 @@ export default meta;
 
 const Template: StoryFn<UserRowProps> = (args) => <UserRow {...args} />;
 
+const onPressHandler = () => {
+  console.log('[storybook:user-row:press]');
+};
+
 export const Default = Template.bind({});
 Default.args = {
   avatarUri: 'https://i.pravatar.cc/150?img=12',
   userName: 'Esther Howard',
   size: 'sm',
-  onPress: action('row-pressed'),
+  onPress: onPressHandler,
 };
 
 export const ExtraSmallAvatar = Template.bind({});
@@ -49,7 +52,7 @@ ExtraSmallAvatar.args = {
   avatarUri: 'https://i.pravatar.cc/150?img=21',
   userName: 'Wade Warren',
   size: 'xs',
-  onPress: action('row-xs-pressed'),
+  onPress: onPressHandler,
 };
 
 export const WithLongName = Template.bind({});
@@ -57,12 +60,12 @@ WithLongName.args = {
   avatarUri: 'https://i.pravatar.cc/150?img=45',
   userName: 'Anastasia Nikolaevna Romanova the Third',
   size: 'md',
-  onPress: action('row-long-name-pressed'),
+  onPress: onPressHandler,
 };
 
 export const AvatarOnly = Template.bind({});
 AvatarOnly.args = {
   avatarUri: 'https://i.pravatar.cc/150?img=28',
   size: 'lg',
-  onPress: action('row-avatar-only-pressed'),
+  onPress: onPressHandler,
 };

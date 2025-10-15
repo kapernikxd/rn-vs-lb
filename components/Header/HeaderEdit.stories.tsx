@@ -1,17 +1,32 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import { View } from 'react-native';
 import { HeaderEdit } from '../../../src/components/Header/HeaderEdit';
+
+const closePress = () => {
+  console.log('[storybook:header-edit:close]');
+};
+const copyHandler = () => {
+  console.log('[storybook:header-edit:copy]');
+};
+const reportHandler = () => {
+  console.log('[storybook:header-edit:report]');
+};
+const pinToggleHandler = () => {
+  console.log('[storybook:header-edit:pin-toggle]');
+};
+const editHandler = () => {
+  console.log('[storybook:header-edit:edit]');
+};
 
 const meta: Meta = {
   title: 'Header/HeaderEdit',
   component: HeaderEdit,
   args: {
-    onClosePress: action('close'),
-    onCopy: action('copy'),
-    onReportMessage: action('report'),
-    onPinToggle: action('toggle-pin'),
+    onClosePress: closePress,
+    onCopy: copyHandler,
+    onReportMessage: reportHandler,
+    onPinToggle: pinToggleHandler,
     isPinned: false,
   },
 };
@@ -30,20 +45,20 @@ export const Default = Template.bind({});
 
 export const WithEditAction = Template.bind({});
 WithEditAction.args = {
-  onEdit: action('edit'),
+  onEdit: editHandler,
 };
 
 export const PinnedMessage = Template.bind({});
 PinnedMessage.args = {
   isPinned: true,
-  onPinToggle: action('unpin'),
+  onPinToggle: pinToggleHandler,
 };
 
 export const MinimalActions = Template.bind({});
 MinimalActions.args = {
   onEdit: undefined,
-  onCopy: action('copy-minimal'),
-  onReportMessage: action('report-minimal'),
-  onPinToggle: action('pin-minimal'),
+  onCopy: copyHandler,
+  onReportMessage: reportHandler,
+  onPinToggle: pinToggleHandler,
   isPinned: false,
 };

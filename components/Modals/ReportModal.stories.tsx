@@ -1,15 +1,21 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import { View, Button as RNButton } from 'react-native';
 import ReportModal from '../../../src/components/Modals/ReportModal';
 import { ThemeProvider } from '../../../src/theme';
 
 type ReportModalProps = React.ComponentProps<typeof ReportModal>;
 
-const defaultOnClose = action('close-report-modal');
+const closeLogger = () => {
+  console.log('[storybook:report-modal:close]');
+};
+const submitLogger = (payload: { reason: string; details?: string }) => {
+  console.log('[storybook:report-modal:submit]', payload);
+};
+
+const defaultOnClose = () => closeLogger();
 const defaultOnSubmit: ReportModalProps['onSubmit'] = (reason, details) => {
-  action('submit-report')({ reason, details });
+  submitLogger({ reason, details });
 };
 
 const meta: Meta<ReportModalProps> = {
@@ -160,12 +166,12 @@ export const InteractivePlayground: StoryFn<ReportModalProps> = (args) => {
         visible={isVisible}
         type={reportType}
         onClose={() => {
-          action('interactive-close')();
+          closeLogger();
           setIsVisible(false);
           args.onClose();
         }}
         onSubmit={(reason, details) => {
-          action('interactive-submit')({ reason, details });
+          submitLogger({ reason, details });
           setIsVisible(false);
           args.onSubmit(reason, details);
         }}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import { action } from '@storybook/addon-actions';
 import { ThemeProvider } from '../../../src/theme';
 import PinnedMessagesBar from '../../../src/components/Chat/PinnedMessagesBar/';
 import { MessageDTO } from '../../../src/types/message';
@@ -49,6 +48,14 @@ const mkMsg = (partial: Partial<MessageDTO>): MessageDTO => ({
 
 const Template: StoryFn<Props> = (args) => <PinnedMessagesBar {...args} />;
 
+const handleUnpin = (messageId: string) => {
+  console.log('[storybook:pinned-messages:unpin]', messageId);
+};
+
+const handleOpen = (messageId: string) => {
+  console.log('[storybook:pinned-messages:open]', messageId);
+};
+
 // 1️⃣ Один закреплённый
 export const SinglePinned = Template.bind({});
 SinglePinned.args = {
@@ -60,8 +67,8 @@ SinglePinned.args = {
   ],
   myId: MY_ID,
   isGroupChat: false,
-  onUnpin: action('onUnpin'),
-  onPress: action('onPress'),
+  onUnpin: handleUnpin,
+  onPress: handleOpen,
 };
 
 // 2️⃣ Несколько закреплённых
@@ -85,8 +92,8 @@ MultiplePinned.args = {
   ],
   myId: MY_ID,
   isGroupChat: true,
-  onUnpin: action('onUnpin'),
-  onPress: action('onPress'),
+  onUnpin: handleUnpin,
+  onPress: handleOpen,
 };
 
 // 3️⃣ С фиксированной высотой карточки
@@ -107,8 +114,8 @@ FixedHeightCards.args = {
   myId: MY_ID,
   isGroupChat: false,
   fixedItemHeight: 70,
-  onUnpin: action('onUnpin'),
-  onPress: action('onPress'),
+  onUnpin: handleUnpin,
+  onPress: handleOpen,
 };
 
 // 4️⃣ С кастомным отступом
@@ -122,8 +129,8 @@ CustomSpacing.args = {
   myId: MY_ID,
   isGroupChat: false,
   itemSpacing: 16,
-  onUnpin: action('onUnpin'),
-  onPress: action('onPress'),
+  onUnpin: handleUnpin,
+  onPress: handleOpen,
 };
 
 // 5️⃣ Реплай и картинка
@@ -148,8 +155,8 @@ WithReplyAndImage.args = {
   ],
   myId: MY_ID,
   isGroupChat: true,
-  onUnpin: action('onUnpin'),
-  onPress: action('onPress'),
+  onUnpin: handleUnpin,
+  onPress: handleOpen,
 };
 
 // 6️⃣ Прочитанное оппонентом
@@ -172,6 +179,6 @@ ReadByOpponent.args = {
   myId: MY_ID,
   isGroupChat: false,
   lastReadMessageIdOpponent: 'm-read',
-  onUnpin: action('onUnpin'),
-  onPress: action('onPress'),
+  onUnpin: handleUnpin,
+  onPress: handleOpen,
 };

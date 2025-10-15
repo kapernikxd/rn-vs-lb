@@ -1,15 +1,18 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import { Text, TouchableOpacity, View } from 'react-native';
 import HeaderDefault, { AccessType } from '../../../src/components/Header/HeaderDefault';
+
+const backPressHandler = () => {
+  console.log('[storybook:header-default:back]');
+};
 
 const meta: Meta = {
   title: 'Header/HeaderDefault',
   component: HeaderDefault,
   args: {
     title: 'Community event',
-    onBackPress: action('go-back'),
+    onBackPress: backPressHandler,
   },
 };
 
@@ -23,16 +26,23 @@ const Template: StoryFn<HeaderDefaultProps> = (args) => (
   </View>
 );
 
+const settingsPress = () => {
+  console.log('[storybook:header-default:settings]');
+};
+const sharePress = () => {
+  console.log('[storybook:header-default:share]');
+};
+
 export const Basic = Template.bind({});
 
 export const WithActions = Template.bind({});
 WithActions.args = {
   children: (
     <View style={{ flexDirection: 'row' }}>
-      <TouchableOpacity onPress={action('open-settings')}>
+      <TouchableOpacity onPress={settingsPress}>
         <Text style={{ fontSize: 16 }}>⚙️</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={action('open-share')} style={{ marginLeft: 12 }}>
+      <TouchableOpacity onPress={sharePress} style={{ marginLeft: 12 }}>
         <Text style={{ fontSize: 16 }}>🔗</Text>
       </TouchableOpacity>
     </View>

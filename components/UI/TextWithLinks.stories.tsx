@@ -2,7 +2,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, Alert } from 'react-native';
-import { action } from '@storybook/addon-actions';
 import TextWithLinks, { TextWithLinksProps } from '../../../src/components/UI/TextWithLinks';
 
 const meta: Meta<TextWithLinksProps> = {
@@ -20,6 +19,14 @@ export default meta;
 
 const Template: StoryFn<TextWithLinksProps> = (args) => <TextWithLinks {...args} />;
 
+const linkPressLogger = (url: string) => {
+  console.log('[storybook:link-press]', url);
+};
+const onLinkPress = (url: string) => {
+  linkPressLogger(url);
+  Alert.alert('Custom handler', url);
+};
+
 export const Default = Template.bind({});
 Default.args = {
   text: 'Open https://example.com or www.google.com for more info.',
@@ -34,10 +41,7 @@ CustomLinkStyle.args = {
 export const CustomHandler = Template.bind({});
 CustomHandler.args = {
   text: 'Click here: www.pllace.su/event/123',
-  onLinkPress: (url) => {
-    action('onLinkPress')(url);
-    Alert.alert('Custom handler', url);
-  },
+  onLinkPress,
 };
 
 export const LongText = Template.bind({});

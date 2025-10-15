@@ -1,7 +1,6 @@
 // import React, { useState } from 'react';
 // import { Meta, StoryFn } from '@storybook/react';
 // import { View, Button as RNButton } from 'react-native';
-// import { action } from '@storybook/addon-actions';
 // import { ModalProfilePhoto } from '../../../src/components/Profile/ModalProfilePhoto';
 
 // const meta: Meta<React.ComponentProps<typeof ModalProfilePhoto>> = {
@@ -30,8 +29,8 @@
 //   previewVisible: true,
 //   photoUri: 'https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=600&q=80',
 //   isMe: true,
-//   handleClosePreview: action('close-preview'),
-//   goToEditProfileSetting: action('go-to-edit-profile'),
+//   handleClosePreview: fn(),
+//   goToEditProfileSetting: fn(),
 // };
 
 // export const VisibleForGuest = Template.bind({});
@@ -39,8 +38,8 @@
 //   previewVisible: true,
 //   photoUri: 'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=600&q=80',
 //   isMe: false,
-//   handleClosePreview: action('close-preview-guest'),
-//   goToEditProfileSetting: action('go-to-edit-profile-guest'),
+//   handleClosePreview: fn(),
+//   goToEditProfileSetting: fn(),
 // };
 
 // export const InteractiveToggle: StoryFn = () => {
@@ -54,10 +53,10 @@
 //         photoUri="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=600&q=80"
 //         isMe
 //         handleClosePreview={() => {
-//           action('interactive-close')();
+//           fn()();
 //           setVisible(false);
 //         }}
-//         goToEditProfileSetting={action('interactive-edit-profile')}
+//         goToEditProfileSetting={fn()}
 //       />
 //     </View>
 //   );

@@ -1,7 +1,6 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
-import { action } from '@storybook/addon-actions';
 import { InfoNotification } from '../../../../src/components/UI/DetailsCard/InfoNotification';
 
 type InfoNotificationProps = React.ComponentProps<typeof InfoNotification>;
@@ -22,14 +21,19 @@ export default meta;
 
 const Template: StoryFn<InfoNotificationProps> = (args) => <InfoNotification {...args} />;
 
+const goToLoginLogger = (label: string) => {
+  console.log('[storybook:go-to-login]', label);
+};
+const createLoginHandler = (label: string) => () => goToLoginLogger(label);
+
 export const Default = Template.bind({});
 Default.args = {
-  goToLogin: () => action('go-to-login')('Default notification'),
+  goToLogin: createLoginHandler('Default notification'),
 };
 
 export const InsideCard = Template.bind({});
 InsideCard.args = {
-  goToLogin: () => action('go-to-login')('Inside card layout'),
+  goToLogin: createLoginHandler('Inside card layout'),
 };
 InsideCard.decorators = [
   (StoryComponent) => (
@@ -52,7 +56,7 @@ InsideCard.decorators = [
 
 export const NarrowLayout = Template.bind({});
 NarrowLayout.args = {
-  goToLogin: () => action('go-to-login')('Compact container'),
+  goToLogin: createLoginHandler('Compact container'),
 };
 NarrowLayout.decorators = [
   (StoryComponent) => (
@@ -64,7 +68,7 @@ NarrowLayout.decorators = [
 
 export const ElevatedContrast = Template.bind({});
 ElevatedContrast.args = {
-  goToLogin: () => action('go-to-login')('High contrast background'),
+  goToLogin: createLoginHandler('High contrast background'),
 };
 ElevatedContrast.decorators = [
   (StoryComponent) => (

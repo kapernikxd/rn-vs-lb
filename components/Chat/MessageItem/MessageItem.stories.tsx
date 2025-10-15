@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { View, ScrollView, Alert } from 'react-native';
-import { action } from '@storybook/addon-actions';
 import { ThemeProvider } from '../../../src/theme';
 import MessageItem from '../../../src/components/Chat/MessageItem';
 import {
@@ -42,18 +41,31 @@ const mkMsg = (partial: Partial<MessageDTO>): MessageDTO => ({
   replyTo: partial.replyTo ?? null,
 });
 
+const logEvent = (label: string, payload?: unknown) => {
+  if (payload !== undefined) {
+    console.log(`[storybook:message-item:${label}]`, payload);
+  } else {
+    console.log(`[storybook:message-item:${label}]`);
+  }
+};
+
+const linkHandlerMock = (url: string) => logEvent('link', url);
+const downloadMock = (url: string) => logEvent('download', url);
+const shareMock = (url: string) => logEvent('share', url);
+const longPressMock = (id: string) => logEvent('long-press', id);
+
 const mockLinkHandler = (url: string) => {
-  action('linkHandler')(url);
+  linkHandlerMock(url);
   Alert.alert('Open link', url);
 };
 
 const mockDownload = (url: string) => {
-  action('onDownloadImage')(url);
+  downloadMock(url);
   Alert.alert('Download image', url);
 };
 
 const mockShare = (url: string) => {
-  action('onShareImage')(url);
+  shareMock(url);
   Alert.alert('Share image', url);
 };
 
@@ -266,7 +278,7 @@ export const ListDemo: StoryFn = () => {
           isSelected={selected === m._id}
           onLongPress={() => {
             setSelected((prev) => (prev === m._id ? null : m._id));
-            action('onLongPress')(m._id);
+            longPressMock(m._id);
           }}
           linkHandler={mockLinkHandler}
           onDownloadImage={mockDownload}

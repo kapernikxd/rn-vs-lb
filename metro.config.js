@@ -1,19 +1,14 @@
 const { getDefaultConfig } = require("expo/metro-config");
 
-module.exports = (() => {
-  const config = getDefaultConfig(__dirname);
+const defaultConfig = getDefaultConfig(__dirname);
 
-  const { transformer, resolver } = config;
+const withStorybook = require("@storybook/react-native/metro/withStorybook");
 
-  config.transformer = {
-    ...transformer,
-    babelTransformerPath: require.resolve("react-native-svg-transformer/expo")
-  };
-  config.resolver = {
-    ...resolver,
-    assetExts: resolver.assetExts.filter((ext) => ext !== "svg"),
-    sourceExts: [...resolver.sourceExts, "svg"]
-  };
+const config = withStorybook(defaultConfig, {
+  enabled: process.env.EXPO_PUBLIC_STORYBOOK_ENABLED === "true",
 
-  return config;
-})();
+  // this removes storybook from the bundle when the enabled flag is set to false
+  onDisabledRemoveStorybook: true,
+});
+
+module.exports = config;

@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import PollCardList from '../../../src/components/Poll/PollCardList';
 
 const meta: Meta<React.ComponentProps<typeof PollCardList>> = {
-  title: 'Posts/PollCardList',
+  title: 'Poll/PollCardList',
   component: PollCardList,
   decorators: [
     (Story) => (

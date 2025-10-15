@@ -3,8 +3,6 @@ import { Meta, StoryFn } from '@storybook/react';
 import { View } from 'react-native';
 import PollCardList from './PollCardList';
 
-const noop = () => {};
-
 const meta: Meta<React.ComponentProps<typeof PollCardList>> = {
   title: 'Poll/PollCardList',
   component: PollCardList,
@@ -15,6 +13,9 @@ const meta: Meta<React.ComponentProps<typeof PollCardList>> = {
       </View>
     ),
   ],
+  argTypes: {
+    onPress: { action: 'open poll' },
+  },
 };
 
 export default meta;
@@ -28,7 +29,6 @@ Default.args = {
   creatorAvatar: 'https://i.pravatar.cc/150?img=11',
   votesCount: 42,
   createdAt: '2 days ago',
-  onPress: noop,
 };
 
 export const WithLongQuestion = Template.bind({});
@@ -39,7 +39,6 @@ WithLongQuestion.args = {
   creatorAvatar: 'https://i.pravatar.cc/150?img=5',
   votesCount: 128,
   createdAt: '5 hours ago',
-  onPress: noop,
 };
 
 export const WithoutDate = Template.bind({});
@@ -49,7 +48,6 @@ WithoutDate.args = {
   creatorAvatar: 'https://i.pravatar.cc/150?img=24',
   votesCount: 8,
   createdAt: null,
-  onPress: noop,
 };
 
 export const MinimalInfo = Template.bind({});

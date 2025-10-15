@@ -16,14 +16,14 @@ const meta: Meta<Props> = {
       </View>
     ),
   ],
+  argTypes: {
+    onMenuPress: { action: 'menu press' },
+    rightOverlay: { control: false },
+  },
 };
 export default meta;
 
 const Template: StoryFn<Props> = (args) => <EventCardList {...args} />;
-
-const menuPressHandler = () => {
-  console.log('[storybook:event-card-list:menu]');
-};
 
 /** Утилита для правого вертикального оверлея (место, где раньше был тултип) */
 const RightOverlay = ({ children }: { children: React.ReactNode }) => (
@@ -58,7 +58,6 @@ DefaultInvitation.args = {
   title: 'Community clean-up initiative',
   description: 'Join us to revitalise the local park and meet fellow volunteers.',
   isInvitation: true,
-  onMenuPress: menuPressHandler,
   participantsCount: 18,
   maxParticipants: 30,
 };
@@ -71,14 +70,19 @@ PendingModeration.args = {
   title: 'New volunteer orientation',
   description: 'An introductory session to walk through essential guidelines.',
   isFirstElement: true,
-  rightOverlay: (
-    <RightOverlay>
-      <Badge title="Awaiting" subtitle="review" />
-    </RightOverlay>
-  ),
   participantsCount: 12,
   maxParticipants: 50,
 };
+PendingModeration.render = (args) => (
+  <EventCardList
+    {...args}
+    rightOverlay={
+      <RightOverlay>
+        <Badge title="Awaiting" subtitle="review" />
+      </RightOverlay>
+    }
+  />
+);
 
 export const RejectedWithReason = Template.bind({});
 RejectedWithReason.args = {
@@ -87,14 +91,19 @@ RejectedWithReason.args = {
   date: 'Fri, 3 May · 18:00',
   title: 'Charity concert submission',
   description: 'A proposal for a fundraising concert in the main square.',
-  rightOverlay: (
-    <RightOverlay>
-      <Badge title="Revision" subtitle="requested" />
-    </RightOverlay>
-  ),
   participantsCount: 0,
   maxParticipants: 120,
 };
+RejectedWithReason.render = (args) => (
+  <EventCardList
+    {...args}
+    rightOverlay={
+      <RightOverlay>
+        <Badge title="Revision" subtitle="requested" />
+      </RightOverlay>
+    }
+  />
+);
 
 export const DimmedForModeration = Template.bind({});
 DimmedForModeration.args = {
@@ -104,11 +113,16 @@ DimmedForModeration.args = {
   title: 'Workshop: Grant writing essentials',
   description: 'Step-by-step guidance on preparing grant applications.',
   dimmed: true, // затемнение — как было при модерации
-  rightOverlay: (
-    <RightOverlay>
-      <Badge title="Hidden" subtitle="pending" />
-    </RightOverlay>
-  ),
   participantsCount: 34,
   maxParticipants: 40,
 };
+DimmedForModeration.render = (args) => (
+  <EventCardList
+    {...args}
+    rightOverlay={
+      <RightOverlay>
+        <Badge title="Hidden" subtitle="pending" />
+      </RightOverlay>
+    }
+  />
+);

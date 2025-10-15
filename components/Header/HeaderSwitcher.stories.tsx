@@ -1,9 +1,9 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { View, Text } from 'react-native';
 import { HeaderSwitcher } from './HeaderSwitcher';
 
-const meta: Meta = {
+const meta: Meta<typeof HeaderSwitcher> = {
   title: 'Header/HeaderSwitcher',
   component: HeaderSwitcher,
   args: {
@@ -13,7 +13,7 @@ const meta: Meta = {
 
 export default meta;
 
-type HeaderSwitcherProps = React.ComponentProps<typeof HeaderSwitcher>;
+type Story = StoryObj<typeof HeaderSwitcher>;
 
 const componentA = (
   <View style={{ padding: 12, backgroundColor: '#e6f0ff', borderRadius: 8 }}>
@@ -27,37 +27,47 @@ const componentB = (
   </View>
 );
 
-const Template: StoryFn<HeaderSwitcherProps> = (args) => (
-  <View style={{ padding: 16, backgroundColor: '#fafafa' }}>
-    <HeaderSwitcher {...args} />
-  </View>
-);
-
-export const ShowFirstComponent = Template.bind({});
-ShowFirstComponent.args = {
-  componentA,
-  componentB,
-  isFirst: true,
-};
-
-export const ShowSecondComponent = Template.bind({});
-ShowSecondComponent.args = {
-  componentA,
-  componentB,
-  isFirst: false,
-};
-
-export const CustomContent = Template.bind({});
-CustomContent.args = {
-  isFirst: false,
-  componentA: (
-    <View style={{ padding: 12, backgroundColor: '#f0f0f0', borderRadius: 8 }}>
-      <Text>Compact header</Text>
+export const ShowFirstComponent: Story = {
+  args: {
+    isFirst: true,
+  },
+  render: (args) => (
+    <View style={{ padding: 16, backgroundColor: '#fafafa' }}>
+      <HeaderSwitcher {...args} componentA={componentA} componentB={componentB} />
     </View>
   ),
-  componentB: (
-    <View style={{ padding: 12, backgroundColor: '#d6f5e5', borderRadius: 8 }}>
-      <Text>Expanded header with stats</Text>
+};
+
+export const ShowSecondComponent: Story = {
+  args: {
+    isFirst: false,
+  },
+  render: (args) => (
+    <View style={{ padding: 16, backgroundColor: '#fafafa' }}>
+      <HeaderSwitcher {...args} componentA={componentA} componentB={componentB} />
+    </View>
+  ),
+};
+
+export const CustomContent: Story = {
+  args: {
+    isFirst: false,
+  },
+  render: (args) => (
+    <View style={{ padding: 16, backgroundColor: '#fafafa' }}>
+      <HeaderSwitcher
+        {...args}
+        componentA={
+          <View style={{ padding: 12, backgroundColor: '#f0f0f0', borderRadius: 8 }}>
+            <Text>Compact header</Text>
+          </View>
+        }
+        componentB={
+          <View style={{ padding: 12, backgroundColor: '#d6f5e5', borderRadius: 8 }}>
+            <Text>Expanded header with stats</Text>
+          </View>
+        }
+      />
     </View>
   ),
 };

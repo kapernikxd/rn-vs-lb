@@ -26,6 +26,7 @@ const meta: Meta<SocialStatsProps> = {
       options: ['space-between', 'flex-start'],
     },
     hasLike: { control: 'boolean' },
+    onLike: { control: false },
   },
 };
 
@@ -57,16 +58,18 @@ Default.args = {
   likes: 12,
   views: 340,
   hasLike: false,
-  onLike: createAsyncLike(300, 2),
 };
+Default.render = (args) => <SocialStatsEvent {...args} onLike={createAsyncLike(300, 2)} />;
 
 export const AlreadyLiked = Template.bind({});
 AlreadyLiked.args = {
   likes: 98,
   views: 1024,
   hasLike: true,
-  onLike: createMessageLike('Already liked story'),
 };
+AlreadyLiked.render = (args) => (
+  <SocialStatsEvent {...args} onLike={createMessageLike('Already liked story')} />
+);
 
 export const CompactAlignment = Template.bind({});
 CompactAlignment.args = {
@@ -74,13 +77,13 @@ CompactAlignment.args = {
   views: 56,
   position: 'flex-start',
   hasLike: false,
-  onLike: createAsyncLike(),
 };
+CompactAlignment.render = (args) => <SocialStatsEvent {...args} onLike={createAsyncLike()} />;
 
 export const LargeNumbers = Template.bind({});
 LargeNumbers.args = {
   likes: 12450,
   views: 324000,
   hasLike: false,
-  onLike: createAsyncLike(),
 };
+LargeNumbers.render = (args) => <SocialStatsEvent {...args} onLike={createAsyncLike()} />;

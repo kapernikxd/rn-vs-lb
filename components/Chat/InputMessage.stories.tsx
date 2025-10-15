@@ -19,6 +19,10 @@ const meta: Meta<Props> = {
       </ThemeProvider>
     ),
   ],
+  argTypes: {
+    onAttachPress: { control: false },
+    onMaxImagesExceeded: { control: false },
+  },
 };
 export default meta;
 
@@ -89,12 +93,26 @@ export const WithAttachments = Template.bind({});
 WithAttachments.args = {
   placeholder: 'Attach up to 2 images',
   maxImages: 2,
-  onAttachPress: async () => {
-    const imgs = await mockAttach();
-    attachmentLogger(imgs.map((i) => i.uri));
-    return imgs;
-  },
-  onMaxImagesExceeded: (max) => Alert.alert('Max images exceeded', `Allowed: ${max}`),
+};
+WithAttachments.render = (args) => {
+  const state = useStateWrapper('');
+
+  return (
+    <InputMessage
+      {...args}
+      value={state.value}
+      onChange={state.setValue}
+      onSubmit={submitMessage}
+      onTyping={typingHandler}
+      onStopTyping={stopTypingHandler}
+      onAttachPress={async () => {
+        const imgs = await mockAttach();
+        attachmentLogger(imgs.map((i) => i.uri));
+        return imgs;
+      }}
+      onMaxImagesExceeded={(max) => Alert.alert('Max images exceeded', `Allowed: ${max}`)}
+    />
+  );
 };
 
 export const ReplyMode: StoryFn = () => {

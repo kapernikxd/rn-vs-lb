@@ -13,11 +13,6 @@ const submitLogger = (payload: { reason: string; details?: string }) => {
   console.log('[storybook:report-modal:submit]', payload);
 };
 
-const defaultOnClose = () => closeLogger();
-const defaultOnSubmit: ReportModalProps['onSubmit'] = (reason, details) => {
-  submitLogger({ reason, details });
-};
-
 const meta: Meta<ReportModalProps> = {
   title: 'Modals/ReportModal',
   component: ReportModal,
@@ -31,6 +26,8 @@ const meta: Meta<ReportModalProps> = {
       control: 'boolean',
       description: 'Toggles the modal visibility.',
     },
+    onClose: { action: 'close modal' },
+    onSubmit: { action: 'submit report' },
   },
   decorators: [
     (StoryComponent) => (
@@ -95,11 +92,9 @@ const Template: StoryFn<ReportModalProps> = (args) => {
   );
 };
 
-const baseArgs: ReportModalProps = {
+const baseArgs: Pick<ReportModalProps, 'visible' | 'type'> = {
   visible: true,
   type: 'user',
-  onClose: defaultOnClose,
-  onSubmit: defaultOnSubmit,
 };
 
 export const UserReport: StoryFn<ReportModalProps> = Template.bind({});

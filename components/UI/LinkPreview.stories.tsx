@@ -47,8 +47,15 @@ WithCustomLinkHandler.args = {
   url: 'www.google.com',
   title: 'Google',
   description: 'Search the world’s information.',
-  linkHandler: customLinkHandler,
 };
+WithCustomLinkHandler.render = (args) => (
+  <LinkPreview
+    {...args}
+    linkHandler={(url) => {
+      customLinkHandler(url);
+    }}
+  />
+);
 
 export const NoImage = Template.bind({});
 NoImage.args = {

@@ -21,6 +21,7 @@ const meta: Meta<UserRowProps> = {
     userName: {
       control: 'text',
     },
+    onPress: { action: 'press' },
   },
   decorators: [
     (Story) => (
@@ -35,16 +36,11 @@ export default meta;
 
 const Template: StoryFn<UserRowProps> = (args) => <UserRow {...args} />;
 
-const onPressHandler = () => {
-  console.log('[storybook:user-row:press]');
-};
-
 export const Default = Template.bind({});
 Default.args = {
   avatarUri: 'https://i.pravatar.cc/150?img=12',
   userName: 'Esther Howard',
   size: 'sm',
-  onPress: onPressHandler,
 };
 
 export const ExtraSmallAvatar = Template.bind({});
@@ -52,7 +48,6 @@ ExtraSmallAvatar.args = {
   avatarUri: 'https://i.pravatar.cc/150?img=21',
   userName: 'Wade Warren',
   size: 'xs',
-  onPress: onPressHandler,
 };
 
 export const WithLongName = Template.bind({});
@@ -60,12 +55,10 @@ WithLongName.args = {
   avatarUri: 'https://i.pravatar.cc/150?img=45',
   userName: 'Anastasia Nikolaevna Romanova the Third',
   size: 'md',
-  onPress: onPressHandler,
 };
 
 export const AvatarOnly = Template.bind({});
 AvatarOnly.args = {
   avatarUri: 'https://i.pravatar.cc/150?img=28',
   size: 'lg',
-  onPress: onPressHandler,
 };

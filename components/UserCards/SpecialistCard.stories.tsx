@@ -25,6 +25,7 @@ const meta: Meta<SpecialistCardProps> = {
     country: { control: 'text' },
     services: { control: 'object' },
     gallery: { control: 'object' },
+    onPress: { action: 'press' },
   },
 };
 
@@ -35,11 +36,6 @@ const Template: StoryFn<SpecialistCardProps> = (args) => (
     <SpecialistCard {...args} />
   </View>
 );
-
-const onPressLogger = (label: string) => {
-  console.log('[storybook:specialist-card:press]', label);
-};
-const createOnPress = (label: string) => () => onPressLogger(label);
 
 const services = [
   { _id: 'svc-1', name: 'Strategic facilitation', price: 80, currency: '€' },
@@ -63,7 +59,6 @@ Default.args = {
   services,
   gallery,
   link: 'https://images.unsplash.com/',
-  onPress: createOnPress('Default card'),
 };
 
 export const WithoutServices = Template.bind({});
@@ -73,7 +68,6 @@ WithoutServices.args = {
   profession: 'Civic tech consultant',
   services: [],
   gallery,
-  onPress: createOnPress('Without services'),
 };
 
 export const WithoutGallery = Template.bind({});
@@ -82,7 +76,6 @@ WithoutGallery.args = {
   fullName: 'Maja Stanković',
   services,
   gallery: [],
-  onPress: createOnPress('Without gallery'),
 };
 
 export const MinimalInfo = Template.bind({});
@@ -90,7 +83,6 @@ MinimalInfo.args = {
   fullName: 'Unknown Specialist',
   avatarUri: 'https://i.pravatar.cc/150?img=60',
   link: 'https://images.unsplash.com/',
-  onPress: createOnPress('Minimal info'),
 };
 
 export const ExtendedServices = Template.bind({});
@@ -106,5 +98,4 @@ ExtendedServices.args = {
     { _id: 'svc-5', name: 'Hybrid event production', price: 240, currency: '€' },
   ],
   gallery,
-  onPress: createOnPress('Extended services'),
 };

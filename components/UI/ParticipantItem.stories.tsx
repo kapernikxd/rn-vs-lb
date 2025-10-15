@@ -16,16 +16,16 @@ const meta: Meta<ParticipantItemProps> = {
       control: 'boolean',
       description: 'Shows moderation actions instead of deletion',
     },
+    onActionPress: { action: 'action press' },
+    onConfirm: { action: 'confirm' },
+    onReject: { action: 'reject' },
+    onProfilePress: { action: 'profile' },
   },
 };
 
 export default meta;
 
 const Template: StoryFn<ParticipantItemProps> = (args) => <ParticipantItem {...args} />;
-
-const actionWithId = (label: string) => (id: string) => {
-  console.log(`[storybook:${label}]`, id);
-};
 
 export const PendingParticipant = Template.bind({});
 PendingParticipant.args = {
@@ -38,10 +38,6 @@ PendingParticipant.args = {
   isMe: true,
   myId: 'host-1',
   isModerated: true,
-  onActionPress: actionWithId('on-action-press'),
-  onConfirm: actionWithId('on-confirm'),
-  onReject: actionWithId('on-reject'),
-  onProfilePress: actionWithId('open-profile'),
 };
 
 export const ConfirmedGuest = Template.bind({});
@@ -55,10 +51,6 @@ ConfirmedGuest.args = {
   isMe: true,
   myId: 'participant-2',
   isModerated: false,
-  onActionPress: actionWithId('remove-participant'),
-  onConfirm: actionWithId('confirm-participant'),
-  onReject: actionWithId('reject-participant'),
-  onProfilePress: actionWithId('open-profile'),
 };
 
 export const ReadOnlyView = Template.bind({});
@@ -72,8 +64,4 @@ ReadOnlyView.args = {
   isMe: false,
   myId: 'host-1',
   isModerated: false,
-  onActionPress: actionWithId('on-action-readonly'),
-  onConfirm: actionWithId('on-confirm-readonly'),
-  onReject: actionWithId('on-reject-readonly'),
-  onProfilePress: actionWithId('open-profile'),
 };

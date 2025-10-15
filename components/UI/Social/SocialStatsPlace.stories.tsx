@@ -25,6 +25,7 @@ const meta: Meta<SocialStatsProps> = {
       options: ['space-between', 'flex-start'],
     },
     hasLike: { control: 'boolean' },
+    onLike: { control: false },
   },
 };
 
@@ -55,27 +56,29 @@ export const Default = Template.bind({});
 Default.args = {
   likes: 15,
   hasLike: false,
-  onLike: createAsyncLike(200, 2),
 };
+Default.render = (args) => <SocialStatsPlace {...args} onLike={createAsyncLike(200, 2)} />;
 
 export const AlreadyPinned = Template.bind({});
 AlreadyPinned.args = {
   likes: 78,
   hasLike: true,
-  onLike: createMessageLike('Already pinned'),
 };
+AlreadyPinned.render = (args) => (
+  <SocialStatsPlace {...args} onLike={createMessageLike('Already pinned')} />
+);
 
 export const CompactAlignment = Template.bind({});
 CompactAlignment.args = {
   likes: 3,
   position: 'flex-start',
   hasLike: false,
-  onLike: createAsyncLike(),
 };
+CompactAlignment.render = (args) => <SocialStatsPlace {...args} onLike={createAsyncLike()} />;
 
 export const HighEngagement = Template.bind({});
 HighEngagement.args = {
   likes: 1200,
   hasLike: false,
-  onLike: createAsyncLike(),
 };
+HighEngagement.render = (args) => <SocialStatsPlace {...args} onLike={createAsyncLike()} />;

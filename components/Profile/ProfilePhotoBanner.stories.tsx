@@ -13,6 +13,10 @@ const meta: Meta<React.ComponentProps<typeof ProfilePhotoBanner>> = {
       </View>
     ),
   ],
+  argTypes: {
+    onAddPhoto: { action: 'add photo' },
+    onClose: { action: 'close banner' },
+  },
 };
 
 export default meta;
@@ -30,8 +34,6 @@ const closeHandler = () => {
 
 export const Default = Template.bind({});
 Default.args = {
-  onAddPhoto: addPhotoHandler,
-  onClose: closeHandler,
 };
 
 export const InsideScrollableList: StoryFn = () => (

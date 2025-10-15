@@ -2,8 +2,7 @@ import React, { FC, useState } from 'react';
 import { View, Text, Modal, StyleSheet, TouchableOpacity } from 'react-native';
 import Spacer from '../UI/Spacer';
 import Button from './Button';
-import { useTheme } from '../../constants';
-import { ThemeType } from '../../theme';
+import { ThemeType, useTheme } from '../../theme';
 
 export type DeleteAccountButtonProps = {
   deleteAccount: () => Promise<void>;

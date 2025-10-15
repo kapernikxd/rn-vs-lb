@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
 import { SizesType, ThemeType } from '../../theme';
-import { useTheme } from '../../constants';
+import { useTheme } from '../../theme';
 
 interface HrProps {
     style?: ViewStyle;

@@ -1,67 +1,62 @@
-// import React, { useState } from 'react';
-// import { Meta, StoryFn } from '@storybook/react';
-// import { View, Button as RNButton } from 'react-native';
-// import { ModalProfilePhoto } from '../../../src/components/Profile/ModalProfilePhoto';
+// stories/Profile/ModalProfilePhoto.stories.tsx
+import React, { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { View, Button } from 'react-native';
+import { ModalProfilePhoto } from './ModalProfilePhoto'; // <-- проверь путь!
 
-// const meta: Meta<React.ComponentProps<typeof ModalProfilePhoto>> = {
-//   title: 'Profile/ModalProfilePhoto',
-//   component: ModalProfilePhoto,
-//   decorators: [
-//     (Story) => (
-//       <View style={{ flex: 1, minHeight: 400 }}>
-//         <Story />
-//       </View>
-//     ),
-//   ],
-//   parameters: {
-//     layout: 'fullscreen',
-//   },
-// };
+const meta = {
+  title: 'Profile/ModalProfilePhoto',
+  component: ModalProfilePhoto,
+  argTypes: {
+    handleClosePreview: { action: 'handleClosePreview' },
+    goToEditProfileSetting: { action: 'goToEditProfileSetting' },
+  },
+  args: {
+    photoUri: 'https://picsum.photos/seed/profile-photo/800/1200',
+  },
+} satisfies Meta<typeof ModalProfilePhoto>;
 
-// export default meta;
+export default meta;
+type S = StoryObj<typeof ModalProfilePhoto>;
 
-// const Template: StoryFn<React.ComponentProps<typeof ModalProfilePhoto>> = (args) => (
-//   <ModalProfilePhoto {...args} />
-// );
+/** Вспомогательный враппер: держим локальный стейт и вызываем action-коллбэки из args */
+function ModalDemo(props: React.ComponentProps<typeof ModalProfilePhoto> & {
+  onOpen?: () => void;
+}) {
+  const [open, setOpen] = useState(false);
 
-// export const VisibleForOwner = Template.bind({});
-// VisibleForOwner.args = {
-//   previewVisible: true,
-//   photoUri: 'https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=600&q=80',
-//   isMe: true,
-//   handleClosePreview: fn(),
-//   goToEditProfileSetting: fn(),
-// };
+  const openModal = () => {
+    setOpen(true);
+    props.onOpen?.();
+  };
+  const closeModal = () => {
+    setOpen(false);
+    props.handleClosePreview?.(); // попадёт в Actions
+  };
+  const goEdit = () => {
+    props.goToEditProfileSetting?.(); // попадёт в Actions
+    setOpen(false);
+  };
 
-// export const VisibleForGuest = Template.bind({});
-// VisibleForGuest.args = {
-//   previewVisible: true,
-//   photoUri: 'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=600&q=80',
-//   isMe: false,
-//   handleClosePreview: fn(),
-//   goToEditProfileSetting: fn(),
-// };
+  return (
+    <View style={{ padding: 16 }}>
+      <Button title="Open preview" onPress={openModal} />
+      <ModalProfilePhoto
+        {...props}
+        previewVisible={open}
+        handleClosePreview={closeModal}
+        goToEditProfileSetting={goEdit}
+      />
+    </View>
+  );
+}
 
-// export const InteractiveToggle: StoryFn = () => {
-//   const [visible, setVisible] = useState(false);
+/** Кейс: чужой профиль (кнопка edit скрыта) */
+export const Viewer: S = {
+  render: (args) => <ModalDemo {...args} isMe={false} />,
+};
 
-//   return (
-//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//       <RNButton title={visible ? 'Hide preview' : 'Show preview'} onPress={() => setVisible((state) => !state)} />
-//       <ModalProfilePhoto
-//         previewVisible={visible}
-//         photoUri="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=600&q=80"
-//         isMe
-//         handleClosePreview={() => {
-//           fn()();
-//           setVisible(false);
-//         }}
-//         goToEditProfileSetting={fn()}
-//       />
-//     </View>
-//   );
-// };
-
-// InteractiveToggle.parameters = {
-//   controls: { disable: true },
-// };
+/** Кейс: мой профиль (появляется кнопка edit) */
+export const MeWithEdit: S = {
+  render: (args) => <ModalDemo {...args} isMe={true} />,
+};

@@ -35,7 +35,7 @@ export const getGlobalStyleSheet = (theme: ThemeType) => StyleSheet.create({
     },
     formDescription: {
         ...FONTS.fontXs,
-        color: COLORS.text,
+        color: theme.text,
         width: 285,
         textAlign: 'center',
         marginBottom: 30,

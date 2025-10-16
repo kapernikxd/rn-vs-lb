@@ -1,7 +1,8 @@
 import { Dimensions } from "react-native";
-const { width, height } = Dimensions.get('screen');
 
-export const COLORS = {
+const { width, height } = Dimensions.get("screen");
+
+const DEFAULT_COLORS = {
     primary: "#6f2da8", // "#9E5FD3",
     primaryHover: "#b085d6",
     primaryLight: "#7BAEFF",
@@ -24,17 +25,17 @@ export const COLORS = {
     backgroundThird: "#f2f2f2",
     background4: "#f0f0f0",
     backgroundLight: "#f9f9f9",
-    backgroundSemiTransparent: 'rgba(255, 255, 255, 0.3)',
+    backgroundSemiTransparent: "rgba(255, 255, 255, 0.3)",
     card: "#fff",
     border: "rgba(0, 0, 0, 0.10)",
     input: "#EFF3FA",
-    placeholder: 'rgba(71,90,119,.5)',
-    backgroundBtn: '#f5f5f5',
-    backgroundDate: '#f3f1f7',
+    placeholder: "rgba(71,90,119,.5)",
+    backgroundBtn: "#f5f5f5",
+    backgroundDate: "#f3f1f7",
     backgroundChatMessageRight: "rgba(226, 245, 255, 0.8)",
     backgroundChatMessageLeft: "rgba(251, 249, 255, 0.8)",
 
-    // dark 
+    // dark
     darkTitle: "#fff",
     darkText: "rgba(255,255,255,.6)",
     darkBackground: "#070C1F",
@@ -51,7 +52,7 @@ export const COLORS = {
     darkBackgroundDate: "#343434", // Чуть светлее кнопок, подходит для выделения дат
     darkBackgroundChatMessageRight: "rgba(50, 65, 80, 0.8)", // Тёмно-синий с прозрачностью
     darkBackgroundChatMessageLeft: "rgba(60, 60, 60, 0.8)", // Тёмно-серый с прозрачностью
-   
+
     //text
     greyText: "#888",
     greyBtnText: "#333",
@@ -60,11 +61,9 @@ export const COLORS = {
     darkGreyText: "#b0b0b0", // Светло-серый текст, хорошо читается на тёмном фоне (инверсия #888)
     darkGreyBtnText: "#d4d4d4", // Светло-серый, достаточно контрастный для кнопок (инверсия #333)
     darkDotColor: "rgba(200, 200, 200, 0.5)", // Мягкий светло-серый для точек, хорошо заметный на тёмном фоне
+};
 
-
-}
-
-export const SIZES = {
+const DEFAULT_SIZES = {
     //Font Sizes
     font: 14,
     fontSm: 13,
@@ -98,7 +97,7 @@ export const SIZES = {
     contentArea: {
         paddingTop: 70,
         paddingBottom: 150,
-    }
+    },
 };
 
 export const FONT_SIZE = {
@@ -112,9 +111,9 @@ export const FONT_SIZE = {
     h4: 20,
     h5: 18,
     h6: 16,
-  };
+};
 
-export const FONTS = {
+const DEFAULT_FONTS = {
     font: { fontSize: FONT_SIZE.md, lineHeight: 20 },
     fontSm: { fontSize: FONT_SIZE.sm, lineHeight: 18 },
     fontXs: { fontSize: FONT_SIZE.xs, lineHeight: 16 },
@@ -128,93 +127,126 @@ export const FONTS = {
     fontRegular: { fontWeight: "300" },
     fontMedium: { fontWeight: "400" },
     fontSemiBold: { fontWeight: "500" },
-    fontBold: { fontWeight: '600' },
-}
+    fontBold: { fontWeight: "600" },
+};
 
+const buildLightTheme = (colors: typeof DEFAULT_COLORS) => ({
+    primary: colors.primary,
+    primaryHover: colors.primaryHover,
+    primaryLight: colors.primaryLight,
+    success: colors.success,
+    danger: colors.danger,
+    info: colors.info,
+    warning: colors.warning,
+    white: colors.white,
+    black: colors.black,
+    red: colors.red,
+    dark: colors.dark,
+    light: colors.light,
 
-const lightTheme = {
-    primary: COLORS.primary,
-    primaryHover: COLORS.primaryHover,
-    primaryLight: COLORS.primaryLight,
-    success: COLORS.success,
-    danger: COLORS.danger,
-    info: COLORS.info,
-    warning: COLORS.warning,
-    white: COLORS.white,
-    black: COLORS.black,
-    red: COLORS.red,
-    dark: COLORS.dark,
-    light: COLORS.light,
+    title: colors.title,
+    text: colors.text,
+    greyText: colors.greyText,
+    description: colors.description,
+    background: colors.background,
+    backgroundSecond: colors.backgroundSecond,
+    backgroundThird: colors.backgroundThird,
+    background4: colors.background4,
+    backgroundLight: colors.backgroundLight,
+    backgroundSemiTransparent: colors.darkBackgroundSemiTransparent,
 
-    title: COLORS.title,
-    text: COLORS.text,
-    greyText: COLORS.greyText,
-    description: COLORS.description,
-    background: COLORS.background,
-    backgroundSecond: COLORS.backgroundSecond,
-    backgroundThird: COLORS.backgroundThird,
-    background4: COLORS.background4,
-    backgroundLight: COLORS.backgroundLight,
-    backgroundSemiTransparent: COLORS.darkBackgroundSemiTransparent,
+    card: colors.card,
 
-    card: COLORS.card,
+    input: colors.input,
+    border: colors.border,
+    darkBorder: colors.darkBorder,
+    placeholder: colors.placeholder,
+    greyBtnText: colors.greyBtnText,
+    backgroundBtn: colors.backgroundBtn,
+    backgroundDate: colors.backgroundDate,
+    backgroundChatMessageRight: colors.backgroundChatMessageRight,
+    backgroundChatMessageLeft: colors.backgroundChatMessageLeft,
 
-    input: COLORS.input,
-    border: COLORS.border,
-    darkBorder: COLORS.darkBorder,
-    placeholder: COLORS.placeholder,
-    greyBtnText: COLORS.greyBtnText,
-    backgroundBtn: COLORS.backgroundBtn,
-    backgroundDate: COLORS.backgroundDate,
-    backgroundChatMessageRight: COLORS.backgroundChatMessageRight,
-    backgroundChatMessageLeft: COLORS.backgroundChatMessageLeft,
+    dotColor: colors.dotColor,
+});
 
-    dotColor: COLORS.dotColor,
-}
+const buildDarkTheme = (colors: typeof DEFAULT_COLORS) => ({
+    primary: colors.primary,
+    primaryHover: colors.primaryHover,
+    primaryLight: colors.primaryLight,
+    success: colors.success,
+    danger: colors.danger,
+    info: colors.info,
+    warning: colors.warning,
+    white: colors.darkBackground,
+    black: colors.white,
+    red: colors.red,
+    dark: colors.light,
+    light: colors.dark,
 
-const darkTheme = {
-    primary: COLORS.primary,
-    primaryHover: COLORS.primaryHover,
-    primaryLight: COLORS.primaryLight,
-    success: COLORS.success,
-    danger: COLORS.danger,
-    info: COLORS.info,
-    warning: COLORS.warning,
-    white: COLORS.darkBackground,
-    black: COLORS.white,
-    red: COLORS.red,
-    dark: COLORS.light,
-    light: COLORS.dark,
+    title: colors.darkTitle,
+    text: colors.darkText,
+    greyText: colors.darkGreyText,
+    description: colors.description, //todo! define
+    background: colors.darkBackgroundSecond,
+    backgroundSecond: colors.darkBackgroundSecond,
+    backgroundThird: colors.darkBackgroundThird,
+    background4: colors.darkBackground4,
+    backgroundLight: colors.darkBackgroundLight,
+    backgroundSemiTransparent: colors.darkBackgroundSemiTransparent,
 
-    title: COLORS.darkTitle,
-    text: COLORS.darkText,
-    greyText: COLORS.darkGreyText,
-    description: COLORS.description, //todo! define
-    background: COLORS.darkBackgroundSecond,
-    backgroundSecond: COLORS.darkBackgroundSecond,
-    backgroundThird: COLORS.darkBackgroundThird,
-    background4: COLORS.darkBackground4,
-    backgroundLight: COLORS.darkBackgroundLight,
-    backgroundSemiTransparent: COLORS.darkBackgroundSemiTransparent,
+    card: colors.darkCard,
 
-    card: COLORS.darkCard,
+    input: colors.darkInput,
+    border: colors.darkBorder,
+    darkBorder: colors.darkBorder,
+    placeholder: colors.darkPlaceholder,
+    greyBtnText: colors.darkGreyBtnText,
+    backgroundBtn: colors.darkBackgroundBtn,
+    backgroundDate: colors.darkBackgroundDate,
+    backgroundChatMessageRight: colors.darkBackgroundChatMessageRight,
+    backgroundChatMessageLeft: colors.darkBackgroundChatMessageLeft,
 
-    input: COLORS.darkInput,
-    border: COLORS.darkBorder,
-    darkBorder: COLORS.darkBorder,
-    placeholder: COLORS.darkPlaceholder,
-    greyBtnText: COLORS.darkGreyBtnText,
-    backgroundBtn: COLORS.darkBackgroundBtn,
-    backgroundDate: COLORS.darkBackgroundDate,
-    backgroundChatMessageRight: COLORS.darkBackgroundChatMessageRight,
-    backgroundChatMessageLeft: COLORS.darkBackgroundChatMessageLeft,
+    dotColor: colors.darkDotColor,
+});
 
-    dotColor: COLORS.darkDotColor,
-}
+export type ThemeColors = typeof DEFAULT_COLORS;
+export type ThemeShape = ReturnType<typeof buildLightTheme>;
+
+export type ThemeOverrides = {
+    colors?: Partial<ThemeColors>;
+    light?: Partial<ThemeShape>;
+    dark?: Partial<ThemeShape>;
+};
+
+export const createAppTheme = (overrides: ThemeOverrides = {}) => {
+    const mergedColors: ThemeColors = { ...DEFAULT_COLORS, ...overrides.colors };
+    const lightTheme = { ...buildLightTheme(mergedColors), ...overrides.light };
+    const darkTheme = { ...buildDarkTheme(mergedColors), ...overrides.dark };
+
+    return {
+        COLORS: mergedColors,
+        SIZES: { ...DEFAULT_SIZES },
+        FONTS: { ...DEFAULT_FONTS },
+        lightTheme,
+        darkTheme,
+    };
+};
+
+export type AppThemeConfig = ReturnType<typeof createAppTheme>;
+
+const defaultTheme = createAppTheme();
+
+export const COLORS = defaultTheme.COLORS;
+export const SIZES = defaultTheme.SIZES;
+export const FONTS = defaultTheme.FONTS;
+export const lightTheme = defaultTheme.lightTheme;
+export const darkTheme = defaultTheme.darkTheme;
 
 export type ThemeType = typeof lightTheme;
 export type SizesType = typeof SIZES;
 export type FontsType = typeof FONTS;
-const appTheme = { COLORS, SIZES, FONTS, darkTheme, lightTheme }
+
+const appTheme = defaultTheme;
 
 export default appTheme;

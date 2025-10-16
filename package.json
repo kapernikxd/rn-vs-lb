@@ -19,7 +19,11 @@
       "types": "./components/index.ts",
       "default": "./components/index.ts"
     },
-    "./components/*": "./components/*"
+    "./components/*": "./components/*",
+    "./theme": {
+      "types": "./theme/index.ts",
+      "default": "./theme/index.ts"
+    }
   },
   "license": "MIT",
   "repository": {

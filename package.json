@@ -1,8 +1,33 @@
 {
   "name": "rn-vs-lb",
   "version": "1.0.0",
+  "description": "Expo Router + Storybook template ready for npm distribution.",
+  "keywords": [
+    "expo",
+    "react-native",
+    "storybook",
+    "template"
+  ],
   "main": "expo-router/entry",
+  "types": "./index.ts",
+  "exports": {
+    ".": {
+      "types": "./index.ts",
+      "default": "./index.ts"
+    },
+    "./components": {
+      "types": "./components/index.ts",
+      "default": "./components/index.ts"
+    },
+    "./components/*": "./components/*"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-org/rn-vs-lb.git"
+  },
+  "homepage": "https://github.com/your-org/rn-vs-lb#readme",
+  "author": "Your Name <you@example.com>",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -69,5 +94,22 @@
       "react-docgen-typescript": "2.2.2"
     }
   },
-  "private": true
+  "files": [
+    "app",
+    "assets",
+    "components",
+    "index.ts",
+    "theme",
+    "types",
+    "app.json",
+    "babel.config.js",
+    "expo-env.d.ts",
+    "metro.config.js",
+    "README.md",
+    "tsconfig.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "private": false
 }

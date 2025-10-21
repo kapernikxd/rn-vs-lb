@@ -1,6 +1,6 @@
 {
   "name": "rn-vs-lb",
-  "version": "1.0.0",
+  "version": "1.0.57",
   "description": "Expo Router + Storybook template ready for npm distribution.",
   "keywords": [
     "expo",
@@ -25,13 +25,8 @@
       "default": "./theme/index.ts"
     }
   },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/your-org/rn-vs-lb.git"
-  },
-  "homepage": "https://github.com/your-org/rn-vs-lb#readme",
-  "author": "Your Name <you@example.com>",
+  "license": "ISC",
+  "author": "vs",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",

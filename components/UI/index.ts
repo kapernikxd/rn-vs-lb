@@ -28,3 +28,4 @@ export { ThreeDotsMenu } from './ThreeDotsMenu';
 export { default as TripleSwitch } from './TripleSwitch';
 export type { TripleSwitchValue } from './TripleSwitch';
 export { UpdateRequiredView } from './UpdateRequiredView';
+export * from "./StepProgress";

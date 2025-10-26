@@ -38,7 +38,7 @@ export type GuestAiChatViewProps = {
   onSend: () => void;
 
   // ссылки
-  listRef: RefObject<FlatList<PureChatMessage>>;
+  listRef: RefObject<FlatList<PureChatMessage> | null>;
 
   // тема
   theme: ThemeType;

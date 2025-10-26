@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useRef, useState } from 'react';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { View, StyleSheet, TextInput, TouchableOpacity, Text, Image, ScrollView, ActivityIndicator } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { ThemeType, useTheme } from '../../theme';
@@ -22,6 +22,7 @@ interface InputMessageProps {
   maxImages?: number; // по умолчанию 1
   onAttachPress?: () => Promise<ImageAsset[] | void>; // родитель сам открывает пикер и вернёт выбранные
   onMaxImagesExceeded?: (max: number) => void;
+  enableImageAttachment?: boolean;
 
   // Индикатор отправки (можно не передавать — тогда управляем внутри)
   sendingControlled?: boolean;
@@ -47,6 +48,7 @@ export const InputMessage: FC<InputMessageProps> = ({
   maxImages = 1,
   onAttachPress,
   onMaxImagesExceeded,
+  enableImageAttachment = true,
 
   sendingControlled,
   isSending: isSendingProp,
@@ -64,6 +66,13 @@ export const InputMessage: FC<InputMessageProps> = ({
   const [isSendingLocal, setIsSendingLocal] = useState(false);
 
   const isSending = sendingControlled ? !!isSendingProp : isSendingLocal;
+  const attachmentsAllowed = enableImageAttachment;
+
+  useEffect(() => {
+    if (!attachmentsAllowed && images.length > 0) {
+      setImages([]);
+    }
+  }, [attachmentsAllowed, images.length]);
 
   // Собственный дебаунс без lodash
   const stopTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -74,7 +83,7 @@ export const InputMessage: FC<InputMessageProps> = ({
   }, [onTyping, onStopTyping]);
 
   const handleAttachPress = useCallback(async () => {
-    if (!onAttachPress) return;
+    if (!attachmentsAllowed || !onAttachPress) return;
     const selected = (await onAttachPress()) || [];
     if (!selected.length) return;
 
@@ -165,7 +174,12 @@ export const InputMessage: FC<InputMessageProps> = ({
       )}
 
       {/* Поле ввода + кнопки */}
-      <View style={styles.inputContainer}>
+      <View
+        style={[
+          styles.inputContainer,
+          attachmentsAllowed ? styles.inputContainerWithAttach : styles.inputContainerWithoutAttach,
+        ]}
+      >
         <TextInput
           multiline
           placeholder={placeholder}
@@ -183,9 +197,11 @@ export const InputMessage: FC<InputMessageProps> = ({
           onContentSizeChange={(e) => setInputHeight(e.nativeEvent.contentSize.height)}
         />
 
-        <TouchableOpacity style={styles.attachButton} onPress={handleAttachPress}>
-          <Ionicons name="image-outline" size={22} color={theme.primary} />
-        </TouchableOpacity>
+        {attachmentsAllowed && (
+          <TouchableOpacity style={styles.attachButton} onPress={handleAttachPress}>
+            <Ionicons name="image-outline" size={22} color={theme.primary} />
+          </TouchableOpacity>
+        )}
 
         <TouchableOpacity style={styles.sendButton} onPress={handleSubmit} disabled={isSending}>
           {isSending ? (
@@ -208,7 +224,12 @@ export const getStyles = (theme: ThemeType) =>
       borderTopWidth: 1,
       borderTopColor: theme.border,
       paddingRight: 45,
+    },
+    inputContainerWithAttach: {
       paddingLeft: 45,
+    },
+    inputContainerWithoutAttach: {
+      paddingLeft: 12,
     },
     replyContainer: {
       backgroundColor: theme.background,

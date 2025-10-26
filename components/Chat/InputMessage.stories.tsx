@@ -22,6 +22,7 @@ const meta: Meta<Props> = {
   argTypes: {
     onAttachPress: { control: false },
     onMaxImagesExceeded: { control: false },
+    enableImageAttachment: { control: 'boolean' },
   },
 };
 export default meta;
@@ -87,6 +88,12 @@ export const Default = Template.bind({});
 Default.args = {
   placeholder: 'Message',
   maxImages: 1,
+};
+
+export const AttachmentsDisabled = Template.bind({});
+AttachmentsDisabled.args = {
+  placeholder: 'No attachments allowed',
+  enableImageAttachment: false,
 };
 
 export const WithAttachments = Template.bind({});

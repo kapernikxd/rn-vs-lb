@@ -155,10 +155,10 @@ export default function PureProfileCard(props: PureProfileCardProps) {
       )}
 
       {/* learn more */}
-      <TouchableOpacity onPress={onLearnMorePress} style={globalStyleSheet.flexRowCenter}>
+      {onLearnMorePress && <TouchableOpacity onPress={onLearnMorePress} style={globalStyleSheet.flexRowCenter}>
         <MaterialIcons color={theme.placeholder} name="info-outline" size={18} />
         <Text style={[typography.body, styles.learnMoreText]}>Learn more</Text>
-      </TouchableOpacity>
+      </TouchableOpacity>}
 
       {/* CTA */}
       {isAuth && !isMe && (
@@ -177,7 +177,7 @@ export default function PureProfileCard(props: PureProfileCardProps) {
         </View>
       )}
 
-      {isMe && (
+      {(isMe && onOpenCreatePoll || isMe && onOpenCreateEvent) &&(
         <View style={styles.buttonsRow}>
           {onOpenCreatePoll && (
             <TouchableOpacity style={styles.btnOutline} onPress={onOpenCreatePoll}>

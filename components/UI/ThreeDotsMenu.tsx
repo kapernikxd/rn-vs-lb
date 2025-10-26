@@ -6,13 +6,15 @@ import {
   StyleSheet,
   Modal,
   Pressable,
-  LayoutRectangle
+  LayoutRectangle,
+  ViewStyle,
+  StyleProp
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { ThemeType, useTheme } from '../../theme';
 import { IoniconsProps } from '../../types/Icon';
 
-type MenuItem = {
+export type MenuItem = {
   label: string;
   icon?: IoniconsProps;
   colorIcon?: any;
@@ -21,9 +23,13 @@ type MenuItem = {
 
 type Props = {
   items: MenuItem[];
+  style?: StyleProp<ViewStyle>;
+  iconColor?: string;
+  positionLeft?: number;
+  positionTop?: number;
 };
 
-export const ThreeDotsMenu: React.FC<Props> = ({ items }) => {
+export const ThreeDotsMenu: React.FC<Props> = ({ items, style, iconColor, positionLeft, positionTop }) => {
   const { theme, typography, globalStyleSheet } = useTheme();
 
   const [menuVisible, setMenuVisible] = useState(false);
@@ -45,8 +51,8 @@ export const ThreeDotsMenu: React.FC<Props> = ({ items }) => {
 
   return (
     <View>
-      <TouchableOpacity ref={buttonRef as any} onPress={openMenu}>
-        <Ionicons name="ellipsis-vertical" size={22} color={theme.primary} />
+      <TouchableOpacity style={style} ref={buttonRef as any} onPress={openMenu}>
+        <Ionicons name="ellipsis-vertical" size={22} color={iconColor ?? theme.primary} />
       </TouchableOpacity>
 
       <Modal transparent visible={menuVisible} animationType="fade" onRequestClose={closeMenu}>
@@ -56,8 +62,8 @@ export const ThreeDotsMenu: React.FC<Props> = ({ items }) => {
               style={[
                 styles.dropdown,
                 {
-                  top: position.y + position.height,
-                  left: position.x - 160 + position.width, // подправь под себя
+                  top: position.y + position.height + (positionTop ?? 0),
+                  left: position.x - (positionLeft ?? 160) + position.width, // подправь под себя
                 },
               ]}
             >

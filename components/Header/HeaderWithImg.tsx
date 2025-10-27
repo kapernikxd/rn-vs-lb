@@ -22,6 +22,15 @@ interface HeaderProps {
   isOnline?: boolean;
   isTyping?: boolean;
   typingUserName?: string;
+  typingText: string;
+  onlineText: string;
+  offlineText: string;
+  groupTypingSuffix: string;
+  backAccessibilityLabel: string;
+  imageAccessibilityLabel: string;
+  actionsAccessibilityLabel: string;
+  onlineStatusAccessibilityLabel: string;
+  offlineStatusAccessibilityLabel: string;
 }
 
 const HeaderWithImg: React.FC<HeaderProps> = ({
@@ -35,6 +44,15 @@ const HeaderWithImg: React.FC<HeaderProps> = ({
   isOnline = false,
   isTyping = false,
   typingUserName,
+  typingText,
+  onlineText,
+  offlineText,
+  groupTypingSuffix,
+  backAccessibilityLabel,
+  imageAccessibilityLabel,
+  actionsAccessibilityLabel,
+  onlineStatusAccessibilityLabel,
+  offlineStatusAccessibilityLabel,
 }) => {
   const { globalStyleSheet, theme, sizes, commonStyles, typography } = useTheme();
   const styles = useMemo(
@@ -46,7 +64,7 @@ const HeaderWithImg: React.FC<HeaderProps> = ({
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={onBackPress} accessibilityRole="button" accessibilityLabel="Back">
+      <TouchableOpacity onPress={onBackPress} accessibilityRole="button" accessibilityLabel={backAccessibilityLabel}>
         <Ionicons name="arrow-back" size={24} color={theme.text} />
       </TouchableOpacity>
 
@@ -56,7 +74,7 @@ const HeaderWithImg: React.FC<HeaderProps> = ({
             style={globalStyleSheet.flexRowCenter}
             onPress={onImgPress}
             accessibilityRole="imagebutton"
-            accessibilityLabel="Open chat image"
+            accessibilityLabel={imageAccessibilityLabel}
             activeOpacity={0.8}
           >
             <Image source={{ uri: imgUrl }} style={styles.photo} />
@@ -69,15 +87,17 @@ const HeaderWithImg: React.FC<HeaderProps> = ({
               {/* отображение статусов */}
               {!isGroupChat ? (
                 isTyping ? (
-                  <Text style={[typography.body, styles.subtitleItalic]}>typing…</Text>
+                  <Text style={[typography.body, styles.subtitleItalic]}>{typingText}</Text>
                 ) : (
                   <View style={styles.statusRow}>
                     <Text style={[typography.body, styles.subtitleItalic]}>
-                      {isOnline ? 'Online' : 'Offline'}
+                      {isOnline ? onlineText : offlineText}
                     </Text>
                     <View
                       style={[styles.statusDot, isOnline ? styles.online : styles.offline]}
-                      accessibilityLabel={isOnline ? 'online' : 'offline'}
+                      accessibilityLabel={
+                        isOnline ? onlineStatusAccessibilityLabel : offlineStatusAccessibilityLabel
+                      }
                     />
                   </View>
                 )
@@ -87,7 +107,7 @@ const HeaderWithImg: React.FC<HeaderProps> = ({
                   ellipsizeMode="tail"
                   style={[typography.body, styles.subtitleItalic]}
                 >
-                  {typingUserName}: typing…
+                  {`${typingUserName}${groupTypingSuffix}`}
                 </Text>
               ) : null}
             </View>
@@ -99,7 +119,7 @@ const HeaderWithImg: React.FC<HeaderProps> = ({
                 style={styles.actionButton}
                 onPress={onActionPress}
                 accessibilityRole="button"
-                accessibilityLabel="More actions"
+                accessibilityLabel={actionsAccessibilityLabel}
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               >
                 <Ionicons name="ellipsis-horizontal-sharp" size={20} color={theme.primary} />

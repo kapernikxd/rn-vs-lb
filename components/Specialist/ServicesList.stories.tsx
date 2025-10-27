@@ -41,6 +41,7 @@ const meta = {
     title: 'Services',
     total: 12,
     services: SERVICES,
+    moreLabel: 'MORE',
   },
 } satisfies Meta<typeof ServicesList>;
 

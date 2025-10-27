@@ -87,18 +87,21 @@ const Template: StoryFn<Props> = (args) => {
 export const Default = Template.bind({});
 Default.args = {
   placeholder: 'Message',
+  editingLabel: 'Editing message',
   maxImages: 1,
 };
 
 export const AttachmentsDisabled = Template.bind({});
 AttachmentsDisabled.args = {
   placeholder: 'No attachments allowed',
+  editingLabel: 'Editing message',
   enableImageAttachment: false,
 };
 
 export const WithAttachments = Template.bind({});
 WithAttachments.args = {
   placeholder: 'Attach up to 2 images',
+  editingLabel: 'Editing message',
   maxImages: 2,
 };
 WithAttachments.render = (args) => {
@@ -118,6 +121,7 @@ WithAttachments.render = (args) => {
         return imgs;
       }}
       onMaxImagesExceeded={(max) => Alert.alert('Max images exceeded', `Allowed: ${max}`)}
+      editingLabel="Editing message"
     />
   );
 };
@@ -137,6 +141,8 @@ export const ReplyMode: StoryFn = () => {
       onCancelReply={replyCancelHandler}
       onTyping={typingHandler}
       onStopTyping={stopTypingHandler}
+      placeholder="Message"
+      editingLabel="Editing message"
     />
   );
 };
@@ -152,6 +158,8 @@ export const EditMode: StoryFn = () => {
       onCancelEdit={editCancelHandler}
       onTyping={typingHandler}
       onStopTyping={stopTypingHandler}
+      placeholder="Message"
+      editingLabel="Editing message"
     />
   );
 };
@@ -176,6 +184,8 @@ export const SendingControlled: StoryFn = () => {
       maxImages={1}
       onTyping={typingHandler}
       onStopTyping={stopTypingHandler}
+      placeholder="Message"
+      editingLabel="Editing message"
     />
   );
 };
@@ -200,6 +210,7 @@ export const ManyInputsDemo: StoryFn = () => {
           placeholder={`Message #${idx + 1}`}
           onTyping={() => logEvent(`typing-${idx}`)}
           onStopTyping={() => logEvent(`stop-typing-${idx}`)}
+          editingLabel="Editing message"
         />
       ))}
     </ScrollView>

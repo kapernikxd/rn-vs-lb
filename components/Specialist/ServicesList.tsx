@@ -14,15 +14,16 @@ export type ServiceItem = {
 };
 
 export type ServicesListProps = {
-  title?: string;
+  title: string;
   total?: number;            // для счетчика справа от заголовка
   services: ServiceItem[];
   onPressService?: (item: ServiceItem, index: number) => void;
   onPressMore?: () => void;
   style?: ViewStyle;
+  moreLabel: string;
 };
 
-const ServicesList: React.FC<ServicesListProps> = ({ title = 'Services', total, services, onPressService, onPressMore, style }) => {
+const ServicesList: React.FC<ServicesListProps> = ({ title, total, services, onPressService, onPressMore, style, moreLabel }) => {
   const { theme } = useTheme();
   const s = getStyles(theme);
 
@@ -36,7 +37,7 @@ const ServicesList: React.FC<ServicesListProps> = ({ title = 'Services', total, 
         </Text>
         {!!onPressMore && (
           <TouchableOpacity onPress={onPressMore}>
-            <Text style={s.moreLink}>MORE</Text>
+            <Text style={s.moreLink}>{moreLabel}</Text>
           </TouchableOpacity>
         )}
       </View>

@@ -17,6 +17,10 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: StoryFn = () => <ThemeSwitcher />;
+const Template: StoryFn<React.ComponentProps<typeof ThemeSwitcher>> = (args) => <ThemeSwitcher {...args} />;
 
 export const Default = Template.bind({});
+Default.args = {
+  lightModeLabel: 'Light Mode',
+  darkModeLabel: 'Dark Mode',
+};

@@ -19,9 +19,10 @@ type Props = {
   onPressUpdate: () => void;
   title: string;
   description: string;
+  updateButtonText: string;
 };
 
-export const UpdateRequiredView = memo(({ anim, refreshing, onRefresh, onPressUpdate, title, description }: Props) => {
+export const UpdateRequiredView = memo(({ anim, refreshing, onRefresh, onPressUpdate, title, description, updateButtonText }: Props) => {
   const { theme, commonStyles, typography } = useTheme() as any;
 
   const ui = {
@@ -51,7 +52,7 @@ export const UpdateRequiredView = memo(({ anim, refreshing, onRefresh, onPressUp
 
       <Spacer size="xl" />
       <View style={styles.button}>
-        <Button title="Обновить" onPress={onPressUpdate} />
+        <Button title={updateButtonText} onPress={onPressUpdate} />
       </View>
     </ScrollView>
   );

@@ -34,11 +34,18 @@ const closeHandler = () => {
 
 export const Default = Template.bind({});
 Default.args = {
+  message: 'Upload a photo — it will help others recognize and trust you.',
+  buttonText: 'Add Photo',
 };
 
 export const InsideScrollableList: StoryFn = () => (
   <ScrollView contentContainerStyle={{ gap: 12, padding: 16 }}>
-    <ProfilePhotoBanner onAddPhoto={addPhotoHandler} onClose={closeHandler} />
+    <ProfilePhotoBanner
+      onAddPhoto={addPhotoHandler}
+      onClose={closeHandler}
+      message="Upload a photo — it will help others recognize and trust you."
+      buttonText="Add Photo"
+    />
     <View style={{ height: 150, backgroundColor: '#f0f0f0', borderRadius: 12 }} />
     <View style={{ height: 150, backgroundColor: '#f5f5f5', borderRadius: 12 }} />
     <View style={{ height: 150, backgroundColor: '#fafafa', borderRadius: 12 }} />
@@ -61,6 +68,8 @@ export const DismissibleBehaviour: StoryFn = () => {
             closeHandler();
             setVisible(false);
           }}
+          message="Upload a photo — it will help others recognize and trust you."
+          buttonText="Add Photo"
         />
       )}
       <View style={{ height: 160, backgroundColor: '#d9ecff', borderRadius: 16 }} />

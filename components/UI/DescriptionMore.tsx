@@ -4,14 +4,24 @@ import { useTheme, ThemeType } from '../../theme';
 import CardContainer from './CardContainer';
 
 export type DescriptionSectionProps = {
-  title?: string;
+  title: string;
   text: string;
   expanded: boolean;
   onToggle: () => void;
   style?: ViewStyle;
+  expandedLabel: string;
+  collapsedLabel: string;
 };
 
-const DescriptionSection: React.FC<DescriptionSectionProps> = ({ title = 'Description', text, expanded, onToggle, style }) => {
+const DescriptionSection: React.FC<DescriptionSectionProps> = ({
+  title,
+  text,
+  expanded,
+  onToggle,
+  style,
+  expandedLabel,
+  collapsedLabel,
+}) => {
   const { theme, typography } = useTheme();
   const s = getStyles(theme);
 
@@ -23,7 +33,7 @@ const DescriptionSection: React.FC<DescriptionSectionProps> = ({ title = 'Descri
           {text}
         </Text>
         <TouchableOpacity onPress={onToggle}>
-          <Text style={s.moreLink}>{expanded ? 'Less' : 'More details'}</Text>
+          <Text style={s.moreLink}>{expanded ? expandedLabel : collapsedLabel}</Text>
         </TouchableOpacity>
       </CardContainer>
     </View>

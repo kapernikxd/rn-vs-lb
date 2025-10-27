@@ -15,6 +15,8 @@ const meta = {
       'Passionate about natural looks, skin preparation, and color theory. ' +
       'Open for travel and on-location work; kit is fully sanitized and cruelty-free.',
     expanded: false,
+    expandedLabel: 'Less',
+    collapsedLabel: 'More details',
   },
 } satisfies Meta<typeof DescriptionSection>;
 

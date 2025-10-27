@@ -57,12 +57,15 @@ export const Default: Story = {
       'Crash Drum Studio — пространство, где можно почувствовать силу ритма и научиться играть на ударных в любой форме.',
     organizerAvatarUri: 'https://i.pravatar.cc/150?img=11',
     organizerName: 'Admin Belgrade',
+    organizerRoleLabel: 'Organizer',
     likes: 42,
     views: 313,
     hasLike: false,
     isUserParticipantInPost: false,
     participantsCount: 0,
     visible: true,
+    participantLabel: 'You’re participating',
+    demoLabel: 'DEMO',
   },
 };
 

@@ -9,6 +9,7 @@ interface PollCardProps {
   votesCount: number;
   onPress?: () => void;
   createdAt: string | null;
+  votesLabel: string;
 }
 
 const PollCardList: React.FC<PollCardProps> = ({
@@ -17,7 +18,8 @@ const PollCardList: React.FC<PollCardProps> = ({
   creatorAvatar,
   votesCount,
   onPress,
-  createdAt
+  createdAt,
+  votesLabel,
 }) => {
   const { globalStyleSheet, commonStyles, typography } = useTheme();
   const styles = getStyles({ commonStyles });
@@ -33,7 +35,7 @@ const PollCardList: React.FC<PollCardProps> = ({
         </View>
         <Text style={typography.bodyXs}>{creatorName}</Text>
         <View style={globalStyleSheet.flexRowCenterBetween}>
-          <Text style={typography.bodyXs}>{votesCount} votes</Text>
+          <Text style={typography.bodyXs}>{votesCount} {votesLabel}</Text>
           <Text style={typography.bodyXs}>{createdAt}</Text>
         </View>
       </View>

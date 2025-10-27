@@ -13,9 +13,10 @@ interface SpecialistCardProps {
   gallery?: string[];
   link: string;
   onPress: () => void;
+  actionLabel: string;
 }
 
-const SpecialistCard: React.FC<SpecialistCardProps> = ({avatarUri, services, gallery, onPress, link, fullName, profession, city, country }) => {
+const SpecialistCard: React.FC<SpecialistCardProps> = ({avatarUri, services, gallery, onPress, link, fullName, profession, city, country, actionLabel }) => {
   const { theme, typography } = useTheme() as any;
   const styles = getStyles(theme);
 
@@ -52,7 +53,7 @@ const SpecialistCard: React.FC<SpecialistCardProps> = ({avatarUri, services, gal
           style={styles.bookBtn}
           activeOpacity={0.85}
         >
-          <Text style={styles.bookText}>More</Text>
+          <Text style={styles.bookText}>{actionLabel}</Text>
         </TouchableOpacity>
       </View>
 

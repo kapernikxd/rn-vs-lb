@@ -20,9 +20,15 @@ const Template: StoryFn<TelegramFeedbackLinkProps> = (args) => <TelegramFeedback
 export const Default = Template.bind({});
 Default.args = {
   link: 'https://t.me/volunteer_support_bot',
+  title: 'Feedback & Bugs',
+  subtitle: 'Tap to write us in Telegram',
+  unsupportedLinkMessage: "Can't open Telegram URL",
 };
 
 export const CustomRoom = Template.bind({});
 CustomRoom.args = {
   link: 'https://t.me/joinchat/ExampleRoom',
+  title: 'Report an Issue',
+  subtitle: 'Reach out to the team on Telegram',
+  unsupportedLinkMessage: "Can't open Telegram URL",
 };

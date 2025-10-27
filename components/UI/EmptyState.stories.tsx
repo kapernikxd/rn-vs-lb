@@ -9,6 +9,9 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: StoryFn = () => <EmptyState />;
+const Template: StoryFn<React.ComponentProps<typeof EmptyState>> = (args) => <EmptyState {...args} />;
 
 export const Default = Template.bind({});
+Default.args = {
+  message: 'No Data',
+};

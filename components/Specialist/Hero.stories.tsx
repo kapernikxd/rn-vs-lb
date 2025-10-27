@@ -27,6 +27,7 @@ const meta = {
     profession: 'Makeup Artist',
     addressLine: '12 Riverside Dr, NYC',
     showOnMap: true,
+    mapLabel: 'On the map',
   },
 } satisfies Meta<typeof Hero>;
 

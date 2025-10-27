@@ -18,4 +18,7 @@ const Template: StoryFn<NoAuthProps> = (args) => <NoAuth {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
+  title: 'Welcome!',
+  description: 'To continue, please log in to the system.',
+  buttonText: 'Log In',
 };

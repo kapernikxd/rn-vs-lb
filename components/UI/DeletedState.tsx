@@ -7,9 +7,11 @@ import { Button } from '../Button';
 
 type Props = {
   goBack?: () => void;
+  title: string;
+  buttonText: string;
 }
 
-const DeletedState: FC<Props> = ({ goBack }) => {
+const DeletedState: FC<Props> = ({ goBack, title, buttonText }) => {
   const { theme, commonStyles, typography } = useTheme();
   const styles = getStyles(theme);
 
@@ -17,9 +19,16 @@ const DeletedState: FC<Props> = ({ goBack }) => {
     <View style={[commonStyles.container, styles.container]}>
       <Ionicons name="file-tray-outline" size={50} color={theme.placeholder} />
       <Spacer size='xxs' />
-      <Text style={[typography.titleH6Regular, { color: theme.placeholder }]}>Deleted</Text>
+      <Text style={[typography.titleH6Regular, { color: theme.placeholder }]}>{title}</Text>
       <Spacer size='lg' />
-      {goBack && <Button onPress={goBack} type='gray-outline' title='Go back' textStyle={[typography.body, { color: theme.greyText }]} />}
+      {goBack && (
+        <Button
+          onPress={goBack}
+          type='gray-outline'
+          title={buttonText}
+          textStyle={[typography.body, { color: theme.greyText }]}
+        />
+      )}
     </View>
   );
 };

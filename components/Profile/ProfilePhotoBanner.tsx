@@ -7,21 +7,23 @@ import Button from '../Button/Button';
 interface Props {
   onAddPhoto: () => void;
   onClose: () => void;
+  message: string;
+  buttonText: string;
 }
 
-const ProfilePhotoBanner: React.FC<Props> = ({ onAddPhoto, onClose }) => {
+const ProfilePhotoBanner: React.FC<Props> = ({ onAddPhoto, onClose, message, buttonText }) => {
   const { theme, typography } = useTheme();
   const styles = getStyles({ theme });
 
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        <Text style={[typography.body, styles.text]}>Upload a photo — it will help others recognize and trust you.</Text>
+        <Text style={[typography.body, styles.text]}>{message}</Text>
         <TouchableOpacity onPress={onClose} style={styles.closeButton}>
           <Ionicons name="close" size={20} color={theme.text} />
         </TouchableOpacity>
       </View>
-      <Button title="Add Photo" onPress={onAddPhoto} />
+      <Button title={buttonText} onPress={onAddPhoto} />
     </View>
   );
 };

@@ -13,6 +13,7 @@ interface EventCardProps {
   description: string;
   organizerAvatarUri: string;
   organizerName: string;
+  organizerRoleLabel: string;
   onPress: () => void;
   likes: number;
   views: number;
@@ -24,6 +25,8 @@ interface EventCardProps {
   maxParticipants?: number;
   categories?: string[];
   price?: string;
+  participantLabel: string;
+  demoLabel: string;
 
   /** Новое: видимость карточки сообщает родитель (FlatList/ScrollView и т.д.) */
   visible?: boolean;
@@ -39,6 +42,7 @@ const EventCard: React.FC<EventCardProps> = ({
   description,
   organizerAvatarUri,
   organizerName,
+  organizerRoleLabel,
   onPress,
   likes,
   views,
@@ -50,6 +54,8 @@ const EventCard: React.FC<EventCardProps> = ({
   maxParticipants,
   categories,
   price,
+  participantLabel,
+  demoLabel,
   visible = false,
   triggerOnce = true,
 }) => {
@@ -77,7 +83,7 @@ const EventCard: React.FC<EventCardProps> = ({
         <Image source={{ uri: imageUri }} style={styles.image} resizeMode="cover" />
         {isUserParticipantInPost && (
           <View style={styles.participantOverlay}>
-            <Text style={styles.participantText}>You’re participating</Text>
+            <Text style={styles.participantText}>{participantLabel}</Text>
           </View>
         )}
       </View>
@@ -86,7 +92,7 @@ const EventCard: React.FC<EventCardProps> = ({
         <View style={globalStyleSheet.flexRowCenterStart}>
           {date && <Text style={[typography.body, styles.date]}>{date}</Text>}
           {categories?.includes('bot') && (
-            <Text style={[typography.body, styles.demo]}>DEMO</Text>
+            <Text style={[typography.body, styles.demo]}>{demoLabel}</Text>
           )}
           {price && <Text style={[typography.body, styles.demo]}>{price}</Text>}
         </View>
@@ -107,6 +113,7 @@ const EventCard: React.FC<EventCardProps> = ({
         <Organizer
           avatarUri={organizerAvatarUri}
           organizerName={organizerName}
+          roleLabel={organizerRoleLabel}
           onPress={onPress}
         />
         <SocialStatsEvent onLike={onLike} hasLike={hasLike} likes={likes} views={views} />

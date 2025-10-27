@@ -3,7 +3,12 @@ import { View, Text, Switch, StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useTheme } from '../../theme';
 
-const ThemeSwitcher: React.FC = () => {
+interface ThemeSwitcherProps {
+    lightModeLabel: string;
+    darkModeLabel: string;
+}
+
+const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ lightModeLabel, darkModeLabel }) => {
     const { theme, toggleTheme, isDark, globalStyleSheet, typography } = useTheme();
     // th-list puzzle-piece
     return (
@@ -11,7 +16,7 @@ const ThemeSwitcher: React.FC = () => {
             <View style={globalStyleSheet.flexRowCenter}>
                 <FontAwesome style={styles.iconContainer} name={"th-list"} size={18} color={theme.text} />
                 <Text style={[typography.titleH6Regular, { color: theme.text }]}>
-                    {isDark ? 'Dark Mode' : 'Light Mode'}
+                    {isDark ? darkModeLabel : lightModeLabel}
                 </Text>
             </View>
             <Switch

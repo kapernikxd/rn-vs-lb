@@ -58,6 +58,7 @@ export const Default: Story = {
     title: 'Необходимо обновление',
     description:
       'Для корректной работы приложения установите последнюю версию. Нажмите кнопку ниже, чтобы перейти в магазин.',
+    updateButtonText: 'Обновить',
   },
 };
 
@@ -67,5 +68,6 @@ export const Refreshing: Story = {
     refreshing: true,
     title: 'Проверка обновлений...',
     description: 'Подождите, идет проверка доступных обновлений.',
+    updateButtonText: 'Обновить',
   },
 };

@@ -15,11 +15,35 @@ type ParticipantItemProps = {
     onReject?: (userId: string) => void;
     onProfilePress: (profileId: string) => void;
     isModerated: boolean;
+    confirmLabel: string;
+    rejectLabel: string;
+    deleteLabel: string;
+    youLabel: string;
+    statusLabels?: Partial<Record<NonNullable<EventParticipant['status']>, string>>;
 };
 
-export const ParticipantItem: FC<ParticipantItemProps> = ({ fullName, avatarUrl, isModerated, participant, isMe, myId, onActionPress, onProfilePress, onConfirm, onReject }) => {
+export const ParticipantItem: FC<ParticipantItemProps> = ({
+    fullName,
+    avatarUrl,
+    isModerated,
+    participant,
+    isMe,
+    myId,
+    onActionPress,
+    onProfilePress,
+    onConfirm,
+    onReject,
+    confirmLabel,
+    rejectLabel,
+    deleteLabel,
+    youLabel,
+    statusLabels,
+}) => {
     const { globalStyleSheet, theme, sizes, commonStyles, typography } = useTheme();
     const styles = getStyles({ theme, sizes, commonStyles });
+    const statusKey = participant.status as NonNullable<EventParticipant['status']> | undefined;
+    const statusText = statusKey ? statusLabels?.[statusKey] ?? participant.status?.toLowerCase() : undefined;
+    const statusStyle = statusKey ? (styles as Record<string, typeof styles.status_default>)[`status_${statusKey}`] : undefined;
 
     return (
         <View key={participant._id} style={globalStyleSheet.flexRowCenterBetween}>
@@ -28,19 +52,19 @@ export const ParticipantItem: FC<ParticipantItemProps> = ({ fullName, avatarUrl,
                 <Text style={typography.body}>{fullName}</Text>
             </TouchableOpacity>
             <View style={globalStyleSheet.flexRowCenter}>
-                {participant.status && (
-                    <Text style={[styles.statusText, styles[`status_${participant.status}`] || styles.status_default]}>{participant.status.toLowerCase()}</Text>
+                {statusText && (
+                    <Text style={[styles.statusText, statusStyle ?? styles.status_default]}>{statusText}</Text>
                 )}
                 {isMe && myId !== participant._id && (
                     <ThreeDotsMenu
                         items={[
                             {
-                                label: 'Confirm',
+                                label: confirmLabel,
                                 icon: 'checkmark-outline',
                                 onPress: () => onConfirm && onConfirm(participant._id),
                             },
                             {
-                                label: isModerated ? 'Reject' : 'Delete',
+                                label: isModerated ? rejectLabel : deleteLabel,
                                 icon: 'close-outline',
                                 colorIcon: theme.red,
                                 onPress: () => isModerated ? (onReject && onReject(participant._id)) : onActionPress(participant._id),
@@ -49,7 +73,7 @@ export const ParticipantItem: FC<ParticipantItemProps> = ({ fullName, avatarUrl,
                     />
 
                 )}
-                {isMe && myId === participant._id && <Text style={styles.youText}>you</Text>}
+                {isMe && myId === participant._id && <Text style={styles.youText}>{youLabel}</Text>}
             </View>
         </View>
     );

@@ -6,9 +6,17 @@ import { useTheme } from '../../theme';
 
 export type TelegramFeedbackLinkProps = {
   link: string;
+  title: string;
+  subtitle: string;
+  unsupportedLinkMessage: string;
 }
 
-export const TelegramFeedbackLink: React.FC<TelegramFeedbackLinkProps> = ({ link }) => {
+export const TelegramFeedbackLink: React.FC<TelegramFeedbackLinkProps> = ({
+  link,
+  title,
+  subtitle,
+  unsupportedLinkMessage,
+}) => {
   const { theme, typography } = useTheme();
 
   const handlePress = async () => {
@@ -16,7 +24,7 @@ export const TelegramFeedbackLink: React.FC<TelegramFeedbackLinkProps> = ({ link
     if (supported) {
       await Linking.openURL(link);
     } else {
-      console.warn("Can't open Telegram URL");
+      console.warn(unsupportedLinkMessage);
     }
   };
 
@@ -24,8 +32,8 @@ export const TelegramFeedbackLink: React.FC<TelegramFeedbackLinkProps> = ({ link
     <TouchableOpacity style={styles.container} onPress={handlePress}>
       <FontAwesome name={'telegram'} size={26} color={theme.primaryLight} />
       <View style={styles.textContainer}>
-        <Text style={[typography.titleH6, { color: theme.text }]}>Feedback & Bugs</Text>
-        <Text style={typography.bodySm}>Tap to write us in Telegram</Text>
+        <Text style={[typography.titleH6, { color: theme.text }]}>{title}</Text>
+        <Text style={typography.bodySm}>{subtitle}</Text>
       </View>
     </TouchableOpacity>
   );

@@ -59,6 +59,7 @@ Default.args = {
   services,
   gallery,
   link: 'https://images.unsplash.com/',
+  actionLabel: 'More',
 };
 
 export const WithoutServices = Template.bind({});
@@ -83,6 +84,7 @@ MinimalInfo.args = {
   fullName: 'Unknown Specialist',
   avatarUri: 'https://i.pravatar.cc/150?img=60',
   link: 'https://images.unsplash.com/',
+  actionLabel: 'More',
 };
 
 export const ExtendedServices = Template.bind({});

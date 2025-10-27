@@ -21,6 +21,8 @@ const sampleMessages: PureChatMessage[] = [
   },
 ];
 
+const defaultLimitLabel = (remaining: number, limit: number) => `Осталось сообщений: ${remaining} / ${limit}`;
+
 const meta = {
   title: 'Modals/GuestAiChatModal',
   component: GuestAiChatModalView,
@@ -36,6 +38,7 @@ const meta = {
     theme: { table: { disable: true } },
     typography: { table: { disable: true } },
     sizes: { table: { disable: true } },
+    limitLabel: { table: { disable: true } },
   },
   args: {
     visible: true,
@@ -49,6 +52,9 @@ const meta = {
     theme,
     typography,
     sizes: SIZES,
+    defaultBotName: 'AI-бот',
+    limitLabel: defaultLimitLabel,
+    inputPlaceholder: 'Спросите что-нибудь...'
   },
   decorators: [
     (StoryComponent) => (
@@ -174,9 +180,11 @@ Playground.args = {
   remaining: 5,
 };
 
-export const DefaultOpen: StoryFn<GuestAiChatProps> = (args) => Template({ ...args, visible: true });
-DefaultOpen.args = {
-  visible: true,
+export const DefaultOpen: StoryFn<GuestAiChatProps> = {
+  render: Template,
+  args: {
+    visible: true,
+  },
 };
 
 export const WithErrorState: StoryFn<GuestAiChatProps> = (args) => (

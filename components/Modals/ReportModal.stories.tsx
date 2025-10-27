@@ -13,6 +13,23 @@ const submitLogger = (payload: { reason: string; details?: string }) => {
   console.log('[storybook:report-modal:submit]', payload);
 };
 
+const userReasonOptions = [
+  'Spam or scam',
+  'Harassment or bullying',
+  'Inappropriate content',
+  'Fake profile',
+  'Other',
+];
+
+const postReasonOptions = [
+  'Spam or misleading',
+  'Hate speech or discrimination',
+  'Violence or threats',
+  'Sexually explicit content',
+  'Harassment or bullying',
+  'Other',
+];
+
 const meta: Meta<ReportModalProps> = {
   title: 'Modals/ReportModal',
   component: ReportModal,
@@ -92,9 +109,18 @@ const Template: StoryFn<ReportModalProps> = (args) => {
   );
 };
 
-const baseArgs: Pick<ReportModalProps, 'visible' | 'type'> = {
+const baseArgs: Pick<
+  ReportModalProps,
+  'visible' | 'type' | 'title' | 'userReasons' | 'postReasons' | 'inputPlaceholder' | 'cancelText' | 'submitText'
+> = {
   visible: true,
   type: 'user',
+  title: 'Report User',
+  userReasons: userReasonOptions,
+  postReasons: postReasonOptions,
+  inputPlaceholder: 'Additional details (optional)',
+  cancelText: 'Cancel',
+  submitText: 'Send',
 };
 
 export const UserReport: StoryFn<ReportModalProps> = Template.bind({});
@@ -113,6 +139,7 @@ export const PostReport: StoryFn<ReportModalProps> = Template.bind({});
 PostReport.args = {
   ...baseArgs,
   type: 'post',
+  title: 'Report Post',
 };
 PostReport.parameters = {
   docs: {
@@ -160,6 +187,7 @@ export const InteractivePlayground: StoryFn<ReportModalProps> = (args) => {
         {...args}
         visible={isVisible}
         type={reportType}
+        title={reportType === 'user' ? 'Report User' : 'Report Post'}
         onClose={() => {
           closeLogger();
           setIsVisible(false);
@@ -170,6 +198,11 @@ export const InteractivePlayground: StoryFn<ReportModalProps> = (args) => {
           setIsVisible(false);
           args.onSubmit(reason, details);
         }}
+        userReasons={userReasonOptions}
+        postReasons={postReasonOptions}
+        inputPlaceholder={args.inputPlaceholder}
+        cancelText={args.cancelText}
+        submitText={args.submitText}
       />
     </View>
   );

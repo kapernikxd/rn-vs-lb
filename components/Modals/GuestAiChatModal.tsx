@@ -32,6 +32,9 @@ export type GuestAiChatViewProps = {
   isSending: boolean;
   limit?: number;
   remaining?: number;
+  defaultBotName: string;
+  limitLabel: (remaining: number, limit: number) => string;
+  inputPlaceholder: string;
 
   // экшены
   onChangeInput: (v: string) => void;
@@ -57,6 +60,9 @@ export const GuestAiChatModalView: FC<GuestAiChatViewProps> = memo(
     isSending,
     limit,
     remaining,
+    defaultBotName,
+    limitLabel,
+    inputPlaceholder,
     onChangeInput,
     onSend,
     listRef,
@@ -92,10 +98,10 @@ export const GuestAiChatModalView: FC<GuestAiChatViewProps> = memo(
           <View style={styles.modalContainer}>
             <View style={styles.header}>
               <View>
-                <Text style={typography.titleH6}>{botName || 'AI-бот'}</Text>
+                <Text style={typography.titleH6}>{botName || defaultBotName}</Text>
                 {limit !== undefined && remaining !== undefined && (
                   <Text style={styles.limitText}>
-                    Осталось сообщений: {remaining} / {limit}
+                    {limitLabel(remaining, limit)}
                   </Text>
                 )}
               </View>
@@ -118,7 +124,7 @@ export const GuestAiChatModalView: FC<GuestAiChatViewProps> = memo(
             <View style={styles.inputRow}>
               <TextInput
                 style={styles.input}
-                placeholder="Спросите что-нибудь..."
+                placeholder={inputPlaceholder}
                 placeholderTextColor={theme.greyText}
                 value={inputValue}
                 onChangeText={onChangeInput}

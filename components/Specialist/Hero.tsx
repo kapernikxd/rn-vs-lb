@@ -15,6 +15,7 @@ export type HeroProps = {
   onMessage?: () => void;
   onPressMap?: () => void;
   socials?: React.ReactNode; // сюда можно передать <SocialIconsRow .../>
+  mapLabel: string;
 };
 
 const Hero: React.FC<HeroProps> = ({
@@ -29,6 +30,7 @@ const Hero: React.FC<HeroProps> = ({
   onMessage,
   onPressMap,
   socials,
+  mapLabel,
 }) => {
   const { theme, globalStyleSheet, typography } = useTheme();
   const s = getStyles({ theme, globalStyleSheet });
@@ -67,7 +69,7 @@ const Hero: React.FC<HeroProps> = ({
 
         {showOnMap && (
           <TouchableOpacity style={[globalStyleSheet.flexRowCenterEnd, { marginTop: 6 }]} onPress={onPressMap} activeOpacity={0.8}>
-            <Text style={{ color: theme.primary, fontWeight: '600' }}>On the map</Text>
+            <Text style={{ color: theme.primary, fontWeight: '600' }}>{mapLabel}</Text>
             <Ionicons name="chevron-forward" size={16} color={theme.primary} />
           </TouchableOpacity>
         )}

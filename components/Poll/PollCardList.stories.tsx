@@ -29,6 +29,7 @@ Default.args = {
   creatorAvatar: 'https://i.pravatar.cc/150?img=11',
   votesCount: 42,
   createdAt: '2 days ago',
+  votesLabel: 'votes',
 };
 
 export const WithLongQuestion = Template.bind({});
@@ -39,6 +40,7 @@ WithLongQuestion.args = {
   creatorAvatar: 'https://i.pravatar.cc/150?img=5',
   votesCount: 128,
   createdAt: '5 hours ago',
+  votesLabel: 'votes',
 };
 
 export const WithoutDate = Template.bind({});
@@ -48,6 +50,7 @@ WithoutDate.args = {
   creatorAvatar: 'https://i.pravatar.cc/150?img=24',
   votesCount: 8,
   createdAt: null,
+  votesLabel: 'votes',
 };
 
 export const MinimalInfo = Template.bind({});
@@ -57,4 +60,5 @@ MinimalInfo.args = {
   creatorAvatar: 'https://i.pravatar.cc/150?img=36',
   votesCount: 230,
   createdAt: 'just now',
+  votesLabel: 'votes',
 };

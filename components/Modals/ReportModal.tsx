@@ -16,26 +16,25 @@ type Props = {
   onClose: () => void;
   onSubmit: (reason: string, details: string) => void;
   type: "user" | "post";
+  title: string;
+  userReasons: string[];
+  postReasons: string[];
+  inputPlaceholder: string;
+  cancelText: string;
+  submitText: string;
 };
-
-const userReportReasons = [
-  'Spam or scam',
-  'Harassment or bullying',
-  'Inappropriate content',
-  'Fake profile',
-  'Other',
-];
-
-const postReportReasons = [
-  'Spam or misleading',
-  'Hate speech or discrimination',
-  'Violence or threats',
-  'Sexually explicit content',
-  'Harassment or bullying',
-  'Other',
-];
-
-const ReportModal: React.FC<Props> = ({ visible, onClose, onSubmit, type }) => {
+const ReportModal: React.FC<Props> = ({
+  visible,
+  onClose,
+  onSubmit,
+  type,
+  title,
+  userReasons,
+  postReasons,
+  inputPlaceholder,
+  cancelText,
+  submitText,
+}) => {
   const { theme } = useTheme();
   const styles = getStyles({ theme });
 
@@ -50,7 +49,7 @@ const ReportModal: React.FC<Props> = ({ visible, onClose, onSubmit, type }) => {
     onClose();
   };
 
-  const reasons = type === "user" ? userReportReasons : postReportReasons
+  const reasons = type === "user" ? userReasons : postReasons;
 
   return (
     <Modal
@@ -61,7 +60,7 @@ const ReportModal: React.FC<Props> = ({ visible, onClose, onSubmit, type }) => {
     >
       <View style={styles.overlay}>
         <View style={styles.container}>
-          <Text style={styles.title}>Report User</Text>
+          <Text style={styles.title}>{title}</Text>
           <ScrollView style={styles.reasonsContainer}>
             {reasons.map((reason) => (
               <TouchableOpacity
@@ -86,7 +85,7 @@ const ReportModal: React.FC<Props> = ({ visible, onClose, onSubmit, type }) => {
 
           <TextInput
             style={styles.input}
-            placeholder="Additional details (optional)"
+            placeholder={inputPlaceholder}
             placeholderTextColor="#888"
             value={details}
             onChangeText={setDetails}
@@ -96,7 +95,7 @@ const ReportModal: React.FC<Props> = ({ visible, onClose, onSubmit, type }) => {
 
           <View style={styles.actions}>
             <TouchableOpacity style={styles.cancelBtn} onPress={onClose}>
-              <Text style={styles.cancelText}>Cancel</Text>
+              <Text style={styles.cancelText}>{cancelText}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={[
@@ -106,7 +105,7 @@ const ReportModal: React.FC<Props> = ({ visible, onClose, onSubmit, type }) => {
               disabled={!selectedReason}
               onPress={handleSend}
             >
-              <Text style={styles.submitText}>Send</Text>
+              <Text style={styles.submitText}>{submitText}</Text>
             </TouchableOpacity>
           </View>
         </View>

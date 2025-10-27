@@ -16,9 +16,14 @@ const Template: StoryFn<DeletedStateProps> = (args) => <DeletedState {...args} /
 const goBackHandler = () => {};
 
 export const WithoutAction = Template.bind({});
-WithoutAction.args = {};
+WithoutAction.args = {
+  title: 'Deleted',
+  buttonText: 'Go back',
+};
 
 export const WithGoBack = Template.bind({});
 WithGoBack.args = {
   goBack: goBackHandler,
+  title: 'Deleted',
+  buttonText: 'Go back',
 };

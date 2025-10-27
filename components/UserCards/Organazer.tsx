@@ -7,9 +7,10 @@ interface OrganizerContainerProps {
   avatarUri: string;
   organizerName: string;
   onPress: () => void;
+  roleLabel: string;
 }
 
-const Organizer: React.FC<OrganizerContainerProps> = ({ avatarUri, organizerName, onPress }) => {
+const Organizer: React.FC<OrganizerContainerProps> = ({ avatarUri, organizerName, onPress, roleLabel }) => {
   const { globalStyleSheet, sizes, commonStyles, typography } = useTheme();
   const styles = getStyles({ sizes, commonStyles });
 
@@ -17,7 +18,7 @@ const Organizer: React.FC<OrganizerContainerProps> = ({ avatarUri, organizerName
     <TouchableOpacity onPress={onPress} style={globalStyleSheet.flexRowCenter}>
       <Image source={{ uri: avatarUri }} style={styles.avatar} />
       <View>
-        <Text style={typography.body}>Organizer</Text>
+        <Text style={typography.body}>{roleLabel}</Text>
         <Text
           style={typography.titleH6Regular}
           numberOfLines={1}

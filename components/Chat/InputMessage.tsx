@@ -33,7 +33,8 @@ interface InputMessageProps {
   onStopTyping?: () => void; // будет вызвано через ~2s тишины
 
   // Placeholder
-  placeholder?: string;
+  placeholder: string;
+  editingLabel: string;
 }
 
 export const InputMessage: FC<InputMessageProps> = ({
@@ -56,7 +57,8 @@ export const InputMessage: FC<InputMessageProps> = ({
   onTyping,
   onStopTyping,
 
-  placeholder = 'Message',
+  placeholder,
+  editingLabel,
 }) => {
   const { theme, typography } = useTheme();
   const styles = getStyles(theme);
@@ -119,7 +121,7 @@ export const InputMessage: FC<InputMessageProps> = ({
       {/* Edit */}
       {editMessage && (
         <View style={[styles.replyContainer, { borderLeftColor: theme.primaryLight }]}>
-          <Text style={styles.replyLabel}>Editing message</Text>
+          <Text style={styles.replyLabel}>{editingLabel}</Text>
           <View style={styles.replyContent}>
             <Text numberOfLines={1} style={styles.replyText}>
               {editMessage.content ?? ''}

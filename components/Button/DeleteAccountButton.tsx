@@ -6,9 +6,21 @@ import { ThemeType, useTheme } from '../../theme';
 
 export type DeleteAccountButtonProps = {
   deleteAccount: () => Promise<void>;
+  triggerLabel: string;
+  modalTitle: string;
+  modalDescription: string;
+  cancelButtonLabel: string;
+  confirmButtonLabel: string;
 }
 
-export const DeleteAccountButton: FC<DeleteAccountButtonProps> = ({ deleteAccount }) => {
+export const DeleteAccountButton: FC<DeleteAccountButtonProps> = ({
+  deleteAccount,
+  triggerLabel,
+  modalTitle,
+  modalDescription,
+  cancelButtonLabel,
+  confirmButtonLabel,
+}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const { theme, typography } = useTheme();
   const styles = getStyles({ theme });
@@ -21,7 +33,7 @@ export const DeleteAccountButton: FC<DeleteAccountButtonProps> = ({ deleteAccoun
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.deleteButton} onPress={() => setModalVisible(true)}>
-        <Text style={[typography.titleH6, { color: theme.red }]}>Delete account</Text>
+        <Text style={[typography.titleH6, { color: theme.red }]}>{triggerLabel}</Text>
       </TouchableOpacity>
 
       <Modal
@@ -32,17 +44,25 @@ export const DeleteAccountButton: FC<DeleteAccountButtonProps> = ({ deleteAccoun
       >
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
-            <Text style={typography.titleH5}>Confirm Deletion</Text>
+            <Text style={typography.titleH5}>{modalTitle}</Text>
             <Spacer size="xxs" />
             <Text style={[typography.body, { textAlign: "center" }]}>
-              All your data, including profile, events, and chat history, will be permanently deleted.
-              This process is irreversible and will be completed within 24 hours.
-              Are you sure you want to proceed?
+              {modalDescription}
             </Text>
             <Spacer size="lg" />
             <View style={styles.buttonRow}>
-              <Button onPress={() => setModalVisible(false)} style={styles.cancelButton} type="gray-outline" title="Cancel" />
-              <Button onPress={handleDeleteAccount} type="report-outline" style={styles.confirmButton} title="Delete" />
+              <Button
+                onPress={() => setModalVisible(false)}
+                style={styles.cancelButton}
+                type="gray-outline"
+                title={cancelButtonLabel}
+              />
+              <Button
+                onPress={handleDeleteAccount}
+                type="report-outline"
+                style={styles.confirmButton}
+                title={confirmButtonLabel}
+              />
             </View>
           </View>
         </View>

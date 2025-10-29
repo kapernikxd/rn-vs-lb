@@ -6,6 +6,7 @@ export * from './Modals';
 export * from './Poll';
 export * from './Posts';
 export * from './Profile';
+export * from './Settings';
 export * from './Specialist';
 export * from './Tooltip';
 export * from './UI';

@@ -7,6 +7,7 @@ export * from './Poll';
 export * from './Posts';
 export * from './Profile';
 export * from './Specialist';
+export * from './Settings';
 export * from './Tooltip';
 export * from './UI';
 export * from './UserCards';

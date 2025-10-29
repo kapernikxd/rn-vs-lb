@@ -6,3 +6,5 @@ export { default as ProfilePhotoUpload } from './ProfilePhotoUpload/ProfilePhoto
 export type { ProfilePhotoUploadProps } from './ProfilePhotoUpload/ProfilePhotoUpload';
 export { default as UserProfileTabs } from './ProfileTabs/UserProfileTabs';
 export type { UserProfileTab } from './ProfileTabs/UserProfileTabs';
+export { default as ProfileSummary } from './ProfileSummary/ProfileSummary';
+export type { ProfileSummaryProps } from './ProfileSummary/ProfileSummary';

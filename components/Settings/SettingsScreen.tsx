@@ -1,7 +1,6 @@
 import React from 'react';
-import { ScrollView, Switch, View, StyleSheet } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
-import { CardContainer } from '../UI';
+import { ScrollView, View, StyleSheet } from 'react-native';
+import { CardContainer, Spacer } from '../UI';
 import { SizesType, ThemeType, useTheme } from '../../theme';
 import SettingsRow from './SettingsRow';
 import SettingsSectionTitle from './SettingsSectionTitle';
@@ -10,21 +9,20 @@ const SettingsScreen: React.FC = () => {
   const { globalStyleSheet, sizes, theme } = useTheme();
   const styles = React.useMemo(() => createStyles(theme, sizes), [theme, sizes]);
 
-  const [inAppBrowser, setInAppBrowser] = React.useState(true);
-  const [locationData, setLocationData] = React.useState(true);
-  const [applicationData, setApplicationData] = React.useState(true);
-  const [proxyServer, setProxyServer] = React.useState(false);
-  const [saveData, setSaveData] = React.useState(false);
+  const [toggles, setToggles] = React.useState({
+    inAppBrowser: true,
+    locationData: true,
+    applicationData: true,
+    proxyServer: false,
+    saveData: false,
+  });
 
-  const buildSwitch = (value: boolean, onChange: (next: boolean) => void) => (
-    <Switch
-      value={value}
-      onValueChange={onChange}
-      trackColor={{ false: theme.border, true: theme.primary }}
-      thumbColor={theme.black}
-      ios_backgroundColor={theme.border}
-    />
-  );
+  const handleToggle = React.useCallback((key: keyof typeof toggles) => {
+    setToggles((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  }, []);
 
   return (
     <ScrollView
@@ -34,48 +32,62 @@ const SettingsScreen: React.FC = () => {
       <View style={styles.section}>
         <SettingsSectionTitle title="App sign-in" />
         <CardContainer style={styles.card}>
-          <SettingsRow title="Passcode, fingerprint or face ID" value="Disabled" isLast />
+          <SettingsRow title="Passcode, fingerprint or face ID" value="Disabled" variant="value" isLast />
         </CardContainer>
       </View>
 
-      <View style={[styles.section, styles.lastSection]}>
+      <Spacer size="lg" />
+
+      <View style={styles.section}>
         <SettingsSectionTitle title="Application" />
         <CardContainer style={styles.card}>
-          <SettingsRow title="Font size" value="Match system" />
-          <SettingsRow title="Language" value="System" />
+          <SettingsRow title="Font size" value="Match system" variant="value" />
+          <SettingsRow title="Language" value="System" variant="value" />
           <SettingsRow
             title="In-app browser"
             description="Open external links within the app"
-            rightAccessory={buildSwitch(inAppBrowser, setInAppBrowser)}
+            variant="switch"
+            switchValue={toggles.inAppBrowser}
+            onSwitchChange={() => handleToggle('inAppBrowser')}
           />
           <SettingsRow
             title="Location data"
             description="Improve recommendations in the news feed"
-            rightAccessory={buildSwitch(locationData, setLocationData)}
+            variant="switch"
+            switchValue={toggles.locationData}
+            onSwitchChange={() => handleToggle('locationData')}
           />
           <SettingsRow
             title="Application data"
             description="Improve recommendations in the news feed"
-            rightAccessory={buildSwitch(applicationData, setApplicationData)}
+            variant="switch"
+            switchValue={toggles.applicationData}
+            onSwitchChange={() => handleToggle('applicationData')}
           />
           <SettingsRow
             title="Use proxy server"
-            rightAccessory={buildSwitch(proxyServer, setProxyServer)}
+            variant="switch"
+            switchValue={toggles.proxyServer}
+            onSwitchChange={() => handleToggle('proxyServer')}
           />
           <SettingsRow
             title="Save data"
             description="Disable video autoplay and load images in low quality"
-            rightAccessory={buildSwitch(saveData, setSaveData)}
+            variant="switch"
+            switchValue={toggles.saveData}
+            onSwitchChange={() => handleToggle('saveData')}
           />
           <SettingsRow
             title="Default apps"
             description="Select which apps links to chats, calls and clips will open in"
-            rightAccessory={<MaterialIcons name="chevron-right" size={20} color={theme.placeholder} />}
+            variant="link"
+            onPress={() => {}}
             isLast
           />
         </CardContainer>
       </View>
 
+      <Spacer size="xl" />
     </ScrollView>
   );
 };
@@ -90,9 +102,6 @@ const createStyles = (theme: ThemeType, sizes: SizesType) =>
     },
     section: {
       marginBottom: sizes.lg,
-    },
-    lastSection: {
-      marginBottom: 0,
     },
     card: {
       paddingHorizontal: sizes.md,

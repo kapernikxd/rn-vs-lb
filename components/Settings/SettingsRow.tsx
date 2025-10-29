@@ -1,28 +1,37 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Switch } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import { SizesType, ThemeType, useTheme } from '../../theme';
+
+export type SettingsRowVariant = 'default' | 'value' | 'switch' | 'link';
 
 export interface SettingsRowProps {
   title: string;
   description?: string;
   value?: string;
-  rightAccessory?: React.ReactNode;
+  variant?: SettingsRowVariant;
   onPress?: () => void;
   isLast?: boolean;
+  switchValue?: boolean;
+  onSwitchChange?: (nextValue: boolean) => void;
 }
 
 const SettingsRow: React.FC<SettingsRowProps> = ({
   title,
   description,
   value,
-  rightAccessory,
+  variant = 'default',
   onPress,
   isLast,
+  switchValue = false,
+  onSwitchChange,
 }) => {
   const { theme, typography, sizes } = useTheme();
   const styles = React.useMemo(() => createStyles(theme, sizes), [theme, sizes]);
 
-  const hasRightContent = Boolean(value || rightAccessory);
+  const showValue = variant === 'value' && value;
+  const showChevron = variant === 'link';
+  const showSwitch = variant === 'switch' && onSwitchChange;
 
   const content = (
     <View style={styles.rowContent}>
@@ -36,30 +45,39 @@ const SettingsRow: React.FC<SettingsRowProps> = ({
           </Text>
         ) : null}
       </View>
-      {hasRightContent ? (
+      {(showValue || showSwitch || showChevron) ? (
         <View style={styles.rightContainer}>
-          {value ? (
+          {showValue ? (
             <Text style={[typography.bodySm, styles.value]} numberOfLines={1}>
               {value}
             </Text>
           ) : null}
-          {rightAccessory ? <View style={styles.accessory}>{rightAccessory}</View> : null}
+          {showSwitch ? (
+            <Switch
+              value={switchValue}
+              onValueChange={onSwitchChange}
+              trackColor={{ false: theme.border, true: theme.primary }}
+              thumbColor={theme.white}
+              ios_backgroundColor={theme.border}
+            />
+          ) : null}
+          {showChevron ? (
+            <MaterialIcons name="chevron-right" size={20} color={theme.placeholder} />
+          ) : null}
         </View>
       ) : null}
     </View>
   );
 
-  const rowStyle = [styles.row, isLast && styles.lastRow];
-
   if (onPress) {
     return (
-      <TouchableOpacity style={rowStyle} onPress={onPress} activeOpacity={0.7}>
+      <TouchableOpacity style={[styles.row, isLast && styles.lastRow]} onPress={onPress} activeOpacity={0.7}>
         {content}
       </TouchableOpacity>
     );
   }
 
-  return <View style={rowStyle}>{content}</View>;
+  return <View style={[styles.row, isLast && styles.lastRow]}>{content}</View>;
 };
 
 const createStyles = (theme: ThemeType, sizes: SizesType) =>
@@ -90,14 +108,10 @@ const createStyles = (theme: ThemeType, sizes: SizesType) =>
     rightContainer: {
       flexDirection: 'row',
       alignItems: 'center',
-      flexShrink: 0,
-      justifyContent: 'flex-end',
+      gap: sizes.xs,
     },
     value: {
       color: theme.placeholder,
-    },
-    accessory: {
-      marginLeft: sizes.xs,
     },
   });
 

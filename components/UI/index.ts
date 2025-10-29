@@ -20,6 +20,8 @@ export { default as TabBar } from './TabBar/TabBar';
 export type { TabItem } from './TabBar/TabBar';
 export { default as TabBarAi } from './TabBar/TabBarAi';
 export type { TabItem as TabItemAi } from './TabBar/TabBarAi';
+export { default as BottomTabBar } from './TabBar/BottomTabBar';
+export type { BottomTabBarItem, BottomTabBarIconProps } from './TabBar/BottomTabBar';
 export { default as TabButton } from './TabButton/TabButton';
 export type { TabButtonProps } from './TabButton/TabButton';
 export { default as TextWithLinks } from './TextWithLinks';

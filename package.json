@@ -1,6 +1,6 @@
 {
   "name": "rn-vs-lb",
-  "version": "1.0.62",
+  "version": "1.0.65",
   "description": "Expo Router + Storybook template ready for npm distribution.",
   "keywords": [
     "expo",
@@ -46,6 +46,7 @@
     "@react-native-community/slider": "5.0.1",
     "expo": "^54.0.10",
     "expo-constants": "~18.0.9",
+    "expo-linear-gradient": "^15.0.7",
     "expo-linking": "~8.0.8",
     "expo-router": "~6.0.8",
     "expo-splash-screen": "~31.0.10",

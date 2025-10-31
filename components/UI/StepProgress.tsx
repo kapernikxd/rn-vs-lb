@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { ThemeType, TypographytType, SizesType, useTheme } from "rn-vs-lb/theme";
+import { ThemeType, TypographytType, SizesType, useTheme } from "../../theme";
 
 interface StepProgressProps {
   steps: { title: string; description?: string }[];

@@ -10,6 +10,8 @@ export { LinkPreview } from './LinkPreview';
 export { default as ListBlockItem } from './ListBlockItem';
 export { default as ListItem } from './ListItem';
 export { default as LoadingScreen } from './LoadingScreen';
+export { default as HorizontalCardSection } from './HorizontalCardSection';
+export type { HorizontalCardSectionProps, HorizontalCard } from './HorizontalCardSection';
 export { NoAuth } from './NoAuth';
 export { ParticipantItem } from './ParticipantItem';
 export * from './Social';

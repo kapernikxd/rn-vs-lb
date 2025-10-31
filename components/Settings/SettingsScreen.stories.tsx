@@ -39,18 +39,28 @@ CustomUser.args = {
   },
 };
 
-export const CustomOptions = Template.bind({});
-CustomOptions.args = {
-  options: [
-    {
-      id: 'security',
-      label: 'Security',
-      icon: <MaterialCommunityIcons name="lock-check-outline" size={22} color="#377dff" />,
-    },
-    {
-      id: 'language',
-      label: 'Language',
-      icon: <Feather name="globe" size={20} color="#377dff" />,
-    },
-  ],
-};
+export const CustomOptions: Story = (args) => (
+  <View style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
+    <SettingsScreen
+      {...args}
+      options={[
+        {
+          id: 'security',
+          label: 'Security',
+          icon: (
+            <MaterialCommunityIcons
+              name="lock-check-outline"
+              size={22}
+              color="#377dff"
+            />
+          ),
+        },
+        {
+          id: 'language',
+          label: 'Language',
+          icon: <Feather name="globe" size={20} color="#377dff" />,
+        },
+      ]}
+    />
+  </View>
+);

@@ -12,3 +12,4 @@ export * from './Tooltip';
 export * from './UI';
 export * from './UserCards';
 export * from './Gallery';
+export * from './Prank';

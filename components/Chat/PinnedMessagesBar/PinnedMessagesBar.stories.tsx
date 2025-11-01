@@ -8,7 +8,7 @@ import { MessageDTO } from '../../../types/message';
 type Props = React.ComponentProps<typeof PinnedMessagesBar>;
 
 const meta: Meta<Props> = {
-  title: 'Chat/PinnedMessagesBar',
+  title: 'Features/Chat/PinnedMessagesBar',
   component: PinnedMessagesBar,
   decorators: [
     (Story) => (

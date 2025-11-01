@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import SubTabButton from './SubTabButton';
 
 const meta = {
-  title: 'Chat/SubTabButton',
+  title: 'Features/Chat/SubTabButton',
   component: SubTabButton,
   decorators: [(Story) => <View style={{ padding: 12 }}><Story /></View>],
   argTypes: {

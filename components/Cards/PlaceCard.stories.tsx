@@ -4,7 +4,7 @@ import PlaceCard from './PlaceCard';
 import { ThemeProvider } from '../../theme/themeContext';
 
 const meta: Meta<React.ComponentProps<typeof PlaceCard>> = {
-  title: 'Cards/PlaceCard',
+  title: 'UI/Cards/PlaceCard',
   component: PlaceCard,
   decorators: [
     (Story) => (

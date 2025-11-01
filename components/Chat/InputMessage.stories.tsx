@@ -8,7 +8,7 @@ import InputMessage, { ImageAsset } from './InputMessage';
 type Props = React.ComponentProps<typeof InputMessage>;
 
 const meta: Meta<Props> = {
-  title: 'Chat/InputMessage',
+  title: 'Features/Chat/InputMessage',
   component: InputMessage,
   decorators: [
     (Story) => (

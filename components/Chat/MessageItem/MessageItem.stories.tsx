@@ -7,7 +7,7 @@ import MessageItem from './MessageItem';
 import { LinkPreviewData, MessageDTO, MessageItemProps } from './types';
 
 const meta: Meta<MessageItemProps> = {
-  title: 'Chat/MessageItem',
+  title: 'Features/Chat/MessageItem',
   component: MessageItem,
   decorators: [
     (Story) => (

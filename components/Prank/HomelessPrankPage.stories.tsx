@@ -30,7 +30,7 @@ const PagePreview: React.FC = () => {
 };
 
 const meta: Meta<typeof PagePreview> = {
-  title: 'Prank/HomelessPrankPage',
+  title: 'Features/Prank/HomelessPrankPage',
   component: PagePreview,
   decorators: [
     (Story) => (

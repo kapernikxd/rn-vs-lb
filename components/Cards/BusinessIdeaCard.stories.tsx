@@ -4,7 +4,7 @@ import BusinessIdeaCard from './BusinessIdeaCard';
 import { ThemeProvider } from '../../theme/themeContext';
 
 const meta: Meta<typeof BusinessIdeaCard> = {
-  title: 'Cards/BusinessIdeaCard',
+  title: 'UI/Cards/BusinessIdeaCard',
   component: BusinessIdeaCard,
   decorators: [
     (Story) => (

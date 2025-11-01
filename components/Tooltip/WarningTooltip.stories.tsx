@@ -41,7 +41,7 @@ const renderTooltip = ({ contentKey = 'pendingReview', ...args }: WarningTooltip
 );
 
 const meta: Meta<WarningTooltipStoryProps> = {
-  title: 'Tooltip/WarningTooltip',
+  title: 'UI/Tooltip/WarningTooltip',
   component: WarningTooltip,
   argTypes: {
     contentKey: {

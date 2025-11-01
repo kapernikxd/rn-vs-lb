@@ -6,7 +6,7 @@ import UserRow from './UserRow';
 type UserRowProps = React.ComponentProps<typeof UserRow>;
 
 const meta: Meta<UserRowProps> = {
-  title: 'UserCards/UserRow',
+  title: 'Features/UserCards/UserRow',
   component: UserRow,
   argTypes: {
     size: {

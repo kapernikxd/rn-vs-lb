@@ -11,7 +11,7 @@ const IMAGES = [
 ];
 
 const meta = {
-  title: 'Specialist/PortfolioCarousel',
+  title: 'Features/Specialist/PortfolioCarousel',
   component: PortfolioCarousel,
   decorators: [(Story) => <View style={{ paddingVertical: 12 }}><Story /></View>],
   argTypes: { onPressImage: { action: 'onPressImage' } },

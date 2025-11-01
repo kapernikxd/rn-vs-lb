@@ -9,7 +9,7 @@ type Props = React.ComponentProps<typeof ProfileSelfiesGalleryView>;
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
 const meta: Meta<Props> = {
-  title: 'Gallery/ProfileSelfiesGallery',
+  title: 'Features/Gallery/ProfileSelfiesGallery',
   component: ProfileSelfiesGalleryView,
   decorators: [
     (Story) => (

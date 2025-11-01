@@ -5,7 +5,7 @@ import UserProfileCard from './UserProfileCard';
 type UserProfileCardProps = React.ComponentProps<typeof UserProfileCard>;
 
 const meta: Meta<UserProfileCardProps> = {
-  title: 'UserCards/UserProfileCard',
+  title: 'Features/UserCards/UserProfileCard',
   component: UserProfileCard,
   argTypes: {
     layout: {

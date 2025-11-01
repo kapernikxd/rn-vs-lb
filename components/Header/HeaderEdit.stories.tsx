@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { HeaderEdit } from './HeaderEdit';
 
 const meta: Meta = {
-  title: 'Header/HeaderEdit',
+  title: 'Layout/Header/HeaderEdit',
   component: HeaderEdit,
   args: {
     isPinned: false,

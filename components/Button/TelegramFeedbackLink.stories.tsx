@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { TelegramFeedbackLink, TelegramFeedbackLinkProps } from './TelegramFeedbackLink';
 
 const meta: Meta<TelegramFeedbackLinkProps> = {
-  title: 'Button/TelegramFeedbackLink',
+  title: 'UI/Buttons/TelegramFeedbackLink',
   component: TelegramFeedbackLink,
   argTypes: {
     link: {

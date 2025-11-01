@@ -6,7 +6,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Button, { MyButtonProps } from './Button';
 
 const meta: Meta<MyButtonProps> = {
-  title: 'Button/Base',
+  title: 'UI/Buttons/Base',
   component: Button,
   decorators: [
     (Story) => (

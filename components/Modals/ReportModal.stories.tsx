@@ -31,7 +31,7 @@ const postReasonOptions = [
 ];
 
 const meta: Meta<ReportModalProps> = {
-  title: 'Modals/ReportModal',
+  title: 'Features/Modals/ReportModal',
   component: ReportModal,
   argTypes: {
     type: {

@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import PlaceCardList from './PlaceCardList';
 
 const meta: Meta<React.ComponentProps<typeof PlaceCardList>> = {
-  title: 'Posts/PlaceCardList',
+  title: 'Features/Posts/PlaceCardList',
   component: PlaceCardList,
   decorators: [
     (Story) => (

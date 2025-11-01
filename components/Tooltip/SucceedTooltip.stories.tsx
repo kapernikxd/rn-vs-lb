@@ -39,7 +39,7 @@ const renderTooltip = ({ contentKey, ...args }: SucceedTooltipStoryProps) => (
 );
 
 const meta: Meta<SucceedTooltipStoryProps> = {
-  title: 'Tooltip/SucceedTooltip',
+  title: 'UI/Tooltip/SucceedTooltip',
   component: SucceedTooltip,
   argTypes: {
     contentKey: {

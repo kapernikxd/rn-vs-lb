@@ -7,7 +7,7 @@ import { ThemeProvider } from '../../theme/themeContext';
 type OrganizerProps = React.ComponentProps<typeof Organizer>;
 
 const meta: Meta<OrganizerProps> = {
-  title: 'UserCards/Organizer',
+  title: 'Features/UserCards/Organizer',
   component: Organizer,
   decorators: [
     (Story) => (

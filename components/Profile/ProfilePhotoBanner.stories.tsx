@@ -4,7 +4,7 @@ import { View, ScrollView } from 'react-native';
 import ProfilePhotoBanner from './ProfilePhotoBanner';
 
 const meta: Meta<React.ComponentProps<typeof ProfilePhotoBanner>> = {
-  title: 'Profile/ProfilePhotoBanner',
+  title: 'Features/Profile/ProfilePhotoBanner',
   component: ProfilePhotoBanner,
   decorators: [
     (Story) => (

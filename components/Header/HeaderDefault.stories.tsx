@@ -4,7 +4,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import HeaderDefault, { AccessType } from './HeaderDefault';
 
 const meta: Meta = {
-  title: 'Header/HeaderDefault',
+  title: 'Layout/Header/HeaderDefault',
   component: HeaderDefault,
   args: {
     title: 'Community event',

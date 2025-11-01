@@ -4,7 +4,7 @@ import { Text, View } from 'react-native';
 import { HeaderHome } from './HeaderHome';
 
 const meta: Meta<typeof HeaderHome> = {
-  title: 'Header/HeaderHome',
+  title: 'Layout/Header/HeaderHome',
   component: HeaderHome,
   argTypes: {
     onPress: { action: 'header press' },

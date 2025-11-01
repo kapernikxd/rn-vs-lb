@@ -6,7 +6,7 @@ import { ThemeProvider } from '../../theme';
 import UploadPromptCard from './UploadPromptCard';
 
 const meta: Meta<typeof UploadPromptCard> = {
-  title: 'Prank/UploadPromptCard',
+  title: 'Features/Prank/UploadPromptCard',
   component: UploadPromptCard,
   decorators: [
     (Story) => (

@@ -46,7 +46,7 @@ const generateComments = (count: number): Comment[] =>
     }));
 
 const meta: Meta<Props> = {
-    title: 'Poll/CommentItem',
+    title: 'Features/Poll/CommentItem',
     component: CommentItem,
     decorators: [
         (Story) => (

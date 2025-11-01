@@ -5,7 +5,7 @@ import Hero from './Hero';
 import SocialIconsRow from '../UI/Social/SocialIconsRow';
 
 const meta = {
-  title: 'Specialist/Hero',
+  title: 'Features/Specialist/Hero',
   component: Hero,
   decorators: [
     (Story) => (

@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import PostButton from './PostButton';
 
 const meta: Meta = {
-  title: 'Button/PostButton',
+  title: 'UI/Buttons/PostButton',
   component: PostButton,
   argTypes: {
     title: {

@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { DeleteAccountButton, DeleteAccountButtonProps } from './DeleteAccountButton';
 
 const meta: Meta<DeleteAccountButtonProps> = {
-  title: 'Button/DeleteAccountButton',
+  title: 'UI/Buttons/DeleteAccountButton',
   component: DeleteAccountButton,
 };
 

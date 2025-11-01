@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import HeaderWithImg from './HeaderWithImg';
 
 const meta: Meta = {
-  title: 'Header/HeaderWithImg',
+  title: 'Layout/Header/HeaderWithImg',
   component: HeaderWithImg,
   args: {
     imgUrl: 'https://placekitten.com/200/200',

@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import PollCardList from './PollCardList';
 
 const meta: Meta<React.ComponentProps<typeof PollCardList>> = {
-  title: 'Poll/PollCardList',
+  title: 'Features/Poll/PollCardList',
   component: PollCardList,
   decorators: [
     (Story) => (

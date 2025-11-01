@@ -6,7 +6,7 @@ import { ThemeProvider } from '../../theme';
 import HeroPrankCard from './HeroPrankCard';
 
 const meta: Meta<typeof HeroPrankCard> = {
-  title: 'Prank/HeroPrankCard',
+  title: 'Features/Prank/HeroPrankCard',
   component: HeroPrankCard,
   decorators: [
     (Story) => (

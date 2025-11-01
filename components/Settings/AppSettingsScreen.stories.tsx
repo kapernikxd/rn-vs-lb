@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import AppSettingsScreen, { AppSettingsScreenProps, AppSettingsSectionData } from './AppSettingsScreen';
 
 const meta: Meta<typeof AppSettingsScreen> = {
-  title: 'Features/Settings/AppSettingsScreen',
+  title: 'Screens/Settings/AppSettingsScreen',
   component: AppSettingsScreen,
 };
 

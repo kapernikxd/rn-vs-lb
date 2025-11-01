@@ -29,6 +29,9 @@ const preview: Preview = {
             'Specialist',
             'UserCards',
           ],
+          'Screens', [
+            'Settings',
+          ]
         ],
       },
     },

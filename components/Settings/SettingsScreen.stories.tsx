@@ -5,7 +5,7 @@ import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import SettingsScreen, { SettingsScreenProps } from './SettingsScreen';
 
 const meta: Meta<typeof SettingsScreen> = {
-  title: 'Features/Settings/SettingsScreen',
+  title: 'Screens/Settings/SettingsScreen',
   component: SettingsScreen,
   args: {
     headerProps: { title: 'Settings' },

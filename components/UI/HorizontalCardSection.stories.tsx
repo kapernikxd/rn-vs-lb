@@ -29,7 +29,7 @@ const cards: HorizontalCard[] = [
 ];
 
 const meta: Meta<typeof HorizontalCardSection> = {
-  title: "UI/HorizontalCardSection",
+  title: "UI/Cards/HorizontalCardSection",
   component: HorizontalCardSection,
   decorators: [
     (Story) => (

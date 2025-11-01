@@ -5,7 +5,7 @@ import { View, Button } from 'react-native';
 import { ModalProfilePhoto } from './ModalProfilePhoto'; // <-- проверь путь!
 
 const meta = {
-  title: 'Profile/ModalProfilePhoto',
+  title: 'Features/Profile/ModalProfilePhoto',
   component: ModalProfilePhoto,
   argTypes: {
     handleClosePreview: { action: 'handleClosePreview' },

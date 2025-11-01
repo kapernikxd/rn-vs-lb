@@ -10,7 +10,7 @@ const createPressHandler = (label: string) => () => {
 };
 
 const meta: Meta<ChatItemProps> = {
-  title: 'Chat/ChatItem',
+  title: 'Features/Chat/ChatItem',
   component: ChatItem,
   decorators: [
     (Story) => (

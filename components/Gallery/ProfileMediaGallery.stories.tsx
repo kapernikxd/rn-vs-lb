@@ -5,7 +5,7 @@ import { ThemeProvider } from "../../theme";
 import { ProfileMediaGallery, ProfileMediaGalleryProps } from "./ProfileMediaGallery";
 
 const meta: Meta<typeof ProfileMediaGallery> = {
-  title: "Gallery/ProfileMediaGallery",
+  title: 'Features/Gallery/ProfileMediaGallery',
   component: ProfileMediaGallery,
   decorators: [
     (Story) => (

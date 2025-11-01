@@ -7,7 +7,7 @@ import EventCardList from './EventCardList';
 type Props = React.ComponentProps<typeof EventCardList>;
 
 const meta: Meta<Props> = {
-  title: 'Posts/EventCardList',
+  title: 'Features/Posts/EventCardList',
   component: EventCardList,
   decorators: [
     (Story) => (

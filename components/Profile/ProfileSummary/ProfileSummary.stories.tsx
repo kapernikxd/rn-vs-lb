@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import ProfileSummary, { ProfileSummaryProps } from './ProfileSummary';
 
 const meta: Meta<ProfileSummaryProps> = {
-  title: 'Profile/ProfileSummary',
+  title: 'Features/Profile/ProfileSummary',
   component: ProfileSummary,
   decorators: [
     (Story) => (

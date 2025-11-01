@@ -9,6 +9,29 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    options: {
+      storySort: {
+        order: [
+          'Layout',
+          ['Header'],
+          'UI',
+          ['Buttons', 'Cards', 'Tooltip'],
+          'Features',
+          [
+            'Chat',
+            'Gallery',
+            'Modals',
+            'Poll',
+            'Posts',
+            'Prank',
+            'Profile',
+            'Settings',
+            'Specialist',
+            'UserCards',
+          ],
+        ],
+      },
+    },
   },
 
   tags: ["autodocs"]

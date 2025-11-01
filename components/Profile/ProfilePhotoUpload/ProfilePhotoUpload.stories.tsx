@@ -5,7 +5,7 @@ import { View, Button } from 'react-native';
 import PureProfilePhotoUpload from './ProfilePhotoUpload';
 
 const meta = {
-  title: 'Profile/PureProfilePhotoUpload',
+  title: 'Features/Profile/PureProfilePhotoUpload',
   component: PureProfilePhotoUpload,
   argTypes: {
     onPressSelect: { action: 'onPressSelect' },

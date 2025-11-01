@@ -7,7 +7,7 @@ import { ThemeProvider } from '../../theme/themeContext';
 type SpecialistCardProps = React.ComponentProps<typeof SpecialistCard>;
 
 const meta: Meta<SpecialistCardProps> = {
-  title: 'UserCards/SpecialistCard',
+  title: 'Features/UserCards/SpecialistCard',
   component: SpecialistCard,
   decorators: [
     (Story) => (

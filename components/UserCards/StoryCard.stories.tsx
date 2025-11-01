@@ -5,7 +5,7 @@ import { ScrollView, View } from 'react-native';
 import StoryCard from './StoryCard';
 
 const meta = {
-  title: 'UserCards/StoryCard',
+  title: 'Features/UserCards/StoryCard',
   component: StoryCard,
   // любой onPress будет логироваться в панель Actions
   argTypes: { onPress: { action: 'onPress' } },

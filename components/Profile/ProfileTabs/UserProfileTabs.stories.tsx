@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import UserProfileTabs, { type UserProfileTab } from './UserProfileTabs';
 
 const meta = {
-  title: 'Profile/UserProfileTabs',
+  title: 'Features/Profile/UserProfileTabs',
   component: UserProfileTabs,
   decorators: [(Story) => <View style={{ padding: 12 }}><Story /></View>],
   argTypes: {

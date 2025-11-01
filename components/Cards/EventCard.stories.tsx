@@ -4,7 +4,7 @@ import EventCard from './EventCard';
 import { ThemeProvider } from '../../theme/themeContext';
 
 const meta: Meta<React.ComponentProps<typeof EventCard>> = {
-  title: 'Cards/EventCard',
+  title: 'UI/Cards/EventCard',
   component: EventCard,
   decorators: [
     (Story) => (

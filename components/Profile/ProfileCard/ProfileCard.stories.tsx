@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import PureProfileCard from  "./ProfileCard";
 
 const meta = {
-  title: 'Profile/ProfileCard',
+  title: 'Features/Profile/ProfileCard',
   component: PureProfileCard,
   argTypes: {
     onBack: { action: 'onBack' },

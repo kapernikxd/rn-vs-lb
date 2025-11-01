@@ -30,7 +30,7 @@ const SERVICES: ServiceItem[] = [
 ];
 
 const meta = {
-  title: 'Specialist/ServicesList',
+  title: 'Features/Specialist/ServicesList',
   component: ServicesList,
   decorators: [(Story) => <View style={{ paddingVertical: 12 }}><Story /></View>],
   argTypes: {

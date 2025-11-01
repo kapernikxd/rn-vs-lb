@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 import { HeaderSwitcher } from './HeaderSwitcher';
 
 const meta: Meta<typeof HeaderSwitcher> = {
-  title: 'Header/HeaderSwitcher',
+  title: 'Layout/Header/HeaderSwitcher',
   component: HeaderSwitcher,
   args: {
     isFirst: true,

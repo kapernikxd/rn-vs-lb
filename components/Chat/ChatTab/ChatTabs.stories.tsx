@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import ChatTabs, { type ChatTab, type BotSubTab } from './ChatTabs';
 
 const meta = {
-  title: 'Chat/ChatTabs',
+  title: 'Features/Chat/ChatTabs',
   component: ChatTabs,
   decorators: [(Story) => <View style={{ paddingVertical: 12 }}><Story /></View>],
   argTypes: {

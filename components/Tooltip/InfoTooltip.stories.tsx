@@ -42,7 +42,7 @@ const renderTooltip = ({ contentKey, ...args }: InfoTooltipStoryProps) => (
 );
 
 const meta: Meta<InfoTooltipStoryProps> = {
-  title: 'Tooltip/InfoTooltip',
+  title: 'UI/Tooltip/InfoTooltip',
   component: InfoTooltip,
   argTypes: {
     contentKey: {

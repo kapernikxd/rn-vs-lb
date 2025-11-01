@@ -10,7 +10,7 @@ const IMAGES = [
 ];
 
 const meta = {
-  title: 'Modals/GalleryModal',
+  title: 'Features/Modals/GalleryModal',
   component: GalleryModal,
   decorators: [(Story) => <View style={{ flex: 1 }}><Story /></View>],
   argTypes: { onRequestClose: { action: 'onRequestClose' } },

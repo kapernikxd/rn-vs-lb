@@ -39,7 +39,7 @@ const renderTooltip = ({ contentKey, ...args }: DangerTooltipStoryProps) => (
 );
 
 const meta: Meta<DangerTooltipStoryProps> = {
-  title: 'Tooltip/DangerTooltip',
+  title: 'UI/Tooltip/DangerTooltip',
   component: DangerTooltip,
   argTypes: {
     contentKey: {

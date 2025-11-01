@@ -24,7 +24,7 @@ const sampleMessages: PureChatMessage[] = [
 const defaultLimitLabel = (remaining: number, limit: number) => `Осталось сообщений: ${remaining} / ${limit}`;
 
 const meta = {
-  title: 'Modals/GuestAiChatModal',
+  title: 'Features/Modals/GuestAiChatModal',
   component: GuestAiChatModalView,
   argTypes: {
     onClose: { action: 'close modal' },

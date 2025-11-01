@@ -7,7 +7,7 @@ import { AiAgentGalleryView } from './AiAgentGallery.pure';
 type Props = React.ComponentProps<typeof AiAgentGalleryView>;
 
 const meta: Meta<Props> = {
-  title: 'Gallery/AiAgentGallery',
+  title: 'Features/Gallery/AiAgentGallery',
   component: AiAgentGalleryView,
   decorators: [
     (Story) => (

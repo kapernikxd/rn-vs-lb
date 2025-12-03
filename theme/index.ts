@@ -4,6 +4,8 @@ export {
   FONTS,
   SIZES,
   createAppTheme,
+  lightTheme,
+  darkTheme,
   default as appTheme,
 } from "./theme";
 export type { AppThemeConfig, ThemeColors, ThemeOverrides, ThemeShape } from "./theme";

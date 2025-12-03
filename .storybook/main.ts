@@ -1,3 +1,4 @@
+import { mergeConfig } from "vite";
 import { StorybookConfig } from "@storybook/react-native-web-vite";
 
 const main: StorybookConfig = {
@@ -11,6 +12,17 @@ const main: StorybookConfig = {
   framework: {
     name: "@storybook/react-native-web-vite",
     options: {},
+  },
+
+  async viteFinal(config) {
+    return mergeConfig(config, {
+      resolve: {
+        alias: {
+          "react-native": "react-native-web",
+          "react-native$": "react-native-web",
+        },
+      },
+    });
   },
 };
 

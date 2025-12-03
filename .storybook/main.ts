@@ -20,6 +20,8 @@ const main: StorybookConfig = {
         alias: {
           "react-native": "react-native-web",
           "react-native$": "react-native-web",
+          "react-native-vector-icons":
+            "@expo/vector-icons/build/vendor/react-native-vector-icons",
         },
       },
     });

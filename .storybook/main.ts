@@ -21,6 +21,7 @@ const main: StorybookConfig = {
         alias: {
           "react-native": "react-native-web",
           "react-native$": "react-native-web",
+          "@expo/vector-icons": path.resolve(__dirname, "./shims/expo-vector-icons"),
           "react-native-vector-icons":
             "@expo/vector-icons/build/vendor/react-native-vector-icons",
           "react-native-vector-icons/lib/create-icon-set": path.resolve(

@@ -62,7 +62,7 @@ const ReportModal: React.FC<Props> = ({
         <View style={styles.container}>
           <Text style={styles.title}>{title}</Text>
           <ScrollView style={styles.reasonsContainer}>
-            {reasons.map((reason) => (
+            {reasons?.map((reason) => (
               <TouchableOpacity
                 key={reason}
                 style={[

@@ -1,15 +1,17 @@
 import React, { useMemo, useState } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { ThemeProvider, createAppTheme, darkTheme as baseDarkTheme, useTheme } from '../../theme';
+import { ThemeProvider, createAppTheme, useTheme } from '../../theme';
 import HeaderDefault from '../Header/HeaderDefault';
 import TabBar from '../UI/TabBar/TabBarAi';
+import { darkTheme, SIZES } from '../../theme/theme';
+import { HeaderHome } from '../Header';
 
 const darkAppTheme = createAppTheme({
-  light: baseDarkTheme,
-  dark: baseDarkTheme,
+  light: darkTheme,
+  dark: darkTheme,
 });
 
 const previewStyles = StyleSheet.create({
@@ -52,28 +54,32 @@ const cards: HoroscopeCardData[] = [
   {
     key: 'career',
     title: 'Карьера',
-    description: 'Луна во Льве помогает сфокусироваться на долгосрочных целях и заметить новые возможности роста.',
+    description:
+      'Луна во Льве помогает сфокусироваться на долгосрочных целях и заметить новые возможности роста.',
     icon: 'briefcase-variant-outline',
     accent: '#63B3FF',
   },
   {
     key: 'love',
     title: 'Любовь',
-    description: 'В отношениях сегодня больше тепла. Откровенный разговор сделает связь сильнее.',
+    description:
+      'В отношениях сегодня больше тепла. Откровенный разговор сделает связь сильнее.',
     icon: 'heart-outline',
     accent: '#FF7AB8',
   },
   {
     key: 'health',
     title: 'Здоровье',
-    description: 'Добавьте к привычному распорядку короткую разминку — организм отблагодарит энергией.',
+    description:
+      'Добавьте к привычному распорядку короткую разминку — организм отблагодарит энергией.',
     icon: 'heart-pulse',
     accent: '#7DE2AC',
   },
   {
     key: 'family',
     title: 'Семья',
-    description: 'Совместный вечер укрепит доверие. Запланируйте семейный ритуал, чтобы повторить его позже.',
+    description:
+      'Совместный вечер укрепит доверие. Запланируйте семейный ритуал, чтобы повторить его позже.',
     icon: 'account-group-outline',
     accent: '#F7C977',
   },
@@ -95,8 +101,8 @@ const ScreenSurface: React.FC<React.PropsWithChildren> = ({ children }) => {
         surface: {
           backgroundColor: theme.background,
           borderRadius: sizes.radius_lg as number,
-          paddingHorizontal: sizes.lg as number,
-          paddingVertical: sizes.lg as number,
+          paddingHorizontal: sizes.xs as number,
+          paddingVertical: sizes.xs as number,
           width: 360,
           minHeight: 640,
           gap: sizes.lg as number,
@@ -121,11 +127,9 @@ const HoroscopeDescription: React.FC = () => {
           gap: sizes.sm as number,
         },
         title: {
-          color: theme.title,
           ...typography.titleH5,
         },
         text: {
-          color: theme.text,
           ...typography.body,
           lineHeight: 20,
         },
@@ -148,6 +152,8 @@ const HoroscopeDescription: React.FC = () => {
   );
 };
 
+const CARD_WIDTH = 280;
+
 const HoroscopeCard: React.FC<{ item: HoroscopeCardData }> = ({ item }) => {
   const { theme, sizes, typography } = useTheme();
   const styles = useMemo(
@@ -157,10 +163,9 @@ const HoroscopeCard: React.FC<{ item: HoroscopeCardData }> = ({ item }) => {
           backgroundColor: theme.card,
           borderRadius: sizes.radius_lg as number,
           padding: sizes.lg as number,
-          width: '48%',
+          width: CARD_WIDTH,
           minHeight: 156,
           justifyContent: 'space-between',
-          marginBottom: sizes.lg as number,
         },
         header: {
           flexDirection: 'row',
@@ -173,12 +178,10 @@ const HoroscopeCard: React.FC<{ item: HoroscopeCardData }> = ({ item }) => {
           padding: sizes.sm as number,
         },
         title: {
-          color: theme.title,
           marginTop: sizes.sm as number,
           ...typography.titleH6,
         },
         description: {
-          color: theme.text,
           marginTop: sizes.xs as number,
           ...typography.body,
         },
@@ -202,25 +205,31 @@ const HoroscopeCard: React.FC<{ item: HoroscopeCardData }> = ({ item }) => {
   );
 };
 
-const HoroscopeCardsGrid: React.FC = () => {
-  const styles = useMemo(
-    () =>
-      StyleSheet.create({
-        container: {
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-        },
-      }),
-    [],
-  );
+const HoroscopeCardsCarousel: React.FC = () => {
+  const { sizes } = useTheme();
+  const GAP = 16;
+  const contentPad = 0;
+
+  const getItemLayout = (_: unknown, index: number) => ({
+    length: CARD_WIDTH + GAP,
+    offset: (CARD_WIDTH + GAP) * index + contentPad,
+    index,
+  });
 
   return (
-    <View style={styles.container}>
-      {cards.map((card) => (
-        <HoroscopeCard key={card.key} item={card} />
-      ))}
-    </View>
+    <FlatList
+      horizontal
+      data={cards}
+      keyExtractor={(it) => it.key}
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={{ paddingHorizontal: contentPad }}
+      ItemSeparatorComponent={() => <View style={{ width: GAP }} />}
+      renderItem={({ item }) => <HoroscopeCard item={item} />}
+      getItemLayout={getItemLayout}
+      snapToAlignment="start"
+      decelerationRate="fast"
+      snapToInterval={CARD_WIDTH + GAP}
+    />
   );
 };
 
@@ -273,16 +282,18 @@ export const HoroscopeDailyOverview: Story = () => {
 
   return (
     <ScreenSurface>
-      <HeaderDefault title="Гороскоп" onBackPress={() => {}} />
+      <HeaderHome
+        logo={<Text style={{ paddingHorizontal: SIZES.xs, fontSize: 24, fontWeight: '700', letterSpacing: 1, color: 'white' }}>CityLife</Text>}
+        onPress={() => console.log('filters')}
+      />
       <HoroscopeTabBar activeIndex={activeTab} onChange={setActiveTab} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ gap: 24, paddingBottom: 32 }}
       >
         <HoroscopeDescription />
-        <HoroscopeCardsGrid />
+        <HoroscopeCardsCarousel />
       </ScrollView>
     </ScreenSurface>
   );
 };
-

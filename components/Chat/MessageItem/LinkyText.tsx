@@ -3,6 +3,7 @@ import React, { FC, useMemo } from 'react';
 import { Text } from 'react-native';
 import { ThemeType } from '../../../theme';
 import { getStyles } from './styles';
+import { formatBoldText } from '../../../utils';
 
 interface LinkyTextProps {
   text: string;
@@ -21,6 +22,13 @@ export const LinkyText: FC<LinkyTextProps> = ({ text, theme, onLinkPress, onLong
     onLinkPress?.(url);
   };
 
+  const renderBoldParts = (segment: string, keyPrefix: string) =>
+    formatBoldText(segment).map((part, index) => (
+      <Text key={`${keyPrefix}-${index}`} style={part.bold ? styles.messageTextBold : undefined}>
+        {part.text}
+      </Text>
+    ));
+
   return (
     <Text style={styles.messageText}>
       {parts.map((part, i) =>
@@ -35,7 +43,7 @@ export const LinkyText: FC<LinkyTextProps> = ({ text, theme, onLinkPress, onLong
             {part}
           </Text>
         ) : (
-          <Text key={i}>{part}</Text>
+          renderBoldParts(part, `text-${i}`)
         )
       )}
     </Text>

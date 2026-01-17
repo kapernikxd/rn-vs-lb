@@ -23,6 +23,10 @@
     "./theme": {
       "types": "./theme/index.ts",
       "default": "./theme/index.ts"
+    },
+    "./utils": {
+      "types": "./utils/index.ts",
+      "default": "./utils/index.ts"
     }
   },
   "license": "ISC",
@@ -101,6 +105,7 @@
     "components",
     "index.ts",
     "theme",
+    "utils",
     "types",
     "app.json",
     "babel.config.js",

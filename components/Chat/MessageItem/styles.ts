@@ -68,6 +68,9 @@ export const getStyles = ({ theme }: { theme: ThemeType }) =>
       fontSize: 15,
       color: theme.black,
     },
+    messageTextBold: {
+      fontWeight: 'bold',
+    },
     messageFooter: {
       flexDirection: 'row',
       alignItems: 'center',
